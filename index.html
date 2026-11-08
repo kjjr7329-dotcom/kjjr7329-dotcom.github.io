@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>라이더 개러지</title>
 <meta name="description" content="바이크 정비 교체 알림과 라이딩 일지를 한 앱에서. 사진만 고르면 블로그 글이 완성됩니다. 설치 무료, 데이터는 내 폰에 저장.">
-<meta name="theme-color" content="#13151a">
+<meta name="theme-color" content="#ec5a13">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -32,23 +32,9 @@
 </script>
 <style>
   :root{
-    color-scheme:dark light;
+    color-scheme:light dark;
     padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
-    /* 기본 테마: 다크 메탈릭 (로고 톤) */
-    --bg:#13151a; --surface:#1c2027; --surface-2:#262b34; --surface-3:#181b21;
-    --text:#eef0f4; --muted:#9aa2ad; --faint:#6c7480;
-    --border:#2c313b; --border-2:#3a414c;
-    --accent:#ff6d1f; --accent-soft:#38230f; --on-accent:#ffffff;
-    --good:#35c07a; --good-soft:#15291e;
-    --warn:#eab63c; --warn-soft:#2c2410;
-    --crit:#ff5a49; --crit-soft:#2e1613;
-    --metal:linear-gradient(180deg,#30353f,#1d212a);
-    --shadow:0 1px 2px rgba(0,0,0,.45),0 10px 26px rgba(0,0,0,.5);
-    --shadow-sm:0 1px 2px rgba(0,0,0,.45);
-    --nav-h:64px;
-  }
-  /* 밝은 테마 (헤더의 테마 버튼으로 전환) */
-  :root[data-theme="light"]{
+    /* 기본 테마: 밝은 테마 */
     --bg:#f3f2ef; --surface:#ffffff; --surface-2:#eceae6; --surface-3:#f7f6f3;
     --text:#1a1c1e; --muted:#555b63; --faint:#8b9199;
     --border:#e4e2dd; --border-2:#d8d5cf;
@@ -59,6 +45,20 @@
     --metal:linear-gradient(180deg,#ffffff,#f1efec);
     --shadow:0 1px 2px rgba(20,20,20,.05),0 6px 20px rgba(20,20,20,.06);
     --shadow-sm:0 1px 2px rgba(20,20,20,.06);
+    --nav-h:64px;
+  }
+  /* 다크 메탈릭 테마 (헤더의 🌗 버튼으로 선택) */
+  :root[data-theme="dark"]{
+    --bg:#13151a; --surface:#1c2027; --surface-2:#262b34; --surface-3:#181b21;
+    --text:#eef0f4; --muted:#9aa2ad; --faint:#6c7480;
+    --border:#2c313b; --border-2:#3a414c;
+    --accent:#ff6d1f; --accent-soft:#38230f; --on-accent:#ffffff;
+    --good:#35c07a; --good-soft:#15291e;
+    --warn:#eab63c; --warn-soft:#2c2410;
+    --crit:#ff5a49; --crit-soft:#2e1613;
+    --metal:linear-gradient(180deg,#30353f,#1d212a);
+    --shadow:0 1px 2px rgba(0,0,0,.45),0 10px 26px rgba(0,0,0,.5);
+    --shadow-sm:0 1px 2px rgba(0,0,0,.45);
   }
 
   *{box-sizing:border-box}
@@ -504,9 +504,9 @@ function applyTheme(t){if(t==="dark"||t==="light")document.documentElement.setAt
 let userTheme=flag("rg_theme");
 if(userTheme)applyTheme(userTheme);
 themeBtn.onclick=()=>{
-  const isLight=document.documentElement.getAttribute("data-theme")==="light";
-  userTheme=isLight?"dark":"light";applyTheme(userTheme);flag("rg_theme",userTheme);
-  const tc=document.querySelector('meta[name="theme-color"]');if(tc)tc.setAttribute("content",userTheme==="light"?"#ec5a13":"#13151a");
+  const isDark=document.documentElement.getAttribute("data-theme")==="dark";
+  userTheme=isDark?"light":"dark";applyTheme(userTheme);flag("rg_theme",userTheme);
+  const tc=document.querySelector('meta[name="theme-color"]');if(tc)tc.setAttribute("content",userTheme==="dark"?"#13151a":"#ec5a13");
 };
 
 /* ---------- helpers ---------- */
