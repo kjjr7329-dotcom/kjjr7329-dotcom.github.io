@@ -35,7 +35,7 @@
     color-scheme:light dark;
     padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
     --bg:#f3f2ef; --surface:#ffffff; --surface-2:#eceae6; --surface-3:#f7f6f3;
-    --text:#1a1c1e; --muted:#6c7178; --faint:#9aa0a7;
+    --text:#1a1c1e; --muted:#555b63; --faint:#8b9199;
     --border:#e4e2dd; --border-2:#d8d5cf;
     --accent:#ec5a13; --accent-soft:#fdeee5; --on-accent:#ffffff;
     --good:#1f9d55; --good-soft:#e6f4ec;
@@ -48,7 +48,7 @@
   @media (prefers-color-scheme:dark){
     :root:not([data-theme="light"]){
       --bg:#121418; --surface:#1b1e24; --surface-2:#23262e; --surface-3:#191c22;
-      --text:#ecedf0; --muted:#9aa0a9; --faint:#6b7079;
+      --text:#ecedf0; --muted:#aab1ba; --faint:#787e87;
       --border:#2b2f38; --border-2:#363b45;
       --accent:#ff7a38; --accent-soft:#33220f; --on-accent:#1a1103;
       --good:#37c07d; --good-soft:#16261d;
@@ -60,7 +60,7 @@
   }
   :root[data-theme="dark"]{
     --bg:#121418; --surface:#1b1e24; --surface-2:#23262e; --surface-3:#191c22;
-    --text:#ecedf0; --muted:#9aa0a9; --faint:#6b7079;
+    --text:#ecedf0; --muted:#aab1ba; --faint:#787e87;
     --border:#2b2f38; --border-2:#363b45;
     --accent:#ff7a38; --accent-soft:#33220f; --on-accent:#1a1103;
     --good:#37c07d; --good-soft:#16261d;
@@ -87,7 +87,7 @@
   header.top .brand .logo{width:28px;height:28px;border-radius:8px;background:var(--accent);
     color:var(--on-accent);display:grid;place-items:center;font-size:16px;box-shadow:var(--shadow-sm)}
   header.top h1{font-size:16px;margin:0;font-weight:700;letter-spacing:-.01em}
-  header.top .sub{font-size:11px;color:var(--muted);font-weight:500;margin-top:1px}
+  header.top .sub{font-size:11.5px;color:var(--muted);font-weight:500;margin-top:1px}
   header.top .spacer{flex:1}
   .icon-btn{width:38px;height:38px;border-radius:10px;border:1px solid var(--border);
     background:var(--surface);color:var(--text);display:grid;place-items:center;cursor:pointer;font-size:16px}
@@ -132,7 +132,7 @@
   .gauge .g-top{display:flex;align-items:center;gap:10px;margin-bottom:9px}
   .gauge .g-emoji{width:34px;height:34px;border-radius:9px;background:var(--surface-2);display:grid;place-items:center;font-size:17px;flex:none}
   .gauge .g-name{font-weight:700;font-size:14.5px}
-  .gauge .g-cycle{font-size:11.5px;color:var(--muted);margin-top:1px}
+  .gauge .g-cycle{font-size:12.5px;color:var(--muted);font-weight:500;margin-top:2px}
   .gauge .g-status{margin-left:auto;text-align:right;flex:none}
   .gauge .g-remain{font-size:11px;color:var(--muted);margin-top:1px}
   .bar{height:8px;border-radius:999px;background:var(--surface-2);overflow:hidden;position:relative}
@@ -165,7 +165,7 @@
   .hist-item .h-icon{width:32px;height:32px;border-radius:8px;background:var(--surface-2);display:grid;place-items:center;font-size:15px;flex:none}
   .hist-item .h-main{flex:1;min-width:0}
   .hist-item .h-name{font-weight:600;font-size:13.5px}
-  .hist-item .h-sub{font-size:11.5px;color:var(--muted);margin-top:1px}
+  .hist-item .h-sub{font-size:12px;color:var(--muted);margin-top:2px}
   .hist-item .h-km{font-weight:700;font-size:13px;text-align:right;flex:none}
   .hist-item .h-km small{display:block;font-size:11px;color:var(--muted);font-weight:500}
 
@@ -223,7 +223,7 @@
   .thumbstrip .th img{width:100%;height:100%;object-fit:cover}
   .thumbstrip .th button{position:absolute;top:2px;right:2px;width:20px;height:20px;border-radius:50%;border:none;background:rgba(0,0,0,.6);color:#fff;font-size:12px;cursor:pointer;line-height:1}
   .thumbstrip .add{width:70px;height:70px;border-radius:10px;border:1.5px dashed var(--border-2);background:var(--surface-3);display:grid;place-items:center;font-size:22px;color:var(--muted);cursor:pointer}
-  .note{font-size:11.5px;color:var(--muted);line-height:1.5;margin-top:4px}
+  .note{font-size:12px;color:var(--muted);line-height:1.55;margin-top:4px}
   .preview{background:var(--surface-3);border:1px solid var(--border);border-radius:12px;padding:13px;font-size:13px;line-height:1.6;white-space:pre-wrap;max-height:230px;overflow:auto}
 
   .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 28px);
@@ -364,7 +364,7 @@
             <button data-nav="naver">네이버지도</button>
           </div>
         </div>
-        <div class="note">일지 화면의 [길안내] 버튼이 선택한 앱으로 열립니다.</div>
+        <div class="note">자주 쓰는 내비 하나만 골라 저장해두세요. 일지에 '방문지/코스'를 적으면, 일지 카드의 <b>[길안내]</b> 버튼으로 그 장소를 선택한 내비(지도)에서 바로 열 수 있어요.</div>
       </div>
 
       <button class="btn primary block" id="saveSetBtn" style="margin-top:16px;padding:13px">저장</button>
