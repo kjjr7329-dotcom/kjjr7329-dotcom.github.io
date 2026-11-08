@@ -1,7 +1,7 @@
 /* 라이더 개러지 · 오프라인 캐시 서비스워커
    앱을 새로 배포(파일 수정)할 때마다 아래 CACHE 버전 숫자만 올리면
    사용자 폰에서 자동으로 새 버전을 받습니다. (예: v1 -> v2) */
-const CACHE = "rider-garage-v3";
+const CACHE = "rider-garage-v5";
 const ASSETS = [
   "./",
   "./index.html",
