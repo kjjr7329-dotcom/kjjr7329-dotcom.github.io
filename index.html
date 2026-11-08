@@ -313,6 +313,24 @@
           <div class="field"><label>번호판</label><input id="f-plate" placeholder="12가 3456"></div>
         </div>
         <div class="field"><label>누적 주행거리 (km)</label><input id="f-odo" inputmode="numeric" placeholder="0"></div>
+        <div class="field"><label>차종 타입 (교환주기 자동 설정)</label>
+          <select id="f-cat">
+            <option value="scooter">스쿠터·언더본</option>
+            <option value="small">소형 매뉴얼 (~250cc)</option>
+            <option value="mid">미들급 (250~600cc)</option>
+            <option value="big">대배기량 (600cc~)</option>
+            <option value="offroad">오프로드·듀얼</option>
+            <option value="electric">전기 바이크</option>
+            <option value="custom">직접 설정</option>
+          </select></div>
+        <button class="btn ghost block" id="applyPresetBtn">이 차종 기본 교환주기 적용</button>
+        <div class="note">제조사·모델은 어떤 기종이든 직접 입력할 수 있어요. 타입을 고르면 그에 맞는 교환주기가 자동으로 세팅되고, 항목별로 수정도 됩니다.</div>
+      </div>
+
+      <div class="set-group">소모품 초기 등록</div>
+      <div class="card">
+        <div class="note" style="margin-bottom:10px">신차·중고에 맞춰 소모품 '최근 교체 시점'을 한 번에 설정합니다.</div>
+        <button class="btn ghost block" id="setupWizardBtn">🏁 신차 / 중고 초기 등록 열기</button>
       </div>
 
       <div class="set-group">외부 연동</div>
@@ -396,27 +414,33 @@ function load(){try{const r=localStorage.getItem(KEY);if(r)return JSON.parse(r);
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
 function flag(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
 
-const DEFAULT_CONSUMABLES=()=>[
-  {name:"엔진오일",emoji:"🛢️",cycle:5000},
-  {name:"오일필터",emoji:"⭕",cycle:10000},
-  {name:"체인·스프라켓",emoji:"⛓️",cycle:15000},
-  {name:"앞·뒤 타이어",emoji:"🛞",cycle:12000},
-  {name:"브레이크 패드",emoji:"🛑",cycle:20000},
-  {name:"에어필터",emoji:"💨",cycle:18000}
-];
+/* 차종 타입별 소모품 교환주기 프리셋 (일반 가이드 · 각 차량 정비매뉴얼 기준으로 조정) */
+const CATEGORY_PRESETS={
+  scooter:{label:"스쿠터·언더본",items:[["엔진오일","🛢️",3000],["기어오일","⚙️",10000],["구동벨트·롤러","⛓️",10000],["앞·뒤 타이어","🛞",10000],["브레이크 패드","🛑",15000],["에어필터","💨",10000]]},
+  small:{label:"소형 매뉴얼 (~250cc)",items:[["엔진오일","🛢️",4000],["오일필터","⭕",8000],["체인·스프라켓","⛓️",12000],["앞·뒤 타이어","🛞",10000],["브레이크 패드","🛑",18000],["에어필터","💨",12000]]},
+  mid:{label:"미들급 (250~600cc)",items:[["엔진오일","🛢️",5000],["오일필터","⭕",10000],["체인·스프라켓","⛓️",15000],["앞·뒤 타이어","🛞",12000],["브레이크 패드","🛑",20000],["에어필터","💨",15000]]},
+  big:{label:"대배기량 (600cc~)",items:[["엔진오일","🛢️",6000],["오일필터","⭕",12000],["체인·스프라켓","⛓️",18000],["앞·뒤 타이어","🛞",10000],["브레이크 패드","🛑",22000],["에어필터","💨",18000]]},
+  offroad:{label:"오프로드·듀얼",items:[["엔진오일","🛢️",3000],["오일필터","⭕",6000],["체인·스프라켓","⛓️",8000],["앞·뒤 타이어","🛞",6000],["브레이크 패드","🛑",12000],["에어필터","💨",5000]]},
+  electric:{label:"전기 바이크",items:[["감속기 오일","⚙️",20000],["앞·뒤 타이어","🛞",15000],["브레이크 패드","🛑",20000],["브레이크 오일","🧪",20000],["타이어 공기압 점검","💨",3000]]}
+};
+const CAT_LABELS={scooter:"스쿠터·언더본",small:"소형 매뉴얼 (~250cc)",mid:"미들급 (250~600cc)",big:"대배기량 (600cc~)",offroad:"오프로드·듀얼",electric:"전기 바이크",custom:"직접 설정"};
+function consumablesFromCat(key){
+  const p=CATEGORY_PRESETS[key]||CATEGORY_PRESETS.mid;
+  return p.items.map(([name,emoji,cycle])=>({id:uid(),name,emoji,cycle,last:0,buy:""}));
+}
 function emptyState(){
   return {isExample:false,
-    profile:{nick:"",mfr:"",model:"",year:"",plate:"",odo:0,blog:"",cafe:"",nav:"kakao"},
-    consumables:DEFAULT_CONSUMABLES().map(c=>({id:uid(),name:c.name,emoji:c.emoji,cycle:c.cycle,last:0,buy:""})),
+    profile:{nick:"",mfr:"",model:"",year:"",plate:"",odo:0,category:"mid",purchase:"",blog:"",cafe:"",nav:"kakao"},
+    consumables:consumablesFromCat("mid"),
     logs:[],history:[]};
 }
 function sampleState(){
   return {isExample:true,
-    profile:{nick:"주황이",mfr:"혼다",model:"CB650R",year:"2023",plate:"12가 3456",odo:14200,blog:"",cafe:"",nav:"kakao"},
+    profile:{nick:"주황이",mfr:"혼다",model:"CB650R",year:"2023",plate:"12가 3456",odo:14200,category:"mid",purchase:"used",blog:"",cafe:"",nav:"kakao"},
     consumables:[
-      {id:"c1",name:"엔진오일",emoji:"🛢️",cycle:5000,last:12000,buy:""},
+      {id:"c1",name:"엔진오일",emoji:"🛢️",cycle:5000,last:8800,buy:""},
       {id:"c2",name:"오일필터",emoji:"⭕",cycle:10000,last:9000,buy:""},
-      {id:"c3",name:"체인·스프라켓",emoji:"⛓️",cycle:15000,last:4000,buy:""},
+      {id:"c3",name:"체인·스프라켓",emoji:"⛓️",cycle:15000,last:1200,buy:""},
       {id:"c4",name:"앞·뒤 타이어",emoji:"🛞",cycle:12000,last:8500,buy:""},
       {id:"c5",name:"브레이크 패드",emoji:"🛑",cycle:20000,last:6000,buy:""},
       {id:"c6",name:"에어필터",emoji:"💨",cycle:18000,last:2000,buy:""}
@@ -428,7 +452,7 @@ function sampleState(){
         memo:"코너 연습하기 좋은 코스. 정상 휴게소에서 쉬고 속초에서 회 한 접시.",tags:["#코너링","#바다"],photos:[]}
     ],
     history:[
-      {id:"h1",date:"2026-08-20",km:12000,item:"엔진오일",emoji:"🛢️",cost:65000,memo:"순정 + 오일필터 동시 교체"},
+      {id:"h1",date:"2026-05-10",km:8800,item:"엔진오일",emoji:"🛢️",cost:65000,memo:"순정 + 오일필터 동시 교체"},
       {id:"h2",date:"2026-05-02",km:9000,item:"오일필터",emoji:"⭕",cost:12000,memo:""},
       {id:"h3",date:"2026-03-11",km:8500,item:"앞·뒤 타이어",emoji:"🛞",cost:340000,memo:"로드5 장착"}
     ]};
@@ -731,6 +755,7 @@ function fillSettings(){
   const p=state.profile;
   $("#f-nick").value=p.nick||"";$("#f-mfr").value=p.mfr||"";$("#f-year").value=p.year||"";
   $("#f-model").value=p.model||"";$("#f-plate").value=p.plate||"";$("#f-odo").value=p.odo||"";
+  $("#f-cat").value=p.category||"mid";
   $("#f-blog").value=p.blog||"";$("#f-cafe").value=p.cafe||"";
   document.querySelectorAll("#navSeg button").forEach(b=>b.classList.toggle("on",b.dataset.nav===(p.nav||"kakao")));
 }
@@ -738,13 +763,68 @@ document.querySelectorAll("#navSeg button").forEach(b=>b.onclick=()=>{
   document.querySelectorAll("#navSeg button").forEach(x=>x.classList.remove("on"));b.classList.add("on");});
 $("#saveSetBtn").onclick=()=>{
   const p=state.profile;
+  const wasNewBike=!(p.model||p.mfr);
   p.nick=$("#f-nick").value.trim();p.mfr=$("#f-mfr").value.trim();p.year=$("#f-year").value.trim();
   p.model=$("#f-model").value.trim();p.plate=$("#f-plate").value.trim();
   p.odo=parseInt(String($("#f-odo").value).replace(/[^0-9]/g,""))||0;
+  p.category=$("#f-cat").value;
   p.blog=$("#f-blog").value.trim();p.cafe=$("#f-cafe").value.trim();
   const on=document.querySelector("#navSeg button.on");p.nav=on?on.dataset.nav:"kakao";
-  state.isExample=false;save();renderAll();toast("저장되었습니다");switchTab("dash");
+  state.isExample=false;save();renderAll();toast("저장되었습니다");
+  if(wasNewBike&&(p.model||p.mfr))openSetupWizard(true); else switchTab("dash");
 };
+/* 차종 타입 기본 교환주기 적용 */
+$("#applyPresetBtn").onclick=()=>{
+  const key=$("#f-cat").value;
+  if(key==="custom"){toast("'직접 설정'은 항목을 직접 편집하세요");return;}
+  openSheet(`<h3>${CAT_LABELS[key]} 기본 주기 적용</h3>
+    <div class="note" style="margin-bottom:14px">이 차종에 맞는 소모품 목록과 교환주기로 바꿉니다. 같은 이름 항목의 '최근 교체 시점'은 유지돼요. (일반 가이드 값이라 정비매뉴얼에 맞춰 조정하세요.)</div>
+    <div class="sheet-actions"><button class="btn ghost" id="apCancel">취소</button><button class="btn primary" id="apOk">적용</button></div>`);
+  $("#apCancel").onclick=closeSheet;
+  $("#apOk").onclick=()=>{
+    const byName={};state.consumables.forEach(c=>byName[c.name]=c);
+    state.consumables=CATEGORY_PRESETS[key].items.map(([name,emoji,cycle])=>{
+      const ex=byName[name];return {id:ex?ex.id:uid(),name,emoji,cycle,last:ex?ex.last:0,buy:ex?ex.buy:""};});
+    state.profile.category=key;save();closeSheet();renderAll();toast("기본 교환주기를 적용했어요");
+  };
+};
+/* 신차 / 중고 초기 등록 마법사 */
+$("#setupWizardBtn").onclick=()=>openSetupWizard(false);
+function openSetupWizard(afterRegister){
+  const odo=state.profile.odo||0;
+  let mode=state.profile.purchase||"new";
+  function paint(){
+    const rows=state.consumables.map((c,i)=>`
+      <div style="display:flex;gap:9px;align-items:center;margin-bottom:9px">
+        <span style="width:30px;height:30px;border-radius:8px;background:var(--surface-2);display:grid;place-items:center;font-size:15px;flex:none">${c.emoji||"🔧"}</span>
+        <div style="flex:1;min-width:0"><div style="font-weight:600;font-size:13px">${esc(c.name)}</div>
+          <div style="font-size:11px;color:var(--muted)">교체주기 ${fmt(c.cycle)}km</div></div>
+        <input data-i="${i}" class="wz-last" inputmode="numeric" style="width:104px;padding:9px 10px;border-radius:9px;border:1px solid var(--border-2);background:var(--surface-3);color:var(--text);font-size:13px"
+          placeholder="${mode==='new'?fmt(odo)+' km':'모르면 비움'}" value="">
+      </div>`).join("");
+    openSheet(`<h3>소모품 초기 등록</h3>
+      <div class="note" style="margin-bottom:10px">바이크를 어떻게 들였는지 고르면, 소모품 '최근 교체 시점'을 알맞게 잡아줍니다.</div>
+      <div class="seg" id="wzMode" style="margin-bottom:14px">
+        <button data-m="new" class="${mode==='new'?'on':''}">🏍️ 신차·갓 정비</button>
+        <button data-m="used" class="${mode==='used'?'on':''}">🔁 중고·이력 모름</button></div>
+      ${rows}
+      <div class="note" style="margin-top:4px">${mode==='new'
+        ?"신차는 비워두면 전부 현재 주행거리 기준 '새것'으로 잡습니다. 최근에 정비한 항목만 그 주행거리를 넣으세요."
+        :"중고는 아는 교체 시점(그때 주행거리)만 넣으세요. 모르는 항목은 비워두면 '점검/교체 필요'로 안전하게 표시됩니다."}</div>
+      <div class="sheet-actions" style="margin-top:14px"><button class="btn ghost" id="wzCancel">${afterRegister?"나중에":"취소"}</button><button class="btn primary" id="wzSave">적용</button></div>`);
+    document.querySelectorAll("#wzMode button").forEach(b=>b.onclick=()=>{mode=b.dataset.m;paint();});
+    $("#wzCancel").onclick=()=>{closeSheet();if(afterRegister)switchTab("dash");};
+    $("#wzSave").onclick=()=>{
+      document.querySelectorAll(".wz-last").forEach(inp=>{
+        const i=+inp.dataset.i,raw=inp.value.trim(),c=state.consumables[i];
+        if(raw==="")c.last=(mode==="new")?odo:Math.max(0,odo-(c.cycle||0));
+        else c.last=parseInt(raw.replace(/[^0-9]/g,""))||0;
+      });
+      state.profile.purchase=mode;save();closeSheet();renderAll();switchTab("dash");toast("소모품 초기 설정 완료");
+    };
+  }
+  paint();
+}
 $("#resetBtn").onclick=()=>{
   openSheet(`<h3>전체 초기화할까요?</h3>
     <div class="note" style="margin-bottom:14px">모든 기록이 지워지고 빈 상태로 시작합니다. 되돌릴 수 없어요.</div>
