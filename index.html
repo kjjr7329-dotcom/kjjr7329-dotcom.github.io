@@ -22,6 +22,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-109C9YCCZH"></script>
+<script>
+  window.dataLayer=window.dataLayer||[];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());
+  gtag('config','G-109C9YCCZH');
+</script>
 <style>
   :root{
     color-scheme:light dark;
@@ -483,6 +491,8 @@ function openExt(url){ // robust external open for both artifact frame & real br
   try{const a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener noreferrer";
     document.body.appendChild(a);a.click();a.remove();}catch(e){try{window.open(url,"_blank");}catch(_){}}
 }
+/* 사용 행동 집계 (구글 애널리틱스 이벤트) */
+function track(name,params){try{if(window.gtag)gtag("event",name,params||{});}catch(e){}}
 function status(c){
   const p=state.profile, used=Math.max(0,(p.odo||0)-(c.last||0));
   const remain=(c.cycle||1)-used, pct=Math.min(100,Math.max(0,used/(c.cycle||1)*100));
@@ -639,7 +649,7 @@ function markReplaced(id){
   const c=state.consumables.find(x=>x.id===id);if(!c)return;
   c.last=state.profile.odo||0;
   state.history.unshift({id:uid(),date:new Date().toISOString().slice(0,10),km:state.profile.odo||0,item:c.name,emoji:c.emoji,cost:0,memo:"교체 완료 체크"});
-  save();renderAll();toast(c.name+" 교체 기록 완료");
+  save();renderAll();toast(c.name+" 교체 기록 완료");track("part_replaced",{item:c.name});
 }
 function buyPart(id){
   const c=state.consumables.find(x=>x.id===id);if(!c)return;
@@ -676,7 +686,7 @@ function openLogEdit(id){
       km:parseInt(String($("#lKm").value).replace(/[^0-9]/g,""))||0,
       title,place:$("#lPlace").value.trim(),memo:$("#lMemo").value.trim(),tags,photos:draftPhotos};
     if(isNew){obj.id=uid();state.logs.unshift(obj);}else Object.assign(l,obj);
-    save();closeSheet();renderAll();toast("일지가 저장되었습니다");
+    save();closeSheet();renderAll();toast("일지가 저장되었습니다");track("log_save",{photos:obj.photos.length});
   };
   if(!isNew)$("#lDelete").onclick=()=>{state.logs=state.logs.filter(x=>x.id!==id);save();closeSheet();renderAll();toast("삭제되었습니다");};
 }
@@ -710,9 +720,9 @@ function openBlogText(l){
     <div class="sheet-actions" style="margin-top:12px"><button class="btn primary" id="copyBlog">📋 글 복사</button>
       <button class="btn ghost" id="openBlog">네이버 블로그 열기</button></div>
     <button class="btn ghost block" id="openCafe" style="margin-top:10px">카페에 공유하기</button>`);
-  $("#copyBlog").onclick=()=>copyText(text);
-  $("#openBlog").onclick=()=>{copyText(text,true);openExt(state.profile.blog||"https://blog.naver.com/");};
-  $("#openCafe").onclick=()=>{copyText(text,true);openExt(state.profile.cafe||"https://cafe.naver.com/");};
+  $("#copyBlog").onclick=()=>{copyText(text);track("blog_copy");};
+  $("#openBlog").onclick=()=>{copyText(text,true);track("blog_open");openExt(state.profile.blog||"https://blog.naver.com/");};
+  $("#openCafe").onclick=()=>{copyText(text,true);track("cafe_open");openExt(state.profile.cafe||"https://cafe.naver.com/");};
 }
 function copyText(text,silent){
   const done=()=>toast(silent?"글이 복사됐어요 · 붙여넣기 하세요":"복사됐어요! 블로그에 붙여넣기 하세요");
@@ -771,7 +781,7 @@ $("#saveSetBtn").onclick=()=>{
   p.blog=$("#f-blog").value.trim();p.cafe=$("#f-cafe").value.trim();
   const on=document.querySelector("#navSeg button.on");p.nav=on?on.dataset.nav:"kakao";
   state.isExample=false;save();renderAll();toast("저장되었습니다");
-  if(wasNewBike&&(p.model||p.mfr))openSetupWizard(true); else switchTab("dash");
+  if(wasNewBike&&(p.model||p.mfr)){track("bike_register",{category:p.category});openSetupWizard(true);} else switchTab("dash");
 };
 /* 차종 타입 기본 교환주기 적용 */
 $("#applyPresetBtn").onclick=()=>{
@@ -820,7 +830,7 @@ function openSetupWizard(afterRegister){
         if(raw==="")c.last=(mode==="new")?odo:Math.max(0,odo-(c.cycle||0));
         else c.last=parseInt(raw.replace(/[^0-9]/g,""))||0;
       });
-      state.profile.purchase=mode;save();closeSheet();renderAll();switchTab("dash");toast("소모품 초기 설정 완료");
+      state.profile.purchase=mode;save();closeSheet();renderAll();switchTab("dash");toast("소모품 초기 설정 완료");track("setup_done",{mode});
     };
   }
   paint();
@@ -855,6 +865,7 @@ $("#restoreBtn").onclick=()=>{
 function shareApp(){
   const url=location.href.split("#")[0];
   const data={title:"라이더 개러지",text:"바이크 정비 알림 + 라이딩 일지 앱. 무료로 써보세요!",url};
+  track("share_app");
   if(navigator.share)navigator.share(data).catch(()=>{});
   else{copyText(url,true);toast("앱 링크가 복사됐어요 · 친구에게 보내세요");}
 }
