@@ -924,10 +924,11 @@ function installApp(){
   if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.finally(()=>{deferredPrompt=null;});return;}
   const ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
   openSheet(`<h3>홈 화면에 앱 설치</h3>
-    <div class="note" style="line-height:1.7;font-size:13px;color:var(--text)">
-    ${ios?"<b>아이폰(사파리)</b><br>① 아래 <b>공유 버튼</b>(⬆️) 탭<br>② <b>'홈 화면에 추가'</b> 선택<br>③ 추가 → 홈에서 앱처럼 실행"
-         :"<b>안드로이드(크롬)</b><br>① 우측 상단 <b>⋮ 메뉴</b> 탭<br>② <b>'홈 화면에 추가'</b> 또는 <b>'앱 설치'</b> 선택<br>③ 홈에서 앱처럼 실행"}
+    <div class="note" style="line-height:1.75;font-size:13px;color:var(--text)">
+    ${ios?"<b>아이폰 (사파리)</b><br>① 화면 아래 <b>공유 버튼 ⬆️</b> 탭<br>② <b>'홈 화면에 추가'</b> 선택<br>③ 추가 → 홈에서 앱처럼 실행"
+         :"<b>삼성 인터넷</b> (메뉴가 아래에 있어요)<br>① 화면 <b>맨 아래 ≡</b>(가로줄 세 개) 탭<br>② <b>'현재 페이지 추가' → '홈 화면'</b> (또는 '홈 화면에 추가')<br><br><b>크롬</b><br>① <b>우측 상단 ⋮</b> 탭 <span style='color:var(--muted)'>(안 보이면 화면을 살짝 아래로 쓸어내리기)</span><br>② <b>'홈 화면에 추가'</b> 또는 <b>'앱 설치'</b> 선택"}
     </div>
+    <div class="note" style="margin-top:10px;background:var(--surface-2);padding:10px 12px;border-radius:10px">💡 카톡·네이버 앱 안에서 열었다면 설치 메뉴가 없어요. 그 화면의 <b>⋮</b> → <b>'다른 브라우저로 열기'</b>로 크롬·삼성 인터넷에서 연 뒤 설치하세요.</div>
     <button class="btn primary block" id="instOk" style="margin-top:16px">알겠어요</button>`);
   $("#instOk").onclick=closeSheet;
 }
