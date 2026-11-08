@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>라이더 개러지</title>
 <meta name="description" content="바이크 정비 교체 알림과 라이딩 일지를 한 앱에서. 사진만 고르면 블로그 글이 완성됩니다. 설치 무료, 데이터는 내 폰에 저장.">
-<meta name="theme-color" content="#ec5a13">
+<meta name="theme-color" content="#13151a">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -32,8 +32,23 @@
 </script>
 <style>
   :root{
-    color-scheme:light dark;
+    color-scheme:dark light;
     padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+    /* 기본 테마: 다크 메탈릭 (로고 톤) */
+    --bg:#13151a; --surface:#1c2027; --surface-2:#262b34; --surface-3:#181b21;
+    --text:#eef0f4; --muted:#9aa2ad; --faint:#6c7480;
+    --border:#2c313b; --border-2:#3a414c;
+    --accent:#ff6d1f; --accent-soft:#38230f; --on-accent:#ffffff;
+    --good:#35c07a; --good-soft:#15291e;
+    --warn:#eab63c; --warn-soft:#2c2410;
+    --crit:#ff5a49; --crit-soft:#2e1613;
+    --metal:linear-gradient(180deg,#30353f,#1d212a);
+    --shadow:0 1px 2px rgba(0,0,0,.45),0 10px 26px rgba(0,0,0,.5);
+    --shadow-sm:0 1px 2px rgba(0,0,0,.45);
+    --nav-h:64px;
+  }
+  /* 밝은 테마 (헤더의 테마 버튼으로 전환) */
+  :root[data-theme="light"]{
     --bg:#f3f2ef; --surface:#ffffff; --surface-2:#eceae6; --surface-3:#f7f6f3;
     --text:#1a1c1e; --muted:#555b63; --faint:#8b9199;
     --border:#e4e2dd; --border-2:#d8d5cf;
@@ -41,33 +56,9 @@
     --good:#1f9d55; --good-soft:#e6f4ec;
     --warn:#c47f00; --warn-soft:#fbf1dc;
     --crit:#d43a2f; --crit-soft:#fce9e7;
+    --metal:linear-gradient(180deg,#ffffff,#f1efec);
     --shadow:0 1px 2px rgba(20,20,20,.05),0 6px 20px rgba(20,20,20,.06);
     --shadow-sm:0 1px 2px rgba(20,20,20,.06);
-    --nav-h:64px;
-  }
-  @media (prefers-color-scheme:dark){
-    :root:not([data-theme="light"]){
-      --bg:#121418; --surface:#1b1e24; --surface-2:#23262e; --surface-3:#191c22;
-      --text:#ecedf0; --muted:#aab1ba; --faint:#787e87;
-      --border:#2b2f38; --border-2:#363b45;
-      --accent:#ff7a38; --accent-soft:#33220f; --on-accent:#1a1103;
-      --good:#37c07d; --good-soft:#16261d;
-      --warn:#e7b13e; --warn-soft:#2a2210;
-      --crit:#ff5d4d; --crit-soft:#2c1613;
-      --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
-      --shadow-sm:0 1px 2px rgba(0,0,0,.3);
-    }
-  }
-  :root[data-theme="dark"]{
-    --bg:#121418; --surface:#1b1e24; --surface-2:#23262e; --surface-3:#191c22;
-    --text:#ecedf0; --muted:#aab1ba; --faint:#787e87;
-    --border:#2b2f38; --border-2:#363b45;
-    --accent:#ff7a38; --accent-soft:#33220f; --on-accent:#1a1103;
-    --good:#37c07d; --good-soft:#16261d;
-    --warn:#e7b13e; --warn-soft:#2a2210;
-    --crit:#ff5d4d; --crit-soft:#2c1613;
-    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
-    --shadow-sm:0 1px 2px rgba(0,0,0,.3);
   }
 
   *{box-sizing:border-box}
@@ -96,7 +87,7 @@
   section.screen[hidden]{display:none}
   .screen-title{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.09em;margin:4px 2px 12px}
 
-  .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:16px}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.045);padding:16px}
   .card + .card{margin-top:14px}
 
   .bike-hero{padding:0;overflow:hidden;position:relative}
@@ -513,9 +504,9 @@ function applyTheme(t){if(t==="dark"||t==="light")document.documentElement.setAt
 let userTheme=flag("rg_theme");
 if(userTheme)applyTheme(userTheme);
 themeBtn.onclick=()=>{
-  const dark=document.documentElement.getAttribute("data-theme")==="dark"||
-    (!document.documentElement.getAttribute("data-theme")&&matchMedia("(prefers-color-scheme:dark)").matches);
-  userTheme=dark?"light":"dark";applyTheme(userTheme);flag("rg_theme",userTheme);
+  const isLight=document.documentElement.getAttribute("data-theme")==="light";
+  userTheme=isLight?"dark":"light";applyTheme(userTheme);flag("rg_theme",userTheme);
+  const tc=document.querySelector('meta[name="theme-color"]');if(tc)tc.setAttribute("content",userTheme==="light"?"#ec5a13":"#13151a");
 };
 
 /* ---------- helpers ---------- */
