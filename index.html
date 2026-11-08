@@ -84,8 +84,7 @@
     background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);
     border-bottom:1px solid var(--border);padding:14px 18px 12px;display:flex;align-items:center;gap:10px;min-height:54px}
   header.top .brand{display:flex;align-items:center;gap:9px;font-weight:700}
-  header.top .brand .logo{width:28px;height:28px;border-radius:8px;background:var(--accent);
-    color:var(--on-accent);display:grid;place-items:center;font-size:16px;box-shadow:var(--shadow-sm)}
+  header.top .brand .logo{width:30px;height:30px;border-radius:8px;object-fit:cover;background:#0d0f12;box-shadow:var(--shadow-sm)}
   header.top h1{font-size:16px;margin:0;font-weight:700;letter-spacing:-.01em}
   header.top .sub{font-size:11.5px;color:var(--muted);font-weight:500;margin-top:1px}
   header.top .spacer{flex:1}
@@ -252,8 +251,8 @@
   .welcome{position:fixed;inset:0;z-index:90;background:var(--bg);display:flex;flex-direction:column;
     padding:calc(env(safe-area-inset-top,0px) + 8px) 22px calc(env(safe-area-inset-bottom,0px) + 22px);overflow-y:auto}
   .welcome .wrap{max-width:440px;margin:auto;width:100%;text-align:center}
-  .welcome .w-logo{width:76px;height:76px;border-radius:22px;background:var(--accent);margin:8px auto 18px;
-    display:grid;place-items:center;font-size:40px;box-shadow:0 8px 26px color-mix(in srgb,var(--accent) 40%,transparent)}
+  .welcome .w-logo{width:88px;height:88px;border-radius:22px;object-fit:cover;background:#0d0f12;margin:8px auto 18px;
+    box-shadow:0 8px 26px rgba(0,0,0,.35)}
   .welcome h1{font-size:25px;margin:0 0 6px;letter-spacing:-.02em}
   .welcome .tag{color:var(--muted);font-size:14px;margin:0 0 22px;line-height:1.5}
   .welcome .feat{display:flex;gap:12px;text-align:left;background:var(--surface);border:1px solid var(--border);
@@ -272,7 +271,7 @@
 <div id="app">
   <header class="top">
     <div class="brand">
-      <span class="logo">🏍️</span>
+      <img class="logo" src="icons/icon-192.png" alt="라이더 개러지 로고">
       <div>
         <h1 id="hdrTitle">라이더 개러지</h1>
         <div class="sub" id="hdrSub">내 바이크 정비 · 라이딩 일지</div>
@@ -414,7 +413,8 @@
 <!-- Onboarding -->
 <div class="welcome" id="welcome" hidden>
   <div class="wrap">
-    <div class="w-logo">🏍️</div>
+    <img class="w-logo" src="icons/icon-512.png" alt="라이더 개러지 로고">
+
     <h1>라이더 개러지</h1>
     <p class="tag">내 바이크 정비와 라이딩 일지를<br>한 앱에서, 가장 간단하게.</p>
     <div class="feat"><span class="fi">⏱️</span><div><div class="ft">교체 시점 자동 알림</div><div class="fd">엔진오일·체인·타이어… 주행거리 기준 D-Day로 한눈에.</div></div></div>
