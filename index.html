@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>라이더 개러지</title>
-<meta name="description" content="바이크 정비 교체 알림과 라이딩 일지를 한 앱에서. 사진만 고르면 블로그 글이 완성됩니다. 설치 무료, 데이터는 내 폰에 저장.">
+<meta name="description" content="바이크 소모품 교체 알림, 비용·보험 장부, 출발 전 점검, 라이딩 일지를 한 앱에서. 설치 무료, 데이터는 내 폰에 저장.">
 <meta name="theme-color" content="#ec5a13">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -12,7 +12,7 @@
 <meta name="apple-mobile-web-app-title" content="라이더 개러지">
 <meta property="og:type" content="website">
 <meta property="og:title" content="라이더 개러지 — 바이크 정비·라이딩 일지">
-<meta property="og:description" content="교체 시점 자동 알림 + 사진 한 장으로 완성되는 라이딩 일지. 무료 라이더 앱.">
+<meta property="og:description" content="교체 시점 알림 · 비용 장부 · 출발 전 점검 · 라이딩 일지. 무료 라이더 앱.">
 <meta property="og:image" content="icons/icon-512.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="manifest" href="manifest.webmanifest">
@@ -256,6 +256,112 @@
   .welcome .w-actions .btn{padding:14px;font-size:15px}
   .welcome .w-note{font-size:11.5px;color:var(--faint);margin-top:14px;line-height:1.5}
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+  /* ===== v2 추가 스타일 ===== */
+  .bike-hero .band .switch{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.32);
+    color:#fff;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;z-index:2}
+  .todo-row{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid var(--border);cursor:pointer}
+  .todo-row:last-child{border-bottom:none}
+  .todo-row .t-emoji{width:34px;height:34px;border-radius:9px;background:var(--surface-2);display:grid;place-items:center;font-size:17px;flex:none}
+  .todo-row .t-main{flex:1;min-width:0}
+  .todo-row .t-title{font-weight:700;font-size:14px}
+  .todo-row .t-sub{font-size:12.5px;color:var(--muted);margin-top:1px}
+  .todo-more{font-size:12px;color:var(--muted);text-align:center;padding:9px 0 5px}
+  .quick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+  .quick button{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:12px 2px 10px;display:flex;flex-direction:column;
+    align-items:center;gap:6px;font-family:inherit;font-size:11.5px;font-weight:600;color:var(--text);cursor:pointer;box-shadow:var(--shadow-sm)}
+  .quick button:active{transform:scale(.96)}
+  .quick button .q-i{font-size:22px;line-height:1}
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .tile{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:12px;min-width:0;cursor:pointer}
+  .tile .tl-k{font-size:11px;color:var(--muted);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tile .tl-v{font-size:20px;font-weight:700;margin-top:4px;line-height:1.1;white-space:nowrap}
+  .tile .tl-v small{font-size:11.5px;color:var(--muted);font-weight:600;margin-left:2px}
+  .recent{display:flex;gap:12px;align-items:center;cursor:pointer;padding:12px 14px}
+  .recent .r-thumb{width:58px;height:58px;border-radius:11px;overflow:hidden;background:var(--surface-2);display:grid;place-items:center;font-size:24px;flex:none}
+  .recent .r-thumb img{width:100%;height:100%;object-fit:cover}
+  .recent .r-date{font-size:11.5px;color:var(--accent);font-weight:700}
+  .recent .r-title{font-weight:700;font-size:14.5px;margin-top:1px}
+  .recent .r-place{font-size:12.5px;color:var(--muted);margin-top:1px}
+
+  .subseg{margin-bottom:14px}
+  .total-card .tc-k{font-size:12px;color:var(--muted);font-weight:600}
+  .total-card .tc-v{font-size:32px;font-weight:700;line-height:1.1;margin-top:2px}
+  .total-card .tc-v small{font-size:15px;color:var(--muted);font-weight:600;margin-left:3px}
+  .catbars{margin-top:12px;border-top:1px solid var(--border);padding-top:10px}
+  .catbar{display:grid;grid-template-columns:96px 1fr auto;gap:10px;align-items:center;padding:6px 0;font-size:12.5px}
+  .catbar .cb-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .catbar .cb-track{height:8px;background:var(--surface-2);border-radius:4px;overflow:hidden}
+  .catbar .cb-fill{height:100%;background:var(--accent);border-radius:0 4px 4px 0;min-width:3px}
+  .catbar .cb-val{font-weight:700;font-variant-numeric:tabular-nums;min-width:64px;text-align:right}
+  .ins-row{display:flex;align-items:center;gap:10px;margin-top:12px;padding:11px 12px;border-radius:12px;background:var(--surface-2);font-size:13px}
+  .ins-row .i-main{flex:1;min-width:0}
+  .ins-row .i-sub{font-size:12px;color:var(--muted);margin-top:1px}
+  .hist-item{cursor:pointer}
+  .hist-item .h-amt{font-weight:700;font-size:13.5px;text-align:right;flex:none;white-space:nowrap}
+  .btn-row{display:flex;gap:8px;margin-bottom:14px}
+  .btn-row .btn{flex:1}
+
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chips button{border:1px solid var(--border-2);background:var(--surface-3);color:var(--text);border-radius:999px;padding:8px 12px;
+    font-size:13px;font-weight:600;font-family:inherit;cursor:pointer}
+  .chips button.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+
+  .log .l-photos{display:grid;gap:2px;background:var(--surface-2)}
+  .log .l-photos.n1{grid-template-columns:1fr}
+  .log .l-photos.n2{grid-template-columns:1fr 1fr}
+  .log .l-photos.n3{grid-template-columns:2fr 1fr 1fr}
+  .log .l-photos .ph{position:relative;height:150px;overflow:hidden;cursor:zoom-in;background:var(--surface-2)}
+  .log .l-photos.n1 .ph{height:200px}
+  .log .l-photos .ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .log .l-photos .ph .more{position:absolute;inset:0;background:rgba(0,0,0,.52);color:#fff;display:grid;place-items:center;font-size:20px;font-weight:700}
+  .log .l-photos .ph .cnt{position:absolute;left:8px;bottom:8px;background:rgba(0,0,0,.6);color:#fff;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px}
+  .photo-head{display:flex;justify-content:space-between;align-items:baseline}
+  .photo-head .pc{font-size:12px;font-weight:700;color:var(--accent)}
+
+  .viewer{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.95);display:flex;align-items:center;justify-content:center}
+  .viewer img{max-width:100%;max-height:100%;object-fit:contain}
+  .viewer button{position:absolute;border:none;background:rgba(255,255,255,.16);color:#fff;border-radius:50%;width:44px;height:44px;font-size:22px;cursor:pointer;line-height:1}
+  .viewer .v-close{top:calc(env(safe-area-inset-top,0px) + 14px);right:14px}
+  .viewer .v-prev{left:10px;top:50%;transform:translateY(-50%)}
+  .viewer .v-next{right:10px;top:50%;transform:translateY(-50%)}
+  .viewer .v-count{position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);left:50%;transform:translateX(-50%);color:#fff;
+    font-size:14px;font-weight:600;background:rgba(0,0,0,.55);padding:4px 13px;border-radius:999px}
+
+  .chk{display:flex;align-items:center;gap:12px;padding:12px 2px;border-bottom:1px solid var(--border);cursor:pointer;font-size:14px}
+  .chk:last-of-type{border-bottom:none}
+  .chk .box{width:24px;height:24px;border-radius:7px;border:2px solid var(--border-2);display:grid;place-items:center;flex:none;font-size:14px;color:transparent}
+  .chk.on .box{background:var(--good);border-color:var(--good);color:#fff}
+  .chk.on .ct{color:var(--muted);text-decoration:line-through}
+  .chk .ct{flex:1;min-width:0}
+  .chk .del{border:none;background:none;color:var(--faint);font-size:15px;cursor:pointer;padding:4px 6px}
+  .chk-progress{font-size:12.5px;color:var(--muted);font-weight:600;margin:10px 2px 2px}
+  .add-line{display:flex;gap:8px;margin-top:12px}
+  .add-line input{flex:1;min-width:0;padding:10px 12px;border-radius:11px;border:1px solid var(--border-2);background:var(--surface-3);color:var(--text);font-size:14px;font-family:inherit}
+
+  .bike-row{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid var(--border);cursor:pointer}
+  .bike-row:last-of-type{border-bottom:none}
+  .bike-row .b-emoji{width:36px;height:36px;border-radius:10px;background:var(--surface-2);display:grid;place-items:center;font-size:18px;flex:none}
+  .bike-row .b-main{flex:1;min-width:0}
+  .bike-row .b-name{font-weight:700;font-size:14px}
+  .bike-row .b-sub{font-size:12px;color:var(--muted);margin-top:1px}
+  .bike-row .b-del{border:none;background:none;color:var(--faint);font-size:16px;cursor:pointer;padding:6px}
+
+  #printArea{display:none}
+  @media print{
+    :root{padding:0!important}
+    body{background:#fff!important}
+    body > *:not(#printArea){display:none!important}
+    #printArea{display:block!important;padding:8mm;color:#111;background:#fff;font-family:"Noto Sans KR",sans-serif;font-size:11pt}
+    #printArea h1{font-size:18pt;margin:0 0 2mm}
+    #printArea .p-sub{color:#555;font-size:9.5pt;margin-bottom:5mm}
+    #printArea table{width:100%;border-collapse:collapse;margin:3mm 0 6mm}
+    #printArea th,#printArea td{border:1px solid #bbb;padding:2mm 2.5mm;text-align:left;font-size:9.5pt;vertical-align:top}
+    #printArea th{background:#eee}
+    #printArea td.r,#printArea th.r{text-align:right;white-space:nowrap}
+    #printArea h2{font-size:12pt;margin:5mm 0 1mm}
+    #printArea .p-foot{color:#777;font-size:8.5pt;margin-top:6mm}
+  }
 </style>
 </head>
 <body>
@@ -274,56 +380,48 @@
   </header>
 
   <main>
-    <!-- 1. 대시보드 -->
+    <!-- 1. 대시보드: 오늘 챙길 것 요약 -->
     <section class="screen" id="scr-dash">
       <div id="sampleBanner" class="banner" hidden>✦ 체험(샘플) 데이터를 보는 중입니다<button id="clearSampleBtn">지우고 시작</button></div>
       <div id="dashBody"></div>
     </section>
 
-    <!-- 2. 스마트 일지 -->
+    <!-- 2. 라이딩 일지 -->
     <section class="screen" id="scr-log" hidden>
-      <div class="screen-title">스마트 일지</div>
+      <div class="screen-title">라이딩 일지</div>
       <div id="logList"></div>
     </section>
 
-    <!-- 3. 차계부 -->
+    <!-- 3. 차계부: 소모품 · 비용 · 정비 기록 관리 -->
     <section class="screen" id="scr-maint" hidden>
-      <div class="screen-title">정비 차계부</div>
-      <div class="card">
-        <div class="odo" style="padding:2px 2px 14px">
-          <div>
-            <div class="label">현재 누적 주행거리</div>
-            <div class="val num" id="maintOdo">0<small>km</small></div>
-          </div>
-          <button class="btn primary" id="maintOdoBtn">계기판 갱신</button>
-        </div>
-        <div style="font-size:11.5px;color:var(--muted);border-top:1px solid var(--border);padding-top:11px">
-          갱신하면 아래 소모품 D-Day가 자동으로 다시 계산됩니다.
-        </div>
+      <div class="seg subseg" id="maintSeg">
+        <button data-m="parts">소모품</button>
+        <button data-m="cost">비용</button>
+        <button data-m="hist">정비 기록</button>
       </div>
-      <div class="row-head"><h2>소모품 수명</h2><span class="hint" id="maintCount"></span></div>
-      <div id="maintGaugeList"></div>
-      <div class="row-head"><h2>교체 기록</h2><button class="btn ghost tiny" id="addHistBtn">＋ 기록 추가</button></div>
-      <div class="card" id="histCard"></div>
+      <div id="maintBody"></div>
     </section>
 
     <!-- 4. 설정 -->
     <section class="screen" id="scr-set" hidden>
       <div class="screen-title">설정 · 프로필</div>
 
-      <div class="set-group">내 차종</div>
+      <div class="set-group">내 차고</div>
+      <div class="card" id="garageCard"></div>
+
+      <div class="set-group" id="bikeFormTitle">선택한 바이크 정보</div>
       <div class="card">
-        <div class="field"><label>애칭 (선택)</label><input id="f-nick" placeholder="예: 주황이"></div>
+        <div class="field"><label for="f-nick">애칭 (선택)</label><input id="f-nick" placeholder="예: 주황이"></div>
         <div class="two">
-          <div class="field"><label>제조사</label><input id="f-mfr" placeholder="예: 혼다"></div>
-          <div class="field"><label>연식</label><input id="f-year" inputmode="numeric" placeholder="2023"></div>
+          <div class="field"><label for="f-mfr">제조사</label><input id="f-mfr" placeholder="예: 혼다"></div>
+          <div class="field"><label for="f-year">연식</label><input id="f-year" inputmode="numeric" placeholder="2023"></div>
         </div>
         <div class="two">
-          <div class="field"><label>모델</label><input id="f-model" placeholder="예: CB650R"></div>
-          <div class="field"><label>번호판</label><input id="f-plate" placeholder="12가 3456"></div>
+          <div class="field"><label for="f-model">모델</label><input id="f-model" placeholder="예: CB650R"></div>
+          <div class="field"><label for="f-plate">번호판</label><input id="f-plate" placeholder="12가 3456"></div>
         </div>
-        <div class="field"><label>누적 주행거리 (km)</label><input id="f-odo" inputmode="numeric" placeholder="0"></div>
-        <div class="field"><label>차종 타입 (교환주기 자동 설정)</label>
+        <div class="field"><label for="f-odo">누적 주행거리 (km)</label><input id="f-odo" inputmode="numeric" placeholder="0"></div>
+        <div class="field"><label for="f-cat">차종 타입 (교환주기 자동 설정)</label>
           <select id="f-cat">
             <option value="scooter">스쿠터·언더본</option>
             <option value="small">소형 매뉴얼 (~250cc)</option>
@@ -345,8 +443,8 @@
 
       <div class="set-group">외부 연동</div>
       <div class="card">
-        <div class="field"><label>네이버 블로그 주소</label><input id="f-blog" placeholder="https://blog.naver.com/아이디"></div>
-        <div class="field"><label>네이버 카페 주소</label><input id="f-cafe" placeholder="https://cafe.naver.com/카페명"></div>
+        <div class="field"><label for="f-blog">네이버 블로그 주소</label><input id="f-blog" placeholder="https://blog.naver.com/아이디"></div>
+        <div class="field"><label for="f-cafe">네이버 카페 주소</label><input id="f-cafe" placeholder="https://cafe.naver.com/카페명"></div>
         <div class="field"><label>외부 내비게이션</label>
           <div class="seg" id="navSeg">
             <button data-nav="kakao">카카오내비</button>
@@ -369,7 +467,7 @@
 
       <div class="set-group">데이터</div>
       <div class="card">
-        <div class="note" style="margin-bottom:12px">모든 기록은 이 기기에만 저장됩니다 (무료 · 로그인 없음). 폰을 바꾸면 백업 파일로 옮기세요.</div>
+        <div class="note" style="margin-bottom:12px">모든 기록은 이 기기·이 브라우저에만 저장됩니다 (무료 · 로그인 없음). 폰이나 브라우저를 바꾸기 전에 백업해 두세요.</div>
         <div class="two">
           <button class="btn ghost" id="backupBtn">백업 내보내기</button>
           <button class="btn ghost" id="restoreBtn">백업 불러오기</button>
@@ -381,17 +479,17 @@
       <div class="card">
         <div class="info-row"><span class="k">운영</span><b>제이진</b></div>
         <div class="info-row"><span class="k">문의</span><a class="link" href="mailto:kjjr7329@gmail.com">kjjr7329@gmail.com</a></div>
-        <div class="info-row last"><span class="k">버전</span><b class="num">v1.0</b></div>
+        <div class="info-row last"><span class="k">버전</span><b class="num">v2.0</b></div>
         <button class="btn ghost block" id="privacyBtn" style="margin-top:12px">개인정보 처리방침</button>
       </div>
 
       <div style="text-align:center;color:var(--faint);font-size:11px;margin:22px 0 4px">
-        라이더 개러지 <span class="num">v1.0</span> · 운영 제이진 · 홈 화면에 추가하면 앱처럼 쓸 수 있어요
+        라이더 개러지 <span class="num">v2.0</span> · 운영 제이진 · 홈 화면에 추가하면 앱처럼 쓸 수 있어요
       </div>
     </section>
   </main>
 
-  <button class="fab" id="fab" title="추가">＋</button>
+  <button class="fab" id="fab" title="일지 쓰기" aria-label="일지 쓰기" hidden>＋</button>
 
   <nav class="tabbar">
     <button data-tab="dash" class="on"><span class="ti">🏠</span><span class="tl">대시보드</span></button>
@@ -405,11 +503,11 @@
 <div class="welcome" id="welcome" hidden>
   <div class="wrap">
     <img class="w-logo" src="icons/icon-512.png" alt="라이더 개러지 로고">
-
     <h1>라이더 개러지</h1>
-    <p class="tag">내 바이크 정비와 라이딩 일지를<br>한 앱에서, 가장 간단하게.</p>
+    <p class="tag">내 바이크 정비·비용·라이딩 일지를<br>한 앱에서, 가장 간단하게.</p>
     <div class="feat"><span class="fi">⏱️</span><div><div class="ft">교체 시점 자동 알림</div><div class="fd">엔진오일·체인·타이어… 주행거리 기준 D-Day로 한눈에.</div></div></div>
-    <div class="feat"><span class="fi">📸</span><div><div class="ft">사진 한 장으로 일지 완성</div><div class="fd">촬영 날짜 자동 입력, 블로그·카페 글까지 자동 정리.</div></div></div>
+    <div class="feat"><span class="fi">💸</span><div><div class="ft">비용·보험 장부와 출발 전 점검</div><div class="fd">주유·정비·보험료 기록, 1분 안전 체크리스트까지.</div></div></div>
+    <div class="feat"><span class="fi">📸</span><div><div class="ft">사진으로 남기는 라이딩 일지</div><div class="fd">여러 장 첨부, 블로그·카페 글까지 자동 정리.</div></div></div>
     <div class="feat"><span class="fi">🔒</span><div><div class="ft">무료 · 로그인 없음</div><div class="fd">모든 기록은 내 폰에만 저장됩니다.</div></div></div>
     <div class="w-actions">
       <button class="btn primary" id="wStart">내 바이크 등록하고 시작</button>
@@ -423,12 +521,23 @@
   <div class="backdrop" id="sheetBackdrop"></div>
   <div class="sheet" id="sheet"></div>
 </div>
+
+<!-- 사진 크게 보기 -->
+<div class="viewer" id="viewer" hidden>
+  <img id="vImg" alt="">
+  <button class="v-close" id="vClose" aria-label="닫기">✕</button>
+  <button class="v-prev" id="vPrev" aria-label="이전 사진">‹</button>
+  <button class="v-next" id="vNext" aria-label="다음 사진">›</button>
+  <div class="v-count num" id="vCount"></div>
+</div>
+
 <div class="toast" id="toast"></div>
+<div id="printArea"></div>
 
 <script>
 "use strict";
-const APP_VER="1.0";
-const KEY="rider_garage_v1";
+const APP_VER="2.0";
+const KEY="rider_garage_v1";   // 저장 키는 그대로 유지 (기존 사용자 기록을 이어받기 위해)
 
 /* ============================================================
    협찬 / 광고 배너 자리  (나중에 협찬 들어오면 여기만 고치세요)
@@ -445,11 +554,74 @@ const SPONSOR={
   desc:"한 줄 설명을 여기에 적으세요",    // 작은 설명
   url:"https://example.com"             // 클릭하면 열릴 주소
 };
+
+/* ---------- 기본 도구 ---------- */
+const $=s=>document.querySelector(s);
+const $$=s=>document.querySelectorAll(s);
+const fmt=n=>Number(n||0).toLocaleString("ko-KR");
+const num=v=>parseInt(String(v==null?"":v).replace(/[^0-9]/g,""))||0;
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+function uid(){return "x"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
+function iso(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+function today(){return iso(new Date());}
+function dOff(n){const d=new Date();d.setDate(d.getDate()+n);return iso(d);}
+function dayDiff(a,b){return Math.round((new Date(a+"T00:00:00")-new Date(b+"T00:00:00"))/86400000);}
+function wonShort(n){n=Number(n||0);if(n>=10000){const v=n/10000;return (v>=100?Math.round(v):Math.round(v*10)/10).toLocaleString("ko-KR")+"만";}return fmt(n);}
+function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),2100);}
+function openExt(url){
+  try{const a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener noreferrer";
+    document.body.appendChild(a);a.click();a.remove();}catch(e){try{window.open(url,"_blank");}catch(_){}}
+}
+/* 사용 행동 집계 (구글 애널리틱스 이벤트) */
+function track(name,params){try{if(window.gtag)gtag("event",name,params||{});}catch(e){}}
+
+/* ---------- 저장 ---------- */
 function load(){try{const r=localStorage.getItem(KEY);if(r)return JSON.parse(r);}catch(e){}return null;}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+let saveWarned=false;
+function save(){
+  try{localStorage.setItem(KEY,JSON.stringify(state));return true;}
+  catch(e){if(!saveWarned){saveWarned=true;setTimeout(()=>toast("저장 공간이 부족해요 · 설정에서 백업해 주세요"),60);}return false;}
+}
 function flag(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
 
-/* 차종 타입별 소모품 교환주기 프리셋 (일반 가이드 · 각 차량 정비매뉴얼 기준으로 조정) */
+/* ---------- 사진 저장소 (IndexedDB: 사진이 많아도 기록이 깨지지 않도록 분리 보관) ---------- */
+let idb=null;const photoCache=new Map();
+const isData=r=>typeof r==="string"&&r.indexOf("data:")===0;
+function idbOpen(){return new Promise(res=>{try{
+  const r=indexedDB.open("rider_garage",1);
+  r.onupgradeneeded=()=>{if(!r.result.objectStoreNames.contains("photos"))r.result.createObjectStore("photos");};
+  r.onsuccess=()=>{idb=r.result;res(true);};r.onerror=()=>res(false);r.onblocked=()=>res(false);
+}catch(e){res(false);}});}
+function idbReq(mode,fn){return new Promise(res=>{if(!idb)return res(null);try{
+  const tx=idb.transaction("photos",mode),st=tx.objectStore("photos");const rq=fn(st);
+  tx.oncomplete=()=>res(rq&&rq.result!==undefined?rq.result:true);tx.onerror=()=>res(null);tx.onabort=()=>res(null);
+}catch(e){res(null);}});}
+const idbPut=(id,data)=>idbReq("readwrite",st=>st.put(data,id)).then(r=>r!==null);
+const idbGet=id=>idbReq("readonly",st=>st.get(id));
+const idbDel=id=>idbReq("readwrite",st=>st.delete(id));
+const idbClear=()=>idbReq("readwrite",st=>st.clear());
+function idbAll(){return new Promise(res=>{const out={};if(!idb)return res(out);try{
+  const tx=idb.transaction("photos","readonly"),rq=tx.objectStore("photos").openCursor();
+  rq.onsuccess=()=>{const c=rq.result;if(c){out[c.key]=c.value;c.continue();}};
+  tx.oncomplete=()=>res(out);tx.onerror=()=>res(out);
+}catch(e){res(out);}});}
+async function getPhoto(ref){
+  if(!ref)return null;if(isData(ref))return ref;
+  if(photoCache.has(ref))return photoCache.get(ref);
+  const d=await idbGet(ref);if(d&&typeof d==="string"){photoCache.set(ref,d);return d;}return null;
+}
+function imgTag(ref){return isData(ref)?`<img src="${ref}" alt="">`:`<img data-pid="${esc(ref)}" alt="">`;}
+function hydrate(root){(root||document).querySelectorAll("img[data-pid]").forEach(img=>{
+  if(img.getAttribute("src"))return;getPhoto(img.dataset.pid).then(src=>{if(src)img.src=src;});});}
+async function migratePhotos(){ // 예전 방식(기록 안에 사진 포함) → 사진 저장소로 옮기기
+  if(!idb)return false;let changed=false;
+  for(const b of state.bikes)for(const l of b.logs){if(!l.photos)continue;
+    for(let i=0;i<l.photos.length;i++){const r=l.photos[i];
+      if(isData(r)){const id="p_"+uid();if(await idbPut(id,r)){photoCache.set(id,r);l.photos[i]=id;changed=true;}}}}
+  if(changed)save();return changed;
+}
+
+/* ---------- 차종 타입별 소모품 교환주기 프리셋 (일반 가이드 · 각 차량 정비매뉴얼 기준으로 조정) ---------- */
 const CATEGORY_PRESETS={
   scooter:{label:"스쿠터·언더본",items:[["엔진오일","🛢️",3000],["기어오일","⚙️",10000],["구동벨트·롤러","⛓️",10000],["앞·뒤 타이어","🛞",10000],["브레이크 패드","🛑",15000],["에어필터","💨",10000]]},
   small:{label:"소형 매뉴얼 (~250cc)",items:[["엔진오일","🛢️",4000],["오일필터","⭕",8000],["체인·스프라켓","⛓️",12000],["앞·뒤 타이어","🛞",10000],["브레이크 패드","🛑",18000],["에어필터","💨",12000]]},
@@ -463,110 +635,135 @@ function consumablesFromCat(key){
   const p=CATEGORY_PRESETS[key]||CATEGORY_PRESETS.mid;
   return p.items.map(([name,emoji,cycle])=>({id:uid(),name,emoji,cycle,last:0,buy:""}));
 }
+
+/* ---------- 비용 분류 ---------- */
+const EXP_CATS={fuel:["⛽","주유"],maint:["🔧","정비·부품"],ins:["🛡️","보험"],tax:["🧾","세금·검사"],gear:["🪖","용품·장비"],park:["🅿️","주차·통행"],etc:["💬","기타"]};
+
+/* ---------- 출발 전 점검 기본 항목 ---------- */
+function defaultCheckItems(){
+  const ride=["타이어 공기압·마모·이물질","앞·뒤 브레이크 작동","체인(벨트) 장력·윤활","전조등·브레이크등·방향지시등","엔진오일·냉각수 누유 없음","연료 충분","클러치·스로틀·미러","헬멧·장갑·보호장구"];
+  const tour=["면허증·등록증·보험 가입 증명","우비·방수 커버","펑크 수리킷·기본 공구","보조배터리·충전 케이블","물·간식","여벌 장갑·방한 내피","현금·카드"];
+  return ride.map((t,i)=>({id:"r"+i,g:"ride",t})).concat(tour.map((t,i)=>({id:"t"+i,g:"tour",t})));
+}
+
+/* ---------- 데이터 구조 (v2: 바이크 여러 대) ---------- */
+function newBike(cat){
+  return {id:uid(),nick:"",mfr:"",model:"",year:"",plate:"",odo:0,category:cat||"mid",purchase:"",
+    consumables:consumablesFromCat(cat||"mid"),history:[],expenses:[],logs:[],checked:{},checkedDate:"",lastCheck:""};
+}
 function emptyState(){
-  return {isExample:false,
-    profile:{nick:"",mfr:"",model:"",year:"",plate:"",odo:0,category:"mid",purchase:"",blog:"",cafe:"",nav:"kakao"},
-    consumables:consumablesFromCat("mid"),
-    logs:[],history:[]};
+  const b=newBike("mid");
+  return {v:2,isExample:false,settings:{blog:"",cafe:"",nav:"kakao"},activeBikeId:b.id,bikes:[b],checkItems:defaultCheckItems(),tourChecked:{}};
 }
 function sampleState(){
-  return {isExample:true,
-    profile:{nick:"주황이",mfr:"혼다",model:"CB650R",year:"2023",plate:"12가 3456",odo:14200,category:"mid",purchase:"used",blog:"",cafe:"",nav:"kakao"},
+  const b=newBike("mid");
+  Object.assign(b,{nick:"주황이",mfr:"혼다",model:"CB650R",year:"2023",plate:"12가 3456",odo:14200,purchase:"used",lastCheck:dOff(-3),
     consumables:[
       {id:"c1",name:"엔진오일",emoji:"🛢️",cycle:5000,last:8800,buy:""},
       {id:"c2",name:"오일필터",emoji:"⭕",cycle:10000,last:9000,buy:""},
       {id:"c3",name:"체인·스프라켓",emoji:"⛓️",cycle:15000,last:1200,buy:""},
       {id:"c4",name:"앞·뒤 타이어",emoji:"🛞",cycle:12000,last:8500,buy:""},
       {id:"c5",name:"브레이크 패드",emoji:"🛑",cycle:20000,last:6000,buy:""},
-      {id:"c6",name:"에어필터",emoji:"💨",cycle:18000,last:2000,buy:""}
-    ],
+      {id:"c6",name:"에어필터",emoji:"💨",cycle:18000,last:2000,buy:""}],
     logs:[
-      {id:"l1",date:"2026-09-13",title:"남한강 라이딩",place:"양평 두물머리",km:14200,
+      {id:"l1",date:dOff(-3),title:"남한강 라이딩",place:"양평 두물머리",km:14200,
         memo:"아침 안개 걷히고 강변 따라 달렸다. 두물머리에서 커피 한 잔.\n노면 좋고 차량 적어서 쾌적했음.",tags:["#와인딩","#카페투어"],photos:[]},
-      {id:"l2",date:"2026-09-06",title:"미시령 옛길",place:"인제 → 속초",km:13760,
-        memo:"코너 연습하기 좋은 코스. 정상 휴게소에서 쉬고 속초에서 회 한 접시.",tags:["#코너링","#바다"],photos:[]}
-    ],
+      {id:"l2",date:dOff(-10),title:"미시령 옛길",place:"인제 → 속초",km:13760,
+        memo:"코너 연습하기 좋은 코스. 정상 휴게소에서 쉬고 속초에서 회 한 접시.",tags:["#코너링","#바다"],photos:[]}],
     history:[
-      {id:"h1",date:"2026-05-10",km:8800,item:"엔진오일",emoji:"🛢️",cost:65000,memo:"순정 + 오일필터 동시 교체"},
-      {id:"h2",date:"2026-05-02",km:9000,item:"오일필터",emoji:"⭕",cost:12000,memo:""},
-      {id:"h3",date:"2026-03-11",km:8500,item:"앞·뒤 타이어",emoji:"🛞",cost:340000,memo:"로드5 장착"}
-    ]};
+      {id:"h1",date:dOff(-190),km:8800,item:"엔진오일",emoji:"🛢️",cost:65000,memo:"순정 + 오일필터 동시 교체"},
+      {id:"h2",date:dOff(-200),km:9000,item:"오일필터",emoji:"⭕",cost:12000,memo:""},
+      {id:"h3",date:dOff(-250),km:8500,item:"앞·뒤 타이어",emoji:"🛞",cost:340000,memo:"로드5 장착"}],
+    expenses:[
+      {id:"e1",date:dOff(-2),cat:"fuel",amount:18000,memo:"고급유 가득"},
+      {id:"e2",date:dOff(-5),cat:"park",amount:3000,memo:"두물머리 주차"},
+      {id:"e3",date:dOff(-9),cat:"fuel",amount:21000,memo:""},
+      {id:"e4",date:dOff(-12),cat:"gear",amount:45000,memo:"헬멧 실드 교체"},
+      {id:"e5",date:dOff(-344),cat:"ins",amount:420000,memo:"책임+종합",insurer:"다이렉트 보험",expiry:dOff(21)}]
+  });
+  const s=emptyState();s.isExample=true;s.bikes=[b];s.activeBikeId=b.id;return s;
 }
-function uid(){return "x"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
-
-let state=load();
+function migrate(s){
+  if(!s||typeof s!=="object")return null;
+  if(Array.isArray(s.bikes)&&s.bikes.length){
+    s.settings=Object.assign({blog:"",cafe:"",nav:"kakao"},s.settings||{});
+    s.bikes.forEach(b=>{["consumables","history","expenses","logs"].forEach(k=>{if(!Array.isArray(b[k]))b[k]=[];});
+      b.checked=b.checked||{};b.checkedDate=b.checkedDate||"";b.lastCheck=b.lastCheck||"";if(!b.id)b.id=uid();});
+    if(!s.bikes.find(b=>b.id===s.activeBikeId))s.activeBikeId=s.bikes[0].id;
+    if(!Array.isArray(s.checkItems)||!s.checkItems.length)s.checkItems=defaultCheckItems();
+    s.tourChecked=s.tourChecked||{};s.v=2;return s;
+  }
+  if(s.profile){ // v1(바이크 1대) → v2
+    const p=s.profile,b=newBike(p.category||"mid");
+    Object.assign(b,{nick:p.nick||"",mfr:p.mfr||"",model:p.model||"",year:p.year||"",plate:p.plate||"",odo:p.odo||0,purchase:p.purchase||""});
+    if(Array.isArray(s.consumables))b.consumables=s.consumables;
+    if(Array.isArray(s.history))b.history=s.history;
+    if(Array.isArray(s.logs))b.logs=s.logs;
+    const n=emptyState();n.isExample=!!s.isExample;n.settings={blog:p.blog||"",cafe:p.cafe||"",nav:p.nav||"kakao"};
+    n.bikes=[b];n.activeBikeId=b.id;return n;
+  }
+  return null;
+}
 let firstRun=false;
-if(!state||!state.profile){state=emptyState();firstRun=true;}
+let state=(function(){
+  const raw=load();
+  if(raw&&raw.profile&&!raw.bikes&&!flag("rider_garage_v1_backup")){try{flag("rider_garage_v1_backup",JSON.stringify(raw));}catch(e){}}
+  const s=migrate(raw);if(s)return s;firstRun=true;return emptyState();
+})();
+if(!firstRun)save();
+function B(){return state.bikes.find(b=>b.id===state.activeBikeId)||state.bikes[0];}
+function bikeName(b){return b.model||b.mfr||b.nick||"새 바이크";}
 
 /* ---------- theme ---------- */
-const themeBtn=document.getElementById("themeBtn");
+const themeBtn=$("#themeBtn");
 function applyTheme(t){if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);else document.documentElement.removeAttribute("data-theme");}
 let userTheme=flag("rg_theme");
-if(userTheme)applyTheme(userTheme);
+if(userTheme){applyTheme(userTheme);const tc0=$('meta[name="theme-color"]');if(tc0&&userTheme==="dark")tc0.setAttribute("content","#13151a");}
 themeBtn.onclick=()=>{
   const isDark=document.documentElement.getAttribute("data-theme")==="dark";
   userTheme=isDark?"light":"dark";applyTheme(userTheme);flag("rg_theme",userTheme);
-  const tc=document.querySelector('meta[name="theme-color"]');if(tc)tc.setAttribute("content",userTheme==="dark"?"#13151a":"#ec5a13");
+  const tc=$('meta[name="theme-color"]');if(tc)tc.setAttribute("content",userTheme==="dark"?"#13151a":"#ec5a13");
 };
 
-/* ---------- helpers ---------- */
-const $=s=>document.querySelector(s);
-const fmt=n=>Number(n||0).toLocaleString("ko-KR");
-function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
-function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),1900);}
-function openExt(url){ // robust external open for both artifact frame & real browsers
-  try{const a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener noreferrer";
-    document.body.appendChild(a);a.click();a.remove();}catch(e){try{window.open(url,"_blank");}catch(_){}}
-}
-/* 사용 행동 집계 (구글 애널리틱스 이벤트) */
-function track(name,params){try{if(window.gtag)gtag("event",name,params||{});}catch(e){}}
+/* ---------- 계산 ---------- */
 function status(c){
-  const p=state.profile, used=Math.max(0,(p.odo||0)-(c.last||0));
-  const remain=(c.cycle||1)-used, pct=Math.min(100,Math.max(0,used/(c.cycle||1)*100));
+  const used=Math.max(0,(B().odo||0)-(c.last||0));
+  const remain=(c.cycle||1)-used,pct=Math.min(100,Math.max(0,used/(c.cycle||1)*100));
   let cls="good",label="여유";
   if(remain<=0){cls="crit";label="교체 필요";}
   else if(remain<=(c.cycle*0.15)){cls="warn";label="교체 임박";}
   return {remain,pct,cls,label};
 }
 function navUrl(place){
-  const q=encodeURIComponent(place||""),p=state.profile.nav||"kakao";
+  const q=encodeURIComponent(place||""),p=state.settings.nav||"kakao";
   if(p==="tmap")return "https://tmap.life/route?goalname="+q;
   if(p==="naver")return "https://map.naver.com/v5/search/"+q;
   return "https://map.kakao.com/?q="+q;
 }
-
-/* ---------- dashboard ---------- */
-function renderDash(){
-  const p=state.profile, hasBike=!!(p.model||p.mfr);
-  let html="";
-  if(hasBike){
-    const name=p.model?esc(p.model):"바이크";
-    html+=`<div class="card bike-hero">
-      <div class="band">
-        <div class="mfr">${esc(p.mfr||"제조사")} ${p.year?"· "+esc(p.year)+"년식":""}</div>
-        <div class="model">${name}</div>
-        <div class="meta">${p.nick?`<span class="chip">${esc(p.nick)}</span>`:""}${p.plate?`<span class="chip">${esc(p.plate)}</span>`:""}</div>
-        <div class="moto">🏍️</div>
-      </div>
-      <div class="odo"><div><div class="label">총 누적 주행거리</div><div class="val num">${fmt(p.odo)}<small>km</small></div></div>
-        <button class="btn primary" id="heroOdoBtn">계기판 갱신</button></div>
-    </div>`;
-  }else{
-    html+=`<div class="card cta-card"><div class="e-emoji">🏍️</div>
-      <h3>먼저 내 바이크를 등록해 주세요</h3>
-      <p>제조사·모델만 넣으면 소모품 알림이 시작돼요.</p>
-      <button class="btn primary block" id="goRegister">바이크 등록하기</button></div>`;
-  }
-  html+=sponsorHTML();
-  html+=`<div class="row-head"><h2>소모품 교체 알림</h2><span class="hint">주행거리 기준</span></div><div id="gaugeList"></div>
-    <button class="btn ghost block" id="addConsumableBtn" style="margin-top:12px">＋ 소모품 항목 추가</button>`;
-  $("#dashBody").innerHTML=html;
-  if(hasBike)$("#heroOdoBtn").onclick=openOdo; else $("#goRegister").onclick=()=>switchTab("set");
-  const sb=$("#sponsorBanner");if(sb)sb.onclick=()=>track("sponsor_click",{title:SPONSOR.title});
-  $("#addConsumableBtn").onclick=()=>openConsumable(null);
-  renderGaugeInto("#gaugeList",false);
-  $("#sampleBanner").hidden=!state.isExample;
+function allCosts(b){ // 비용 장부 + 정비 기록의 비용을 한데 모아 보기
+  const a=b.expenses.map(e=>Object.assign({},e));
+  b.history.forEach(h=>{if(h.cost>0)a.push({id:"h:"+h.id,date:h.date,cat:"maint",amount:h.cost,memo:h.item+(h.memo?" · "+h.memo:""),fromHist:h.id});});
+  return a;
 }
+function sumOf(list){return list.reduce((s,x)=>s+(Number(x.amount)||0),0);}
+function insInfo(b){
+  const withExp=b.expenses.filter(e=>e.cat==="ins"&&e.expiry).sort((a,c)=>a.expiry<c.expiry?1:-1);
+  if(!withExp.length)return null;const e=withExp[0];
+  return {expiry:e.expiry,insurer:e.insurer||"",days:dayDiff(e.expiry,today()),id:e.id};
+}
+function todoItems(b){
+  const out=[];
+  b.consumables.forEach(c=>{const s=status(c);if(s.cls!=="good")out.push({cls:s.cls,emoji:c.emoji||"🔧",title:c.name,label:s.label,
+    sub:s.remain>0?`남은 ${fmt(s.remain)}km`:`${fmt(-s.remain)}km 초과`,sort:s.remain,go:"parts"});});
+  const ins=insInfo(b);
+  if(ins&&ins.days<=30)out.push({cls:ins.days<0?"crit":"warn",emoji:"🛡️",title:"보험 만기",
+    label:ins.days<0?`${-ins.days}일 지남`:(ins.days===0?"오늘 만기":`D-${ins.days}`),
+    sub:ins.expiry+(ins.insurer?" · "+ins.insurer:""),sort:-1e9+ins.days,go:"cost"});
+  const rank={crit:0,warn:1};
+  return out.sort((a,c)=>(rank[a.cls]-rank[c.cls])||(a.sort-c.sort));
+}
+
+/* ---------- 1. 대시보드 (요약) ---------- */
 function sponsorHTML(){
   if(!SPONSOR||!SPONSOR.active)return "";
   const logo=SPONSOR.img?`<img src="${esc(SPONSOR.img)}" alt="">`:(SPONSOR.emoji||"🏍️");
@@ -577,7 +774,91 @@ function sponsorHTML(){
     <span class="s-arrow">›</span>
     <span class="s-badge">${esc(SPONSOR.label||"AD")}</span></a>`;
 }
-function gaugeHTML(c,withActions){
+function renderDash(){
+  const b=B(),hasBike=!!(b.model||b.mfr);
+  let html="";
+  if(hasBike){
+    html+=`<div class="card bike-hero">
+      <div class="band">
+        <button class="switch" id="garageBtn">내 차고${state.bikes.length>1?" "+state.bikes.length+"대":""} ▾</button>
+        <div class="mfr">${esc(b.mfr||"제조사")} ${b.year?"· "+esc(b.year)+"년식":""}</div>
+        <div class="model">${esc(b.model||"바이크")}</div>
+        <div class="meta">${b.nick?`<span class="chip">${esc(b.nick)}</span>`:""}${b.plate?`<span class="chip">${esc(b.plate)}</span>`:""}</div>
+        <div class="moto">🏍️</div>
+      </div>
+      <div class="odo"><div><div class="label">총 누적 주행거리</div><div class="val num">${fmt(b.odo)}<small>km</small></div></div>
+        <button class="btn primary" id="heroOdoBtn">계기판 갱신</button></div>
+    </div>`;
+  }else{
+    html+=`<div class="card cta-card"><div class="e-emoji">🏍️</div>
+      <h3>먼저 내 바이크를 등록해 주세요</h3>
+      <p>제조사·모델만 넣으면 소모품 알림이 시작돼요.</p>
+      <button class="btn primary block" id="goRegister">바이크 등록하기</button></div>`;
+  }
+  html+=sponsorHTML();
+  if(hasBike){
+    const todos=todoItems(b);
+    html+=`<div class="row-head"><h2>지금 챙길 것</h2><button class="btn ghost tiny" id="goParts">소모품 전체 ›</button></div>
+      <div class="card" style="padding:5px 14px">`;
+    if(todos.length){
+      html+=todos.slice(0,3).map(t=>`<div class="todo-row" data-go="${t.go}">
+        <span class="t-emoji">${t.emoji}</span>
+        <div class="t-main"><div class="t-title">${esc(t.title)}</div><div class="t-sub">${esc(t.sub)}</div></div>
+        <span class="pill ${t.cls}">${esc(t.label)}</span></div>`).join("");
+      if(todos.length>3)html+=`<div class="todo-more">외 ${todos.length-3}건 더 있어요</div>`;
+    }else{
+      const next=[...b.consumables].sort((x,y)=>status(x).remain-status(y).remain)[0];
+      html+=`<div class="todo-row" data-go="parts"><span class="t-emoji">✅</span>
+        <div class="t-main"><div class="t-title">모두 양호해요</div>
+          <div class="t-sub">${next?`다음 교체: ${esc(next.name)} · ${fmt(status(next).remain)}km 남음`:"소모품 항목을 추가해 보세요"}</div></div>
+        <span class="pill good">양호</span></div>`;
+    }
+    html+=`</div>
+      <div class="quick">
+        <button data-q="check"><span class="q-i">🧰</span>출발 전 점검</button>
+        <button data-q="cost"><span class="q-i">💸</span>비용 기록</button>
+        <button data-q="hist"><span class="q-i">🔧</span>정비 기록</button>
+        <button data-q="log"><span class="q-i">📸</span>일지 쓰기</button>
+      </div>`;
+    const m=today().slice(0,7),costs=allCosts(b).filter(x=>(x.date||"").indexOf(m)===0);
+    const rides=b.logs.filter(l=>(l.date||"").indexOf(m)===0).length;
+    let chk="아직",chkSmall="";
+    if(b.lastCheck){const d=dayDiff(today(),b.lastCheck);if(d<=0)chk="오늘";else{chk=String(d);chkSmall="일 전";}}
+    html+=`<div class="row-head"><h2>이번 달</h2><span class="hint">${m.replace("-",".")}</span></div>
+      <div class="tiles">
+        <div class="tile" data-t="cost"><div class="tl-k">지출</div><div class="tl-v num">${wonShort(sumOf(costs))}<small>원</small></div></div>
+        <div class="tile" data-t="log"><div class="tl-k">라이딩</div><div class="tl-v num">${rides}<small>회</small></div></div>
+        <div class="tile" data-t="check"><div class="tl-k">출발 전 점검</div><div class="tl-v">${chk}<small>${chkSmall}</small></div></div>
+      </div>`;
+    const last=[...b.logs].sort((x,y)=>x.date<y.date?1:-1)[0];
+    html+=`<div class="row-head"><h2>최근 라이딩</h2><button class="btn ghost tiny" id="goLogs">일지 전체 ›</button></div>`;
+    html+=last?`<div class="card recent" id="recentRide">
+        <div class="r-thumb">${(last.photos&&last.photos.length)?imgTag(last.photos[0]):"🏞️"}</div>
+        <div style="min-width:0"><div class="r-date num">${esc(last.date)}</div>
+          <div class="r-title">${esc(last.title||"제목 없음")}</div>
+          ${last.place?`<div class="r-place">📍 ${esc(last.place)}</div>`:""}</div></div>`
+      :`<div class="card empty" style="padding:22px"><p style="margin:0">아직 일지가 없어요 · [일지 쓰기]로 첫 기록을 남겨보세요</p></div>`;
+  }
+  const el=$("#dashBody");el.innerHTML=html;hydrate(el);
+  if(hasBike){
+    $("#heroOdoBtn").onclick=openOdo;$("#garageBtn").onclick=openGarage;
+    $("#goParts").onclick=()=>goMaint("parts");$("#goLogs").onclick=()=>switchTab("log");
+    el.querySelectorAll(".todo-row").forEach(r=>r.onclick=()=>goMaint(r.dataset.go));
+    el.querySelectorAll(".quick button").forEach(q=>q.onclick=()=>{const k=q.dataset.q;
+      if(k==="check")openCheck("ride");else if(k==="cost")openExpense(null);else if(k==="hist")openHist(null);else openLogEdit(null);});
+    el.querySelectorAll(".tile").forEach(t=>t.onclick=()=>{const k=t.dataset.t;
+      if(k==="cost")goMaint("cost");else if(k==="log")switchTab("log");else openCheck("ride");});
+    const rr=$("#recentRide");if(rr)rr.onclick=()=>switchTab("log");
+  }else $("#goRegister").onclick=()=>switchTab("set");
+  const sb=$("#sponsorBanner");if(sb)sb.onclick=()=>track("sponsor_click",{title:SPONSOR.title});
+  $("#sampleBanner").hidden=!state.isExample;
+}
+
+/* ---------- 3. 차계부 (소모품 · 비용 · 정비 기록) ---------- */
+let maintTab="parts",costPeriod="month";
+function goMaint(tab){maintTab=tab;switchTab("maint");renderMaint();}
+$$("#maintSeg button").forEach(x=>x.onclick=()=>{maintTab=x.dataset.m;renderMaint();window.scrollTo(0,0);});
+function gaugeHTML(c){
   const s=status(c);
   return `<div class="card gauge" data-id="${c.id}">
     <div class="g-top"><span class="g-emoji">${c.emoji||"🔧"}</span>
@@ -585,38 +866,80 @@ function gaugeHTML(c,withActions){
       <div class="g-status"><span class="pill ${s.cls}">${s.label}</span>
         <div class="g-remain st-${s.cls}">${s.remain>0?"남은 "+fmt(s.remain)+"km":fmt(-s.remain)+"km 초과"}</div></div></div>
     <div class="bar"><span class="fill-${s.cls}" style="width:${s.pct}%"></span></div>
-    ${withActions?`<div class="g-actions"><button class="btn ghost tiny" data-act="done">교체 완료</button>
-      <button class="btn ${s.cls==='good'?'ghost':'primary'} tiny" data-act="buy">부품 구매</button></div>`:""}
+    <div class="g-actions"><button class="btn ghost tiny" data-act="done">교체 완료</button>
+      <button class="btn ${s.cls==='good'?'ghost':'primary'} tiny" data-act="buy">부품 구매</button></div>
   </div>`;
 }
-function renderGaugeInto(sel,withActions){
-  const el=$(sel);if(!el)return;
-  const sorted=[...state.consumables].sort((a,b)=>status(a).remain-status(b).remain);
-  el.innerHTML=sorted.map(c=>gaugeHTML(c,withActions)).join("")||
-    `<div class="card empty"><div class="e-emoji">🔧</div><p>소모품 항목을 추가해 보세요</p></div>`;
-  el.querySelectorAll(".gauge").forEach(g=>{
-    const id=g.dataset.id;
-    g.querySelectorAll("[data-act]").forEach(btn=>btn.onclick=e=>{e.stopPropagation();
-      btn.dataset.act==="done"?markReplaced(id):buyPart(id);});
-    g.onclick=()=>openConsumable(id);
-  });
-}
 function renderMaint(){
-  $("#maintOdo").innerHTML=fmt(state.profile.odo)+"<small>km</small>";
-  renderGaugeInto("#maintGaugeList",true);
-  $("#maintCount").textContent=state.consumables.length+"개 항목";
-  const h=[...state.history].sort((a,b)=>(b.km||0)-(a.km||0));
-  $("#histCard").innerHTML=h.length?h.map(x=>`<div class="hist-item"><span class="h-icon">${x.emoji||"🔧"}</span>
-    <div class="h-main"><div class="h-name">${esc(x.item)}</div>
-      <div class="h-sub">${esc(x.date)}${x.cost?" · "+fmt(x.cost)+"원":""}${x.memo?" · "+esc(x.memo):""}</div></div>
-    <div class="h-km num">${fmt(x.km)}<small>km</small></div></div>`).join(""):
-    `<div class="empty" style="padding:24px"><div class="e-emoji">📋</div><p>교체 기록이 없습니다</p></div>`;
+  $$("#maintSeg button").forEach(x=>x.classList.toggle("on",x.dataset.m===maintTab));
+  const b=B(),el=$("#maintBody");
+  if(maintTab==="parts"){
+    const sorted=[...b.consumables].sort((x,y)=>status(x).remain-status(y).remain);
+    el.innerHTML=`<div class="card"><div class="odo" style="padding:2px">
+        <div><div class="label">${esc(bikeName(b))} · 누적 주행거리</div><div class="val num">${fmt(b.odo)}<small>km</small></div></div>
+        <button class="btn primary" id="maintOdoBtn">계기판 갱신</button></div></div>
+      <div class="row-head"><h2>소모품 수명</h2><span class="hint">${b.consumables.length}개 항목 · 급한 순</span></div>
+      <div id="maintGaugeList">${sorted.map(gaugeHTML).join("")||`<div class="card empty"><div class="e-emoji">🔧</div><p>소모품 항목을 추가해 보세요</p></div>`}</div>
+      <button class="btn ghost block" id="addConsumableBtn" style="margin-top:12px">＋ 소모품 항목 추가</button>`;
+    $("#maintOdoBtn").onclick=openOdo;$("#addConsumableBtn").onclick=()=>openConsumable(null);
+    el.querySelectorAll(".gauge").forEach(g=>{const id=g.dataset.id;
+      g.querySelectorAll("[data-act]").forEach(btn=>btn.onclick=e=>{e.stopPropagation();
+        if(btn.dataset.act==="done"){const c=b.consumables.find(x=>x.id===id);openHist(null,c?c.name:"");}else buyPart(id);});
+      g.onclick=()=>openConsumable(id);});
+  }else if(maintTab==="cost"){
+    const pre=costPeriod==="month"?today().slice(0,7):costPeriod==="year"?today().slice(0,4):"";
+    const list=allCosts(b).filter(x=>(x.date||"").indexOf(pre)===0).sort((x,y)=>x.date<y.date?1:-1);
+    const total=sumOf(list),byCat={};list.forEach(x=>{byCat[x.cat]=(byCat[x.cat]||0)+(Number(x.amount)||0);});
+    const cats=Object.keys(byCat).sort((x,y)=>byCat[y]-byCat[x]),max=cats.length?byCat[cats[0]]:0;
+    const ins=insInfo(b),pl={month:"이번 달 지출",year:"올해 지출",all:"누적 지출"}[costPeriod];
+    el.innerHTML=`<div class="seg" id="periodSeg" style="margin-bottom:14px">
+        <button data-p="month" class="${costPeriod==="month"?"on":""}">이번 달</button>
+        <button data-p="year" class="${costPeriod==="year"?"on":""}">올해</button>
+        <button data-p="all" class="${costPeriod==="all"?"on":""}">전체</button></div>
+      <div class="card total-card"><div class="tc-k">${pl} · ${esc(bikeName(b))}</div>
+        <div class="tc-v num">${fmt(total)}<small>원</small></div>
+        ${cats.length?`<div class="catbars">${cats.map(k=>`<div class="catbar" title="${EXP_CATS[k][1]} ${fmt(byCat[k])}원">
+          <span class="cb-name">${EXP_CATS[k][0]} ${EXP_CATS[k][1]}</span>
+          <span class="cb-track"><span class="cb-fill" style="width:${Math.max(2,byCat[k]/max*100)}%;display:block"></span></span>
+          <span class="cb-val num">${fmt(byCat[k])}원</span></div>`).join("")}</div>`:""}
+        ${ins?`<div class="ins-row"><span style="font-size:18px">🛡️</span><div class="i-main"><b>보험 만기 ${esc(ins.expiry)}</b>
+          <div class="i-sub">${ins.insurer?esc(ins.insurer):"보험사 미입력"}</div></div>
+          <span class="pill ${ins.days<0?"crit":ins.days<=30?"warn":"good"}">${ins.days<0?`${-ins.days}일 지남`:ins.days===0?"오늘":`D-${ins.days}`}</span></div>`:""}
+      </div>
+      <button class="btn primary block" id="addExpBtn" style="margin:14px 0 4px;padding:13px">＋ 비용 추가</button>
+      <div class="row-head"><h2>내역</h2><span class="hint">${list.length}건 · 정비 기록의 비용 포함</span></div>
+      <div class="card" id="expCard">${list.length?list.map(x=>`<div class="hist-item" data-id="${esc(x.id)}">
+          <span class="h-icon">${EXP_CATS[x.cat]?EXP_CATS[x.cat][0]:"💬"}</span>
+          <div class="h-main"><div class="h-name">${EXP_CATS[x.cat]?EXP_CATS[x.cat][1]:"기타"}${x.insurer?" · "+esc(x.insurer):""}</div>
+            <div class="h-sub">${esc(x.date)}${x.memo?" · "+esc(x.memo):""}${x.expiry?" · 만기 "+esc(x.expiry):""}</div></div>
+          <div class="h-amt num">${fmt(x.amount)}원</div></div>`).join("")
+        :`<div class="empty" style="padding:24px"><div class="e-emoji">💸</div><p>이 기간에 기록된 비용이 없어요<br>주유·보험·용품 등을 남겨보세요</p></div>`}</div>`;
+    el.querySelectorAll("#periodSeg button").forEach(x=>x.onclick=()=>{costPeriod=x.dataset.p;renderMaint();});
+    $("#addExpBtn").onclick=()=>openExpense(null);
+    el.querySelectorAll("#expCard .hist-item").forEach(r=>r.onclick=()=>{const id=r.dataset.id;
+      if(id.indexOf("h:")===0)openHist(id.slice(2));else openExpense(id);});
+  }else{
+    const h=[...b.history].sort((x,y)=>(x.date<y.date?1:(x.date>y.date?-1:(y.km||0)-(x.km||0))));
+    el.innerHTML=`<div class="btn-row"><button class="btn primary" id="addHistBtn">＋ 정비 기록 추가</button>
+        <button class="btn ghost" id="reportBtn">📄 정비 이력서</button></div>
+      <div class="card" id="histCard">${h.length?h.map(x=>`<div class="hist-item" data-id="${esc(x.id)}"><span class="h-icon">${x.emoji||"🔧"}</span>
+        <div class="h-main"><div class="h-name">${esc(x.item)}</div>
+          <div class="h-sub">${esc(x.date)}${x.cost?" · "+fmt(x.cost)+"원":""}${x.memo?" · "+esc(x.memo):""}</div></div>
+        <div class="h-km num">${fmt(x.km)}<small>km</small></div></div>`).join("")
+        :`<div class="empty" style="padding:24px"><div class="e-emoji">📋</div><p>정비 기록이 없습니다<br>교체·수리할 때마다 남겨두면 이력서가 돼요</p></div>`}</div>
+      <div class="note" style="margin:10px 2px">기록을 누르면 수정·삭제할 수 있어요. [정비 이력서]는 중고로 팔 때 관리 이력 증빙으로 쓰기 좋아요.</div>`;
+    $("#addHistBtn").onclick=()=>openHist(null);$("#reportBtn").onclick=openReport;
+    el.querySelectorAll("#histCard .hist-item").forEach(r=>r.onclick=()=>openHist(r.dataset.id));
+  }
 }
 
-/* ---------- logs ---------- */
+/* ---------- 2. 라이딩 일지 ---------- */
 function logHTML(l){
-  const photos=(l.photos||[]);
-  const ph=photos.length?`<div class="l-photos count-${Math.min(photos.length,3)}">${photos.slice(0,3).map(src=>`<img src="${src}" alt="">`).join("")}</div>`:"";
+  const photos=(l.photos||[]),n=photos.length;
+  let ph="";
+  if(n){const show=photos.slice(0,3);
+    ph=`<div class="l-photos n${show.length}">${show.map((r,i)=>`<div class="ph" data-i="${i}">${imgTag(r)}
+      ${(i===2&&n>3)?`<div class="more">+${n-3}</div>`:""}${(i===0&&n>1)?`<span class="cnt">📷 ${n}</span>`:""}</div>`).join("")}</div>`;}
   return `<div class="card log" data-id="${l.id}">${ph}<div class="l-body">
     <div class="l-date num">${esc(l.date)}${l.km?" · "+fmt(l.km)+"km":""}</div>
     <div class="l-title">${esc(l.title||"제목 없음")}</div>
@@ -628,143 +951,303 @@ function logHTML(l){
       <button class="btn primary tiny" data-act="share">공유</button></div></div></div>`;
 }
 function renderLogs(){
-  const list=[...state.logs].sort((a,b)=>(a.date<b.date?1:-1));
-  $("#logList").innerHTML=list.length?list.map(logHTML).join(""):
-    `<div class="card empty"><div class="e-emoji">📸</div><p>＋ 버튼을 눌러<br>첫 라이딩 일지를 남겨보세요</p></div>`;
-  $("#logList").querySelectorAll(".log").forEach(el=>{
-    const id=el.dataset.id,l=state.logs.find(x=>x.id===id);
-    el.querySelectorAll("[data-act]").forEach(btn=>btn.onclick=e=>{e.stopPropagation();
+  const b=B(),list=[...b.logs].sort((x,y)=>(x.date<y.date?1:-1)),el=$("#logList");
+  el.innerHTML=list.length?list.map(logHTML).join(""):
+    `<div class="card empty"><div class="e-emoji">📸</div><p>＋ 버튼을 눌러<br>첫 라이딩 일지를 남겨보세요<br><span style="font-size:12px">사진은 여러 장 넣을 수 있어요</span></p></div>`;
+  hydrate(el);
+  el.querySelectorAll(".log").forEach(card=>{
+    const id=card.dataset.id,l=b.logs.find(x=>x.id===id);
+    card.querySelectorAll(".ph").forEach(p=>p.onclick=e=>{e.stopPropagation();openViewer(l.photos||[],+p.dataset.i);});
+    card.querySelectorAll("[data-act]").forEach(btn=>btn.onclick=e=>{e.stopPropagation();
       const a=btn.dataset.act;
-      if(a==="nav")openExt(navUrl(l.place));else if(a==="blog")openBlogText(l);else shareLog(l);});
-    el.onclick=()=>openLogEdit(id);
+      if(a==="nav"){if(l.place)openExt(navUrl(l.place));else toast("일지에 방문지를 적으면 길안내가 돼요");}
+      else if(a==="blog")openBlogText(l);else shareLog(l);});
+    card.onclick=()=>openLogEdit(id);
   });
 }
 function composeBlog(l){
-  const p=state.profile,bike=[p.mfr,p.model].filter(Boolean).join(" ")||"내 바이크";
+  const b=B(),s=state.settings,bike=[b.mfr,b.model].filter(Boolean).join(" ")||"내 바이크";
   let t=`[${l.title||"라이딩 일지"}]\n📅 ${l.date}`+(l.place?`   📍 ${l.place}`:"")+`\n`;
   if(l.km)t+=`🏍️ ${bike} · 누적 ${fmt(l.km)}km\n`;
   t+=`\n`;if(l.memo)t+=l.memo+"\n\n";
   if(l.tags&&l.tags.length)t+=l.tags.join(" ")+"\n";
   t+=`\n———\n🏍️ ${bike} 라이딩 기록\n`;
-  if(p.blog)t+=`블로그 › ${p.blog}\n`;if(p.cafe)t+=`카페 › ${p.cafe}\n`;
+  if(s.blog)t+=`블로그 › ${s.blog}\n`;if(s.cafe)t+=`카페 › ${s.cafe}\n`;
   return t.trim();
 }
+
+/* 사진 크게 보기 */
+let vRefs=[],vIdx=0;
+function vShow(){getPhoto(vRefs[vIdx]).then(src=>{$("#vImg").src=src||"";});
+  $("#vCount").textContent=(vIdx+1)+" / "+vRefs.length;
+  const multi=vRefs.length>1;$("#vPrev").hidden=!multi;$("#vNext").hidden=!multi;}
+function openViewer(refs,i){if(!refs||!refs.length)return;vRefs=refs;vIdx=Math.min(Math.max(0,i||0),refs.length-1);$("#viewer").hidden=false;vShow();}
+function vMove(d){if(vRefs.length<2)return;vIdx=(vIdx+d+vRefs.length)%vRefs.length;vShow();}
+$("#vClose").onclick=()=>{$("#viewer").hidden=true;};
+$("#vPrev").onclick=e=>{e.stopPropagation();vMove(-1);};
+$("#vNext").onclick=e=>{e.stopPropagation();vMove(1);};
+$("#viewer").addEventListener("click",e=>{if(e.target.id==="viewer")$("#viewer").hidden=true;});
+(function(){let sx=null;const v=$("#viewer");
+  v.addEventListener("touchstart",e=>{sx=e.touches[0].clientX;},{passive:true});
+  v.addEventListener("touchend",e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)>45)vMove(dx<0?1:-1);},{passive:true});
+})();
 
 /* ---------- sheet ---------- */
 const sheetWrap=$("#sheetWrap"),sheetEl=$("#sheet");
 $("#sheetBackdrop").onclick=closeSheet;
-function openSheet(html){sheetEl.innerHTML=`<div class="grip"></div>`+html;sheetWrap.classList.add("open");}
+function openSheet(html){sheetEl.innerHTML=`<div class="grip"></div>`+html;sheetWrap.classList.add("open");sheetEl.scrollTop=0;}
 function closeSheet(){sheetWrap.classList.remove("open");}
 
 function openOdo(){
+  const b=B();
   openSheet(`<h3>계기판 갱신</h3>
-    <div class="field"><label>현재 누적 주행거리 (km)</label><input id="odoInput" inputmode="numeric" value="${state.profile.odo||0}"></div>
+    <div class="field"><label for="odoInput">${esc(bikeName(b))} · 현재 누적 주행거리 (km)</label><input id="odoInput" inputmode="numeric" value="${b.odo||0}"></div>
     <div class="note">계기판 숫자를 보고 그대로 입력하세요. 소모품 알림이 자동 갱신됩니다.</div>
     <div class="sheet-actions"><button class="btn ghost" id="odoCancel">취소</button><button class="btn primary" id="odoSave">저장</button></div>`);
   $("#odoInput").focus();$("#odoCancel").onclick=closeSheet;
-  $("#odoSave").onclick=()=>{state.profile.odo=parseInt(String($("#odoInput").value).replace(/[^0-9]/g,""))||0;save();closeSheet();renderAll();toast("주행거리 갱신 완료");};
+  $("#odoSave").onclick=()=>{b.odo=num($("#odoInput").value);save();closeSheet();fillSettings();renderAll();toast("주행거리 갱신 완료");};
 }
 function openConsumable(id){
-  const c=id?state.consumables.find(x=>x.id===id):null,isNew=!c;
+  const b=B(),c=id?b.consumables.find(x=>x.id===id):null,isNew=!c;
   openSheet(`<h3>${isNew?"소모품 추가":"소모품 편집"}</h3>
-    <div class="two"><div class="field" style="flex:0 0 74px"><label>아이콘</label><input id="cEmoji" value="${c?c.emoji:"🔧"}" maxlength="2"></div>
-      <div class="field"><label>이름</label><input id="cName" value="${c?esc(c.name):""}" placeholder="예: 엔진오일"></div></div>
-    <div class="two"><div class="field"><label>교체주기 (km)</label><input id="cCycle" inputmode="numeric" value="${c?c.cycle:5000}"></div>
-      <div class="field"><label>최근 교체 시점 (km)</label><input id="cLast" inputmode="numeric" value="${c?c.last:(state.profile.odo||0)}"></div></div>
-    <div class="field"><label>부품 구매 링크 (선택)</label><input id="cBuy" value="${c?esc(c.buy||""):""}" placeholder="https://..."></div>
+    <div class="two"><div class="field" style="flex:0 0 74px"><label for="cEmoji">아이콘</label><input id="cEmoji" value="${c?c.emoji:"🔧"}" maxlength="2"></div>
+      <div class="field"><label for="cName">이름</label><input id="cName" value="${c?esc(c.name):""}" placeholder="예: 엔진오일"></div></div>
+    <div class="two"><div class="field"><label for="cCycle">교체주기 (km)</label><input id="cCycle" inputmode="numeric" value="${c?c.cycle:5000}"></div>
+      <div class="field"><label for="cLast">최근 교체 시점 (km)</label><input id="cLast" inputmode="numeric" value="${c?c.last:(b.odo||0)}"></div></div>
+    <div class="field"><label for="cBuy">부품 구매 링크 (선택)</label><input id="cBuy" value="${c?esc(c.buy||""):""}" placeholder="https://..."></div>
     <div class="sheet-actions">${!isNew?`<button class="btn ghost" id="cDelete" style="flex:0 0 44px;color:var(--crit)">🗑</button>`:""}
       <button class="btn ghost" id="cCancel">취소</button><button class="btn primary" id="cSave">저장</button></div>`);
   $("#cCancel").onclick=closeSheet;
   $("#cSave").onclick=()=>{
     const name=$("#cName").value.trim();if(!name){toast("이름을 입력하세요");return;}
-    const obj={emoji:$("#cEmoji").value.trim()||"🔧",name,cycle:parseInt($("#cCycle").value.replace(/[^0-9]/g,""))||1000,
-      last:parseInt($("#cLast").value.replace(/[^0-9]/g,""))||0,buy:$("#cBuy").value.trim()};
-    if(isNew){obj.id=uid();state.consumables.push(obj);}else Object.assign(c,obj);
+    const obj={emoji:$("#cEmoji").value.trim()||"🔧",name,cycle:num($("#cCycle").value)||1000,last:num($("#cLast").value),buy:$("#cBuy").value.trim()};
+    if(isNew){obj.id=uid();b.consumables.push(obj);}else Object.assign(c,obj);
     save();closeSheet();renderAll();toast("저장되었습니다");
   };
-  if(!isNew)$("#cDelete").onclick=()=>{state.consumables=state.consumables.filter(x=>x.id!==id);save();closeSheet();renderAll();toast("삭제되었습니다");};
-}
-function markReplaced(id){
-  const c=state.consumables.find(x=>x.id===id);if(!c)return;
-  c.last=state.profile.odo||0;
-  state.history.unshift({id:uid(),date:new Date().toISOString().slice(0,10),km:state.profile.odo||0,item:c.name,emoji:c.emoji,cost:0,memo:"교체 완료 체크"});
-  save();renderAll();toast(c.name+" 교체 기록 완료");track("part_replaced",{item:c.name});
+  if(!isNew)$("#cDelete").onclick=()=>{b.consumables=b.consumables.filter(x=>x.id!==id);save();closeSheet();renderAll();toast("삭제되었습니다");};
 }
 function buyPart(id){
-  const c=state.consumables.find(x=>x.id===id);if(!c)return;
-  const url=c.buy&&/^https?:/.test(c.buy)?c.buy:"https://search.shopping.naver.com/search/all?query="+encodeURIComponent((state.profile.model||"")+" "+c.name);
+  const b=B(),c=b.consumables.find(x=>x.id===id);if(!c)return;
+  const url=c.buy&&/^https?:/.test(c.buy)?c.buy:"https://search.shopping.naver.com/search/all?query="+encodeURIComponent((b.model||"")+" "+c.name);
   openExt(url);
 }
 
-/* log add/edit */
-let draftPhotos=[];
+/* 정비 기록 추가·수정 */
+function openHist(id,presetItem){
+  const b=B(),h=id?b.history.find(x=>x.id===id):null,isNew=!h;
+  if(id&&!h)return;
+  openSheet(`<h3>${isNew?(presetItem?"교체 완료 기록":"정비 기록 추가"):"정비 기록 수정"}</h3>
+    <div class="two"><div class="field"><label for="hDate">날짜</label><input id="hDate" type="date" value="${h?esc(h.date):today()}"></div>
+      <div class="field"><label for="hKm">주행거리 km</label><input id="hKm" inputmode="numeric" value="${h?(h.km||""):(b.odo||"")}"></div></div>
+    <div class="field"><label for="hItem">항목</label><input id="hItem" list="hItems" value="${h?esc(h.item):esc(presetItem||"")}" placeholder="예: 엔진오일">
+      <datalist id="hItems">${b.consumables.map(c=>`<option value="${esc(c.name)}">`).join("")}</datalist></div>
+    <div class="field"><label for="hCost">비용 (원, 선택)</label><input id="hCost" inputmode="numeric" value="${h&&h.cost?h.cost:""}" placeholder="0"></div>
+    <div class="field"><label for="hMemo">메모 (선택)</label><input id="hMemo" value="${h?esc(h.memo||""):""}" placeholder="예: 순정 부품, 단골 정비소"></div>
+    <div class="note">항목이 소모품 이름과 같으면 그 소모품의 '최근 교체 시점'도 자동으로 갱신돼요. 비용은 [비용] 탭에 함께 집계됩니다.</div>
+    <div class="sheet-actions">${!isNew?`<button class="btn ghost" id="hDelete" style="flex:0 0 44px;color:var(--crit)">🗑</button>`:""}
+      <button class="btn ghost" id="hCancel">취소</button><button class="btn primary" id="hSave">저장</button></div>`);
+  $("#hCancel").onclick=closeSheet;
+  $("#hSave").onclick=()=>{
+    const item=$("#hItem").value.trim();if(!item){toast("항목을 입력하세요");return;}
+    const km=num($("#hKm").value),match=b.consumables.find(c=>c.name===item);
+    const obj={date:$("#hDate").value||today(),km,item,emoji:match?match.emoji:(h?h.emoji:"🔧"),cost:num($("#hCost").value),memo:$("#hMemo").value.trim()};
+    if(isNew){obj.id=uid();b.history.unshift(obj);if(match&&km>=(match.last||0))match.last=km;track("part_replaced",{item});}
+    else Object.assign(h,obj);
+    save();closeSheet();renderAll();toast(isNew?"정비 기록이 추가됐어요":"수정되었습니다");
+  };
+  if(!isNew)$("#hDelete").onclick=()=>{b.history=b.history.filter(x=>x.id!==id);save();closeSheet();renderAll();toast("삭제되었습니다");};
+}
+
+/* 비용 추가·수정 */
+function openExpense(id){
+  const b=B(),x=id?b.expenses.find(e=>e.id===id):null,isNew=!x;
+  if(id&&!x)return;
+  let cat=x?x.cat:"fuel";
+  openSheet(`<h3>${isNew?"비용 추가":"비용 수정"}</h3>
+    <div class="field"><label>분류</label><div class="chips" id="xCats">${Object.keys(EXP_CATS).map(k=>
+      `<button type="button" data-c="${k}" class="${k===cat?"on":""}">${EXP_CATS[k][0]} ${EXP_CATS[k][1]}</button>`).join("")}</div></div>
+    <div class="two"><div class="field"><label for="xAmt">금액 (원)</label><input id="xAmt" inputmode="numeric" value="${x?x.amount:""}" placeholder="0"></div>
+      <div class="field"><label for="xDate">날짜</label><input id="xDate" type="date" value="${x?esc(x.date):today()}"></div></div>
+    <div id="xIns" ${cat==="ins"?"":"hidden"}>
+      <div class="two"><div class="field"><label for="xInsurer">보험사 (선택)</label><input id="xInsurer" value="${x?esc(x.insurer||""):""}" placeholder="가입한 보험사"></div>
+        <div class="field"><label for="xExpiry">만기일 (선택)</label><input id="xExpiry" type="date" value="${x&&x.expiry?esc(x.expiry):""}"></div></div>
+      <div class="note" style="margin:-6px 0 12px">만기일을 넣으면 30일 전부터 대시보드 '지금 챙길 것'에 알려드려요.</div>
+    </div>
+    <div class="field"><label for="xMemo">메모 (선택)</label><input id="xMemo" value="${x?esc(x.memo||""):""}" placeholder="예: 고급유 가득 / 책임+종합"></div>
+    <div class="sheet-actions">${!isNew?`<button class="btn ghost" id="xDelete" style="flex:0 0 44px;color:var(--crit)">🗑</button>`:""}
+      <button class="btn ghost" id="xCancel">취소</button><button class="btn primary" id="xSave">저장</button></div>`);
+  $$("#xCats button").forEach(c=>c.onclick=()=>{cat=c.dataset.c;$$("#xCats button").forEach(y=>y.classList.toggle("on",y===c));$("#xIns").hidden=(cat!=="ins");});
+  $("#xCancel").onclick=closeSheet;
+  $("#xSave").onclick=()=>{
+    const amount=num($("#xAmt").value);if(!amount){toast("금액을 입력하세요");return;}
+    const obj={date:$("#xDate").value||today(),cat,amount,memo:$("#xMemo").value.trim()};
+    if(cat==="ins"){obj.insurer=$("#xInsurer").value.trim();obj.expiry=$("#xExpiry").value||"";}
+    if(isNew){obj.id=uid();b.expenses.unshift(obj);track("expense_add",{cat});}
+    else{delete x.insurer;delete x.expiry;Object.assign(x,obj);}
+    save();closeSheet();renderAll();toast(isNew?"비용이 기록됐어요":"수정되었습니다");
+  };
+  if(!isNew)$("#xDelete").onclick=()=>{b.expenses=b.expenses.filter(e=>e.id!==id);save();closeSheet();renderAll();toast("삭제되었습니다");};
+}
+
+/* 정비 이력서 */
+function buildReport(b){
+  const name=[b.mfr,b.model].filter(Boolean).join(" ")||"내 바이크";
+  const hist=[...b.history].sort((x,y)=>(x.date<y.date?1:-1));
+  const total=hist.reduce((s,h)=>s+(h.cost||0),0);
+  const info=[b.year?b.year+"년식":"",b.plate||"",`누적 ${fmt(b.odo)}km`].filter(Boolean).join(" · ");
+  let text=`[정비 이력서] ${name}\n${info}\n작성일 ${today()}\n\n■ 정비 기록 (${hist.length}건 · 합계 ${fmt(total)}원)\n`;
+  text+=hist.length?hist.map(h=>`· ${h.date} | ${fmt(h.km)}km | ${h.item}${h.cost?" | "+fmt(h.cost)+"원":""}${h.memo?" | "+h.memo:""}`).join("\n"):"· 기록 없음";
+  text+=`\n\n■ 소모품 현재 상태\n`+b.consumables.map(c=>{const s=status(c);
+    return `· ${c.name}: ${s.label} (${s.remain>0?"남은 "+fmt(s.remain)+"km":fmt(-s.remain)+"km 초과"} / 주기 ${fmt(c.cycle)}km)`;}).join("\n");
+  text+=`\n\n— 라이더 개러지로 기록`;
+  const html=`<h1>정비 이력서</h1><div class="p-sub">${esc(name)} · ${esc(info)} · 작성일 ${today()}</div>
+    <h2>정비 기록 (${hist.length}건 · 합계 ${fmt(total)}원)</h2>
+    <table><thead><tr><th>날짜</th><th class="r">주행거리</th><th>항목</th><th class="r">비용</th><th>메모</th></tr></thead><tbody>
+    ${hist.length?hist.map(h=>`<tr><td>${esc(h.date)}</td><td class="r">${fmt(h.km)}km</td><td>${esc(h.item)}</td><td class="r">${h.cost?fmt(h.cost)+"원":"-"}</td><td>${esc(h.memo||"")}</td></tr>`).join("")
+      :`<tr><td colspan="5">기록 없음</td></tr>`}</tbody></table>
+    <h2>소모품 현재 상태</h2>
+    <table><thead><tr><th>항목</th><th class="r">교체주기</th><th class="r">최근 교체</th><th>상태</th></tr></thead><tbody>
+    ${b.consumables.map(c=>{const s=status(c);return `<tr><td>${esc(c.name)}</td><td class="r">${fmt(c.cycle)}km</td><td class="r">${fmt(c.last)}km</td><td>${s.label} (${s.remain>0?"남은 "+fmt(s.remain)+"km":fmt(-s.remain)+"km 초과"})</td></tr>`;}).join("")}
+    </tbody></table><div class="p-foot">본 이력서는 소유자가 '라이더 개러지' 앱에 직접 기록한 내용입니다.</div>`;
+  return {text,html,count:hist.length};
+}
+function openReport(){
+  const b=B(),r=buildReport(b);
+  openSheet(`<h3>정비 이력서</h3>
+    <div class="note" style="margin-bottom:8px">정비 기록과 소모품 상태를 한 장으로 정리했어요. 중고 거래 글에 붙이거나 PDF로 저장해 두세요.</div>
+    <div class="preview">${esc(r.text)}</div>
+    <div class="sheet-actions" style="margin-top:12px"><button class="btn primary" id="rpCopy">📋 글 복사</button>
+      <button class="btn ghost" id="rpPrint">🖨️ 인쇄 · PDF</button></div>
+    <button class="btn ghost block" id="rpShare" style="margin-top:10px">공유하기</button>`);
+  $("#rpCopy").onclick=()=>{copyText(r.text,"이력서가 복사됐어요 · 붙여넣기 하세요");track("report_export",{how:"copy"});};
+  $("#rpPrint").onclick=()=>{$("#printArea").innerHTML=r.html;track("report_export",{how:"print"});
+    try{window.print();}catch(e){toast("이 화면에선 인쇄가 안 돼요 · [글 복사]를 써주세요");}};
+  $("#rpShare").onclick=()=>{track("report_export",{how:"share"});
+    if(navigator.share)navigator.share({title:"정비 이력서",text:r.text}).catch(()=>{});else copyText(r.text,"이력서가 복사됐어요 · 붙여넣기 하세요");};
+}
+
+/* 출발 전 점검 체크리스트 */
+function openCheck(group){
+  const b=B();
+  if(b.checkedDate!==today()){b.checked={};b.checkedDate=today();} // 출발 전 점검은 하루마다 새로
+  let g=group||"ride";
+  function paint(){
+    const items=state.checkItems.filter(i=>i.g===g),map=g==="ride"?b.checked:state.tourChecked;
+    const done=items.filter(i=>map[i.id]).length;
+    openSheet(`<h3>${g==="ride"?"출발 전 점검":"투어 준비물"}</h3>
+      <div class="seg" id="ckSeg" style="margin-bottom:6px">
+        <button data-g="ride" class="${g==="ride"?"on":""}">🧰 출발 전 점검</button>
+        <button data-g="tour" class="${g==="tour"?"on":""}">🎒 투어 준비물</button></div>
+      <div class="chk-progress">${done} / ${items.length} 완료${g==="ride"?" · "+esc(bikeName(b)):""}</div>
+      <div id="ckList">${items.map(i=>`<div class="chk ${map[i.id]?"on":""}" data-id="${esc(i.id)}"><span class="box">✓</span><span class="ct">${esc(i.t)}</span>
+        <button class="del" data-del="${esc(i.id)}" aria-label="항목 삭제">✕</button></div>`).join("")||`<div class="note" style="padding:14px 2px">항목이 없어요. 아래에서 추가하세요.</div>`}</div>
+      <div class="add-line"><input id="ckNew" aria-label="항목 직접 추가" placeholder="항목 직접 추가 (예: 헤드셋 충전)"><button class="btn ghost" id="ckAdd">추가</button></div>
+      <div class="sheet-actions" style="margin-top:14px">
+        ${g==="ride"?`<button class="btn ghost" id="ckClose">닫기</button><button class="btn primary" id="ckDone">점검 완료</button>`
+                    :`<button class="btn ghost" id="ckReset">체크 모두 해제</button><button class="btn primary" id="ckClose">닫기</button>`}</div>`);
+    $$("#ckSeg button").forEach(x=>x.onclick=()=>{g=x.dataset.g;paint();});
+    $$("#ckList .chk").forEach(row=>row.onclick=e=>{
+      const del=e.target.closest("[data-del]");
+      if(del){state.checkItems=state.checkItems.filter(i=>i.id!==del.dataset.del);save();paint();return;}
+      const id=row.dataset.id;if(map[id])delete map[id];else map[id]=true;save();paint();});
+    $("#ckAdd").onclick=()=>{const t=$("#ckNew").value.trim();if(!t){toast("추가할 항목을 적어주세요");return;}
+      state.checkItems.push({id:"u"+uid(),g,t});save();paint();};
+    $("#ckClose").onclick=()=>{closeSheet();renderDash();};
+    if(g==="ride")$("#ckDone").onclick=()=>{
+      if(done<items.length){toast(`아직 ${items.length-done}개 남았어요 · 다 확인하고 눌러주세요`);return;}
+      b.lastCheck=today();save();closeSheet();renderDash();toast("점검 완료! 안전 라이딩 하세요 🏍️");track("check_done");};
+    else $("#ckReset").onclick=()=>{state.tourChecked={};save();paint();};
+  }
+  paint();
+}
+
+/* 일지 추가·수정 (사진 여러 장) */
+const MAX_PHOTOS=10;
+let draft=[];
 function openLogEdit(id){
-  const l=id?state.logs.find(x=>x.id===id):null,isNew=!l;
-  draftPhotos=l?[...(l.photos||[])]:[];
+  const b=B(),l=id?b.logs.find(x=>x.id===id):null,isNew=!l;
+  draft=l?(l.photos||[]).map(r=>({ref:r})):[];
   openSheet(`<h3>${isNew?"새 라이딩 일지":"일지 편집"}</h3>
-    <div class="field"><label>사진 (선택 시 촬영 날짜 자동 입력)</label><div class="thumbstrip" id="thumbs"></div>
-      <input type="file" id="photoInput" accept="image/*" multiple hidden></div>
-    <div class="two"><div class="field"><label>날짜</label><input id="lDate" type="date" value="${l?l.date:new Date().toISOString().slice(0,10)}"></div>
-      <div class="field"><label>주행거리 km</label><input id="lKm" inputmode="numeric" value="${l?(l.km||""):(state.profile.odo||"")}"></div></div>
-    <div class="field"><label>제목</label><input id="lTitle" value="${l?esc(l.title):""}" placeholder="예: 남한강 라이딩"></div>
-    <div class="field"><label>방문지 / 코스</label><input id="lPlace" value="${l?esc(l.place||""):""}" placeholder="예: 양평 두물머리"></div>
-    <div class="field"><label>메모</label><textarea id="lMemo" placeholder="오늘의 라이딩은 어땠나요?">${l?esc(l.memo||""):""}</textarea></div>
-    <div class="field"><label>태그 (띄어쓰기로 구분)</label><input id="lTags" value="${l&&l.tags?esc(l.tags.join(" ")):""}" placeholder="#와인딩 #카페투어"></div>
+    <div class="field"><div class="photo-head"><label>사진 · 여러 장 가능 (최대 ${MAX_PHOTOS}장)</label><span class="pc num" id="photoCount"></span></div>
+      <div class="thumbstrip" id="thumbs"></div>
+      <input type="file" id="photoInput" accept="image/*" multiple hidden>
+      <div class="note">＋를 눌러 갤러리에서 여러 장을 한 번에 고를 수 있어요. 첫 사진의 촬영 날짜가 자동 입력됩니다.</div></div>
+    <div class="two"><div class="field"><label for="lDate">날짜</label><input id="lDate" type="date" value="${l?esc(l.date):today()}"></div>
+      <div class="field"><label for="lKm">주행거리 km</label><input id="lKm" inputmode="numeric" value="${l?(l.km||""):(b.odo||"")}"></div></div>
+    <div class="field"><label for="lTitle">제목</label><input id="lTitle" value="${l?esc(l.title):""}" placeholder="예: 남한강 라이딩"></div>
+    <div class="field"><label for="lPlace">방문지 / 코스</label><input id="lPlace" value="${l?esc(l.place||""):""}" placeholder="예: 양평 두물머리"></div>
+    <div class="field"><label for="lMemo">메모</label><textarea id="lMemo" placeholder="오늘의 라이딩은 어땠나요?">${l?esc(l.memo||""):""}</textarea></div>
+    <div class="field"><label for="lTags">태그 (띄어쓰기로 구분)</label><input id="lTags" value="${l&&l.tags?esc(l.tags.join(" ")):""}" placeholder="#와인딩 #카페투어"></div>
     <div class="sheet-actions">${!isNew?`<button class="btn ghost" id="lDelete" style="flex:0 0 44px;color:var(--crit)">🗑</button>`:""}
       <button class="btn ghost" id="lCancel">취소</button><button class="btn primary" id="lSave">저장</button></div>`);
   renderThumbs();
   $("#thumbs").addEventListener("click",e=>{
-    if(e.target.closest(".add"))$("#photoInput").click();
-    const rm=e.target.closest("[data-rm]");if(rm){draftPhotos.splice(+rm.dataset.rm,1);renderThumbs();}});
+    if(e.target.closest(".add")){if(draft.length>=MAX_PHOTOS){toast(`사진은 최대 ${MAX_PHOTOS}장까지예요`);return;}$("#photoInput").click();return;}
+    const rm=e.target.closest("[data-rm]");if(rm){draft.splice(+rm.dataset.rm,1);renderThumbs();}});
   $("#photoInput").onchange=handlePhotos;$("#lCancel").onclick=closeSheet;
-  $("#lSave").onclick=()=>{
+  let saving=false;
+  $("#lSave").onclick=async()=>{
+    if(saving)return;
     const title=$("#lTitle").value.trim();
-    if(!title&&draftPhotos.length===0){toast("제목이나 사진을 넣어주세요");return;}
-    const tags=$("#lTags").value.split(/\s+/).map(s=>s.trim()).filter(Boolean).map(s=>s.startsWith("#")?s:"#"+s);
-    const obj={date:$("#lDate").value||new Date().toISOString().slice(0,10),
-      km:parseInt(String($("#lKm").value).replace(/[^0-9]/g,""))||0,
-      title,place:$("#lPlace").value.trim(),memo:$("#lMemo").value.trim(),tags,photos:draftPhotos};
-    if(isNew){obj.id=uid();state.logs.unshift(obj);}else Object.assign(l,obj);
-    save();closeSheet();renderAll();toast("일지가 저장되었습니다");track("log_save",{photos:obj.photos.length});
+    if(!title&&draft.length===0){toast("제목이나 사진을 넣어주세요");return;}
+    saving=true;
+    const tags=$("#lTags").value.split(/\s+/).map(s=>s.trim()).filter(Boolean).map(s=>s.charAt(0)==="#"?s:"#"+s);
+    const form={date:$("#lDate").value||today(),km:num($("#lKm").value),title,place:$("#lPlace").value.trim(),memo:$("#lMemo").value.trim(),tags};
+    const refs=[];
+    for(const d of draft){
+      if(d.ref){refs.push(d.ref);continue;}
+      const pid="p_"+uid();
+      if(await idbPut(pid,d.data)){photoCache.set(pid,d.data);refs.push(pid);}else refs.push(d.data); // 저장소를 못 쓰는 환경이면 기록에 포함
+    }
+    const old=l?(l.photos||[]):[];
+    old.filter(r=>refs.indexOf(r)<0&&!isData(r)).forEach(r=>{idbDel(r);photoCache.delete(r);});
+    form.photos=refs;
+    if(isNew){form.id=uid();b.logs.unshift(form);}else Object.assign(l,form);
+    const ok=save();closeSheet();renderAll();
+    if(ok)toast("일지가 저장되었습니다");track("log_save",{photos:refs.length});
   };
-  if(!isNew)$("#lDelete").onclick=()=>{state.logs=state.logs.filter(x=>x.id!==id);save();closeSheet();renderAll();toast("삭제되었습니다");};
+  if(!isNew)$("#lDelete").onclick=()=>{(l.photos||[]).forEach(r=>{if(!isData(r)){idbDel(r);photoCache.delete(r);}});
+    b.logs=b.logs.filter(x=>x.id!==id);save();closeSheet();renderAll();toast("삭제되었습니다");};
 }
 function renderThumbs(){
   const c=$("#thumbs");if(!c)return;
-  c.innerHTML=draftPhotos.map((src,i)=>`<div class="th"><img src="${src}" alt=""><button data-rm="${i}">✕</button></div>`).join("")+`<div class="add">＋</div>`;
+  c.innerHTML=draft.map((d,i)=>`<div class="th">${d.ref?imgTag(d.ref):`<img src="${d.data}" alt="">`}<button data-rm="${i}" aria-label="사진 빼기">✕</button></div>`).join("")
+    +(draft.length<MAX_PHOTOS?`<div class="add" role="button" aria-label="사진 추가">＋</div>`:"");
+  hydrate(c);
+  const pc=$("#photoCount");if(pc)pc.textContent=draft.length+" / "+MAX_PHOTOS;
 }
 function handlePhotos(e){
-  const files=[...e.target.files].slice(0,6);let firstDate=null;
-  files.forEach(f=>{
-    if(!firstDate&&f.lastModified)firstDate=new Date(f.lastModified).toISOString().slice(0,10);
-    const reader=new FileReader();
-    reader.onload=ev=>shrinkImage(ev.target.result,d=>{draftPhotos.push(d);renderThumbs();});
+  const room=MAX_PHOTOS-draft.length,all=[...e.target.files],files=all.slice(0,room);
+  if(all.length>room)toast(`최대 ${MAX_PHOTOS}장까지라 ${files.length}장만 넣었어요`);
+  if(files.length&&files[0].lastModified&&draft.length===0&&$("#lDate"))$("#lDate").value=iso(new Date(files[0].lastModified));
+  files.forEach(f=>{const reader=new FileReader();
+    reader.onload=ev=>shrinkImage(ev.target.result,d=>{if(draft.length<MAX_PHOTOS){draft.push({data:d});renderThumbs();}});
     reader.readAsDataURL(f);});
-  if(firstDate&&$("#lDate"))$("#lDate").value=firstDate;
   e.target.value="";
 }
 function shrinkImage(src,cb){
   const img=new Image();
-  img.onload=()=>{const max=1000;let w=img.width,h=img.height;
+  img.onload=()=>{const max=1280;let w=img.width,h=img.height;
     if(w>max||h>max){const r=Math.min(max/w,max/h);w=Math.round(w*r);h=Math.round(h*r);}
     const cv=document.createElement("canvas");cv.width=w;cv.height=h;cv.getContext("2d").drawImage(img,0,0,w,h);
-    try{cb(cv.toDataURL("image/jpeg",0.75));}catch(e){cb(src);}};
+    try{cb(cv.toDataURL("image/jpeg",0.78));}catch(e){cb(src);}};
   img.onerror=()=>cb(src);img.src=src;
 }
 function openBlogText(l){
-  const text=composeBlog(l);
+  const text=composeBlog(l),s=state.settings,n=(l.photos||[]).length;
   openSheet(`<h3>블로그 글 자동완성</h3>
-    <div class="note" style="margin-bottom:8px">아래 글이 자동으로 정리됐어요. 복사해서 네이버 블로그에 붙여넣기 하세요.</div>
+    <div class="note" style="margin-bottom:8px">아래 글이 자동으로 정리됐어요. 복사해서 네이버 블로그에 붙여넣기 하세요.${n?` 사진 ${n}장은 블로그에서 직접 올려주세요.`:""}</div>
     <div class="preview" id="blogPreview">${esc(text)}</div>
     <div class="sheet-actions" style="margin-top:12px"><button class="btn primary" id="copyBlog">📋 글 복사</button>
       <button class="btn ghost" id="openBlog">네이버 블로그 열기</button></div>
     <button class="btn ghost block" id="openCafe" style="margin-top:10px">카페에 공유하기</button>`);
   $("#copyBlog").onclick=()=>{copyText(text);track("blog_copy");};
-  $("#openBlog").onclick=()=>{copyText(text,true);track("blog_open");openExt(state.profile.blog||"https://blog.naver.com/");};
-  $("#openCafe").onclick=()=>{copyText(text,true);track("cafe_open");openExt(state.profile.cafe||"https://cafe.naver.com/");};
+  $("#openBlog").onclick=()=>{copyText(text,true);track("blog_open");openExt(s.blog||"https://blog.naver.com/");};
+  $("#openCafe").onclick=()=>{copyText(text,true);track("cafe_open");openExt(s.cafe||"https://cafe.naver.com/");};
 }
-function copyText(text,silent){
-  const done=()=>toast(silent?"글이 복사됐어요 · 붙여넣기 하세요":"복사됐어요! 블로그에 붙여넣기 하세요");
+function copyText(text,msg){
+  const m=typeof msg==="string"?msg:(msg?"글이 복사됐어요 · 붙여넣기 하세요":"복사됐어요! 블로그에 붙여넣기 하세요");
+  const done=()=>toast(m);
   if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(done).catch(()=>fallbackCopy(text,done));
   else fallbackCopy(text,done);
 }
@@ -779,76 +1262,99 @@ function shareLog(l){
   if(navigator.share)navigator.share({title:l.title||"라이딩 일지",text}).catch(()=>{});
   else copyText(text);
 }
-function openHist(){
-  openSheet(`<h3>교체 기록 추가</h3>
-    <div class="two"><div class="field"><label>날짜</label><input id="hDate" type="date" value="${new Date().toISOString().slice(0,10)}"></div>
-      <div class="field"><label>주행거리 km</label><input id="hKm" inputmode="numeric" value="${state.profile.odo||""}"></div></div>
-    <div class="field"><label>항목</label><input id="hItem" list="hItems" placeholder="예: 엔진오일">
-      <datalist id="hItems">${state.consumables.map(c=>`<option value="${esc(c.name)}">`).join("")}</datalist></div>
-    <div class="field"><label>비용 (원, 선택)</label><input id="hCost" inputmode="numeric" placeholder="0"></div>
-    <div class="field"><label>메모 (선택)</label><input id="hMemo" placeholder="예: 순정 부품"></div>
-    <div class="note">항목이 소모품과 같으면 '최근 교체 시점'도 자동 갱신됩니다.</div>
-    <div class="sheet-actions"><button class="btn ghost" id="hCancel">취소</button><button class="btn primary" id="hSave">저장</button></div>`);
-  $("#hCancel").onclick=closeSheet;
-  $("#hSave").onclick=()=>{
-    const item=$("#hItem").value.trim();if(!item){toast("항목을 입력하세요");return;}
-    const km=parseInt(String($("#hKm").value).replace(/[^0-9]/g,""))||0,match=state.consumables.find(c=>c.name===item);
-    state.history.unshift({id:uid(),date:$("#hDate").value,km,item,emoji:match?match.emoji:"🔧",
-      cost:parseInt(String($("#hCost").value).replace(/[^0-9]/g,""))||0,memo:$("#hMemo").value.trim()});
-    if(match)match.last=km;save();closeSheet();renderAll();toast("교체 기록이 추가됐어요");
-  };
+
+/* ---------- 내 차고 (바이크 여러 대) ---------- */
+function bikeRowsHTML(){
+  return state.bikes.map(b=>`<div class="bike-row" data-id="${b.id}">
+    <span class="b-emoji">🏍️</span>
+    <div class="b-main"><div class="b-name">${esc(bikeName(b))}${b.nick&&b.nick!==bikeName(b)?" · "+esc(b.nick):""}</div>
+      <div class="b-sub">${[b.mfr,b.year?b.year+"년식":"",fmt(b.odo)+"km"].filter(Boolean).map(esc).join(" · ")}</div></div>
+    ${b.id===state.activeBikeId?`<span class="pill good">사용 중</span>`:`<span class="pill" style="background:var(--surface-2);color:var(--muted)">선택</span>`}
+    ${state.bikes.length>1?`<button class="b-del" data-del="${b.id}" aria-label="바이크 삭제">🗑</button>`:""}</div>`).join("");
+}
+function bindBikeRows(root,after){
+  root.querySelectorAll(".bike-row").forEach(r=>r.onclick=e=>{
+    const del=e.target.closest("[data-del]");
+    if(del){confirmDeleteBike(del.dataset.del);return;}
+    if(r.dataset.id!==state.activeBikeId){state.activeBikeId=r.dataset.id;save();fillSettings();renderAll();toast(bikeName(B())+" 바이크로 전환했어요");}
+    if(after)after();});
+}
+function renderGarage(){
+  const el=$("#garageCard");
+  el.innerHTML=bikeRowsHTML()+`<button class="btn ghost block" id="addBikeBtn" style="margin-top:12px">＋ 바이크 추가</button>
+    <div class="note">바이크를 누르면 그 바이크로 전환돼요. 소모품·비용·일지는 바이크별로 따로 기록됩니다.</div>`;
+  bindBikeRows(el);$("#addBikeBtn").onclick=addBike;
+  $("#bikeFormTitle").textContent="선택한 바이크 정보 · "+bikeName(B());
+}
+function openGarage(){
+  openSheet(`<h3>내 차고</h3><div id="garageSheet">${bikeRowsHTML()}</div>
+    <div class="sheet-actions" style="margin-top:14px"><button class="btn ghost" id="gClose">닫기</button><button class="btn primary" id="gAdd">＋ 바이크 추가</button></div>`);
+  bindBikeRows($("#garageSheet"),closeSheet);$("#gClose").onclick=closeSheet;$("#gAdd").onclick=addBike;
+}
+function addBike(){
+  const b=newBike("mid");state.bikes.push(b);state.activeBikeId=b.id;save();closeSheet();fillSettings();renderAll();switchTab("set");
+  toast("새 바이크 정보를 입력하고 [저장]을 눌러주세요");track("bike_add",{count:state.bikes.length});
+}
+function confirmDeleteBike(id){
+  const b=state.bikes.find(x=>x.id===id);if(!b||state.bikes.length<2)return;
+  openSheet(`<h3>${esc(bikeName(b))} 삭제할까요?</h3>
+    <div class="note" style="margin-bottom:14px">이 바이크의 소모품·비용·정비 기록·일지(사진 포함)가 모두 지워집니다. 되돌릴 수 없어요.</div>
+    <div class="sheet-actions"><button class="btn ghost" id="dbCancel">취소</button>
+      <button class="btn" id="dbOk" style="background:var(--crit);color:#fff">삭제</button></div>`);
+  $("#dbCancel").onclick=closeSheet;
+  $("#dbOk").onclick=()=>{b.logs.forEach(l=>(l.photos||[]).forEach(r=>{if(!isData(r)){idbDel(r);photoCache.delete(r);}}));
+    state.bikes=state.bikes.filter(x=>x.id!==id);if(state.activeBikeId===id)state.activeBikeId=state.bikes[0].id;
+    save();closeSheet();fillSettings();renderAll();toast("삭제되었습니다");};
 }
 
-/* ---------- settings ---------- */
+/* ---------- 설정 ---------- */
 function fillSettings(){
-  const p=state.profile;
-  $("#f-nick").value=p.nick||"";$("#f-mfr").value=p.mfr||"";$("#f-year").value=p.year||"";
-  $("#f-model").value=p.model||"";$("#f-plate").value=p.plate||"";$("#f-odo").value=p.odo||"";
-  $("#f-cat").value=p.category||"mid";
-  $("#f-blog").value=p.blog||"";$("#f-cafe").value=p.cafe||"";
-  document.querySelectorAll("#navSeg button").forEach(b=>b.classList.toggle("on",b.dataset.nav===(p.nav||"kakao")));
+  const b=B(),s=state.settings;
+  $("#f-nick").value=b.nick||"";$("#f-mfr").value=b.mfr||"";$("#f-year").value=b.year||"";
+  $("#f-model").value=b.model||"";$("#f-plate").value=b.plate||"";$("#f-odo").value=b.odo||"";
+  $("#f-cat").value=b.category||"mid";
+  $("#f-blog").value=s.blog||"";$("#f-cafe").value=s.cafe||"";
+  $$("#navSeg button").forEach(x=>x.classList.toggle("on",x.dataset.nav===(s.nav||"kakao")));
 }
-document.querySelectorAll("#navSeg button").forEach(b=>b.onclick=()=>{
-  document.querySelectorAll("#navSeg button").forEach(x=>x.classList.remove("on"));b.classList.add("on");});
+$$("#navSeg button").forEach(x=>x.onclick=()=>{$$("#navSeg button").forEach(y=>y.classList.remove("on"));x.classList.add("on");});
 $("#saveSetBtn").onclick=()=>{
-  const p=state.profile;
-  const wasNewBike=!(p.model||p.mfr);
-  p.nick=$("#f-nick").value.trim();p.mfr=$("#f-mfr").value.trim();p.year=$("#f-year").value.trim();
-  p.model=$("#f-model").value.trim();p.plate=$("#f-plate").value.trim();
-  p.odo=parseInt(String($("#f-odo").value).replace(/[^0-9]/g,""))||0;
-  p.category=$("#f-cat").value;
-  p.blog=$("#f-blog").value.trim();p.cafe=$("#f-cafe").value.trim();
-  const on=document.querySelector("#navSeg button.on");p.nav=on?on.dataset.nav:"kakao";
+  const b=B(),s=state.settings,wasNewBike=!(b.model||b.mfr);
+  b.nick=$("#f-nick").value.trim();b.mfr=$("#f-mfr").value.trim();b.year=$("#f-year").value.trim();
+  b.model=$("#f-model").value.trim();b.plate=$("#f-plate").value.trim();b.odo=num($("#f-odo").value);
+  b.category=$("#f-cat").value;
+  s.blog=$("#f-blog").value.trim();s.cafe=$("#f-cafe").value.trim();
+  const on=$("#navSeg button.on");s.nav=on?on.dataset.nav:"kakao";
   state.isExample=false;save();renderAll();toast("저장되었습니다");
-  if(wasNewBike&&(p.model||p.mfr)){track("bike_register",{category:p.category});openSetupWizard(true);} else switchTab("dash");
+  if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{}); // 브라우저가 기록을 함부로 지우지 않도록 요청
+  if(wasNewBike&&(b.model||b.mfr)){track("bike_register",{category:b.category});openSetupWizard(true);}else switchTab("dash");
 };
 /* 차종 타입 기본 교환주기 적용 */
 $("#applyPresetBtn").onclick=()=>{
-  const key=$("#f-cat").value;
+  const key=$("#f-cat").value,b=B();
   if(key==="custom"){toast("'직접 설정'은 항목을 직접 편집하세요");return;}
   openSheet(`<h3>${CAT_LABELS[key]} 기본 주기 적용</h3>
     <div class="note" style="margin-bottom:14px">이 차종에 맞는 소모품 목록과 교환주기로 바꿉니다. 같은 이름 항목의 '최근 교체 시점'은 유지돼요. (일반 가이드 값이라 정비매뉴얼에 맞춰 조정하세요.)</div>
     <div class="sheet-actions"><button class="btn ghost" id="apCancel">취소</button><button class="btn primary" id="apOk">적용</button></div>`);
   $("#apCancel").onclick=closeSheet;
   $("#apOk").onclick=()=>{
-    const byName={};state.consumables.forEach(c=>byName[c.name]=c);
-    state.consumables=CATEGORY_PRESETS[key].items.map(([name,emoji,cycle])=>{
+    const byName={};b.consumables.forEach(c=>byName[c.name]=c);
+    b.consumables=CATEGORY_PRESETS[key].items.map(([name,emoji,cycle])=>{
       const ex=byName[name];return {id:ex?ex.id:uid(),name,emoji,cycle,last:ex?ex.last:0,buy:ex?ex.buy:""};});
-    state.profile.category=key;save();closeSheet();renderAll();toast("기본 교환주기를 적용했어요");
+    b.category=key;save();closeSheet();renderAll();toast("기본 교환주기를 적용했어요");
   };
 };
 /* 신차 / 중고 초기 등록 마법사 */
 $("#setupWizardBtn").onclick=()=>openSetupWizard(false);
 function openSetupWizard(afterRegister){
-  const odo=state.profile.odo||0;
-  let mode=state.profile.purchase||"new";
+  const b=B(),odo=b.odo||0;
+  let mode=b.purchase||"new";
   function paint(){
-    const rows=state.consumables.map((c,i)=>`
+    const rows=b.consumables.map((c,i)=>`
       <div style="display:flex;gap:9px;align-items:center;margin-bottom:9px">
         <span style="width:30px;height:30px;border-radius:8px;background:var(--surface-2);display:grid;place-items:center;font-size:15px;flex:none">${c.emoji||"🔧"}</span>
         <div style="flex:1;min-width:0"><div style="font-weight:600;font-size:13px">${esc(c.name)}</div>
           <div style="font-size:11px;color:var(--muted)">교체주기 ${fmt(c.cycle)}km</div></div>
-        <input data-i="${i}" class="wz-last" inputmode="numeric" style="width:104px;padding:9px 10px;border-radius:9px;border:1px solid var(--border-2);background:var(--surface-3);color:var(--text);font-size:13px"
+        <input data-i="${i}" class="wz-last" inputmode="numeric" aria-label="${esc(c.name)} 최근 교체 주행거리" style="width:104px;padding:9px 10px;border-radius:9px;border:1px solid var(--border-2);background:var(--surface-3);color:var(--text);font-size:13px"
           placeholder="${mode==='new'?fmt(odo)+' km':'모르면 비움'}" value="">
       </div>`).join("");
     openSheet(`<h3>소모품 초기 등록</h3>
@@ -861,63 +1367,85 @@ function openSetupWizard(afterRegister){
         ?"신차는 비워두면 전부 현재 주행거리 기준 '새것'으로 잡습니다. 최근에 정비한 항목만 그 주행거리를 넣으세요."
         :"중고는 아는 교체 시점(그때 주행거리)만 넣으세요. 모르는 항목은 비워두면 '점검/교체 필요'로 안전하게 표시됩니다."}</div>
       <div class="sheet-actions" style="margin-top:14px"><button class="btn ghost" id="wzCancel">${afterRegister?"나중에":"취소"}</button><button class="btn primary" id="wzSave">적용</button></div>`);
-    document.querySelectorAll("#wzMode button").forEach(b=>b.onclick=()=>{mode=b.dataset.m;paint();});
+    $$("#wzMode button").forEach(x=>x.onclick=()=>{mode=x.dataset.m;paint();});
     $("#wzCancel").onclick=()=>{closeSheet();if(afterRegister)switchTab("dash");};
     $("#wzSave").onclick=()=>{
-      document.querySelectorAll(".wz-last").forEach(inp=>{
-        const i=+inp.dataset.i,raw=inp.value.trim(),c=state.consumables[i];
+      $$(".wz-last").forEach(inp=>{
+        const i=+inp.dataset.i,raw=inp.value.trim(),c=b.consumables[i];
         if(raw==="")c.last=(mode==="new")?odo:Math.max(0,odo-(c.cycle||0));
-        else c.last=parseInt(raw.replace(/[^0-9]/g,""))||0;
+        else c.last=num(raw);
       });
-      state.profile.purchase=mode;save();closeSheet();renderAll();switchTab("dash");toast("소모품 초기 설정 완료");track("setup_done",{mode});
+      b.purchase=mode;save();closeSheet();renderAll();switchTab("dash");toast("소모품 초기 설정 완료");track("setup_done",{mode});
     };
   }
   paint();
 }
 $("#resetBtn").onclick=()=>{
   openSheet(`<h3>전체 초기화할까요?</h3>
-    <div class="note" style="margin-bottom:14px">모든 기록이 지워지고 빈 상태로 시작합니다. 되돌릴 수 없어요.</div>
+    <div class="note" style="margin-bottom:14px">모든 바이크와 기록·사진이 지워지고 빈 상태로 시작합니다. 되돌릴 수 없어요.</div>
     <div class="sheet-actions"><button class="btn ghost" id="rCancel">취소</button>
       <button class="btn" id="rOk" style="background:var(--crit);color:#fff">초기화</button></div>`);
   $("#rCancel").onclick=closeSheet;
-  $("#rOk").onclick=()=>{state=emptyState();save();closeSheet();fillSettings();renderAll();switchTab("set");toast("초기화되었습니다");};
+  $("#rOk").onclick=()=>{idbClear();photoCache.clear();state=emptyState();save();closeSheet();fillSettings();renderAll();switchTab("set");toast("초기화되었습니다");};
 };
+
+/* 백업 · 복원 */
+function stateWithoutPhotos(){const c=JSON.parse(JSON.stringify(state));c.bikes.forEach(b=>b.logs.forEach(l=>{l.photos=[];}));return c;}
 $("#backupBtn").onclick=()=>{
-  const text=JSON.stringify(state,null,2);copyText(text,true);
   openSheet(`<h3>백업 내보내기</h3>
-    <div class="note" style="margin-bottom:8px">아래 내용이 클립보드에 복사됐어요. 메모장이나 카톡 '나에게'에 붙여넣어 보관하세요. 폰을 바꾸면 [백업 불러오기]에 붙여넣으면 됩니다.</div>
-    <div class="preview" style="max-height:200px">${esc(text.slice(0,4000))}${text.length>4000?"\n…(생략)":""}</div>
-    <button class="btn primary block" id="bkCopy" style="margin-top:12px">📋 다시 복사</button>`);
-  $("#bkCopy").onclick=()=>copyText(text);
+    <div class="note" style="margin-bottom:12px">폰이나 브라우저를 바꾸기 전에 백업해 두세요. <b>파일 저장</b>은 사진까지 모두 담기고, <b>텍스트 복사</b>는 사진을 뺀 기록만 담겨요.</div>
+    <button class="btn primary block" id="bkFile" style="padding:13px">💾 백업 파일 저장 (사진 포함)</button>
+    <button class="btn ghost block" id="bkCopy" style="margin-top:10px">📋 텍스트로 복사 (사진 제외)</button>
+    <div class="note" style="margin-top:10px">저장된 파일은 폰의 '다운로드' 폴더에 들어가요. 카톡 '나에게 보내기'나 드라이브에 올려두면 안전합니다.</div>`);
+  $("#bkFile").onclick=async()=>{
+    try{const payload={app:"rider-garage",v:2,exported:new Date().toISOString(),state,photos:await idbAll()};
+      const url=URL.createObjectURL(new Blob([JSON.stringify(payload)],{type:"application/json"}));
+      const a=document.createElement("a");a.href=url;a.download="rider-garage-backup-"+today()+".json";
+      document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),5000);
+      toast("백업 파일을 저장했어요 · 다운로드 폴더 확인");track("backup",{how:"file"});
+    }catch(e){toast("파일 저장이 안 되는 환경이에요 · 텍스트 복사를 써주세요");}
+  };
+  $("#bkCopy").onclick=()=>{copyText(JSON.stringify({app:"rider-garage",v:2,state:stateWithoutPhotos()}),"백업 내용이 복사됐어요 · 메모장에 붙여넣어 보관하세요");track("backup",{how:"text"});};
 };
+async function applyRestore(obj){
+  const s=migrate(obj&&obj.state?obj.state:obj);if(!s)throw new Error("format");
+  if(obj&&obj.photos&&typeof obj.photos==="object"){for(const id of Object.keys(obj.photos)){const d=obj.photos[id];if(isData(d)){await idbPut(id,d);photoCache.set(id,d);}}}
+  state=s;save();await migratePhotos();
+}
 $("#restoreBtn").onclick=()=>{
   openSheet(`<h3>백업 불러오기</h3>
-    <div class="note" style="margin-bottom:8px">백업한 내용을 아래에 붙여넣고 불러오기를 누르세요.</div>
-    <div class="field"><textarea id="rsText" style="min-height:150px" placeholder="여기에 백업 내용 붙여넣기"></textarea></div>
-    <div class="sheet-actions"><button class="btn ghost" id="rsCancel">취소</button><button class="btn primary" id="rsOk">불러오기</button></div>`);
+    <div class="note" style="margin-bottom:12px">불러오면 지금 기록이 백업 내용으로 <b>바뀝니다</b>.</div>
+    <button class="btn primary block" id="rsPick" style="padding:13px">📂 백업 파일 선택</button>
+    <input type="file" id="rsFile" accept="application/json,.json,text/plain" hidden>
+    <div class="field" style="margin-top:14px"><label for="rsText">또는 복사해 둔 백업 텍스트 붙여넣기</label>
+      <textarea id="rsText" style="min-height:110px" placeholder="여기에 백업 내용 붙여넣기"></textarea></div>
+    <div class="sheet-actions"><button class="btn ghost" id="rsCancel">취소</button><button class="btn ghost" id="rsOk">텍스트로 불러오기</button></div>`);
+  const finish=()=>{closeSheet();fillSettings();renderAll();switchTab("dash");toast("복원되었습니다");};
+  $("#rsPick").onclick=()=>$("#rsFile").click();
+  $("#rsFile").onchange=e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();
+    rd.onload=async()=>{try{await applyRestore(JSON.parse(rd.result));finish();}catch(err){toast("백업 파일 형식이 올바르지 않아요");}};rd.readAsText(f);};
   $("#rsCancel").onclick=closeSheet;
-  $("#rsOk").onclick=()=>{try{const obj=JSON.parse($("#rsText").value);if(!obj.profile)throw 0;
-    state=obj;save();closeSheet();fillSettings();renderAll();toast("복원되었습니다");}catch(e){toast("형식이 올바르지 않아요");}};
+  $("#rsOk").onclick=async()=>{try{await applyRestore(JSON.parse($("#rsText").value));finish();}catch(e){toast("형식이 올바르지 않아요");}};
 };
 
 /* ---------- share & install ---------- */
 function shareApp(){
   const url=location.href.split("#")[0];
-  const data={title:"라이더 개러지",text:"바이크 정비 알림 + 라이딩 일지 앱. 무료로 써보세요!",url};
+  const data={title:"라이더 개러지",text:"바이크 정비 알림 + 비용 장부 + 라이딩 일지 앱. 무료로 써보세요!",url};
   track("share_app");
   if(navigator.share)navigator.share(data).catch(()=>{});
-  else{copyText(url,true);toast("앱 링크가 복사됐어요 · 친구에게 보내세요");}
+  else copyText(url,"앱 링크가 복사됐어요 · 친구에게 보내세요");
 }
 $("#shareBtn").onclick=shareApp;
 let deferredPrompt=null;
 window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e;});
 function installApp(){
   if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.finally(()=>{deferredPrompt=null;});return;}
-  const ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
   openSheet(`<h3>홈 화면에 앱 설치</h3>
     <div class="note" style="line-height:1.75;font-size:13px;color:var(--text)">
-    ${ios?"<b>아이폰 (사파리)</b><br>① 화면 아래 <b>공유 버튼 ⬆️</b> 탭<br>② <b>'홈 화면에 추가'</b> 선택<br>③ 추가 → 홈에서 앱처럼 실행"
-         :"<b>삼성 인터넷</b> (메뉴가 아래에 있어요)<br>① 화면 <b>맨 아래 ≡</b>(가로줄 세 개) 탭<br>② <b>'현재 페이지 추가' → '홈 화면'</b> (또는 '홈 화면에 추가')<br><br><b>크롬</b><br>① <b>우측 상단 ⋮</b> 탭 <span style='color:var(--muted)'>(안 보이면 화면을 살짝 아래로 쓸어내리기)</span><br>② <b>'홈 화면에 추가'</b> 또는 <b>'앱 설치'</b> 선택"}
+      <b>삼성 인터넷</b> (메뉴가 아래에 있어요)<br>① 화면 <b>맨 아래 ≡</b>(가로줄 세 개) 탭<br>② <b>'현재 페이지 추가' → '홈 화면'</b> (또는 '홈 화면에 추가')<br><br>
+      <b>크롬</b><br>① <b>우측 상단 ⋮</b> 탭 <span style="color:var(--muted)">(안 보이면 화면을 살짝 아래로 쓸어내리기)</span><br>② <b>'홈 화면에 추가'</b> 또는 <b>'앱 설치'</b> 선택<br><br>
+      <b>아이폰 (사파리)</b><br>① 화면 아래 <b>공유 버튼 ⬆️</b> 탭<br>② <b>'홈 화면에 추가'</b> 선택
     </div>
     <div class="note" style="margin-top:10px;background:var(--surface-2);padding:10px 12px;border-radius:10px">💡 카톡·네이버 앱 안에서 열었다면 설치 메뉴가 없어요. 그 화면의 <b>⋮</b> → <b>'다른 브라우저로 열기'</b>로 크롬·삼성 인터넷에서 연 뒤 설치하세요.</div>
     <button class="btn primary block" id="instOk" style="margin-top:16px">알겠어요</button>`);
@@ -925,33 +1453,32 @@ function installApp(){
 }
 
 /* ---------- tabs & fab ---------- */
-const tabMap={dash:{title:"라이더 개러지",sub:"내 바이크 정비 · 라이딩 일지"},
-  log:{title:"라이딩 일지",sub:"사진만 고르면 블로그 글 완성"},
-  maint:{title:"정비 차계부",sub:"교체 시점 자동 알림"},
-  set:{title:"설정 · 프로필",sub:"차종 등록 · 외부 연동"}};
+const tabMap={dash:{title:"라이더 개러지",sub:"오늘 챙길 것 한눈에"},
+  log:{title:"라이딩 일지",sub:"사진 여러 장 · 블로그 글 자동완성"},
+  maint:{title:"차계부",sub:"소모품 · 비용 · 정비 기록"},
+  set:{title:"설정 · 프로필",sub:"내 차고 · 외부 연동 · 백업"}};
 let curTab="dash";
 function switchTab(t){
   curTab=t;["dash","log","maint","set"].forEach(k=>$("#scr-"+k).hidden=(k!==t));
-  document.querySelectorAll(".tabbar button").forEach(b=>b.classList.toggle("on",b.dataset.tab===t));
+  $$(".tabbar button").forEach(x=>x.classList.toggle("on",x.dataset.tab===t));
   $("#hdrTitle").textContent=tabMap[t].title;$("#hdrSub").textContent=tabMap[t].sub;
-  $("#fab").hidden=(t==="set"||t==="maint");window.scrollTo(0,0);
+  $("#fab").hidden=(t!=="log");window.scrollTo(0,0);
 }
-document.querySelectorAll(".tabbar button").forEach(b=>b.onclick=()=>switchTab(b.dataset.tab));
+$$(".tabbar button").forEach(x=>x.onclick=()=>switchTab(x.dataset.tab));
 $("#fab").onclick=()=>openLogEdit(null);
-$("#addHistBtn").onclick=openHist;
-$("#maintOdoBtn").onclick=openOdo;
-$("#clearSampleBtn").onclick=()=>{state=emptyState();save();fillSettings();renderAll();switchTab("set");toast("샘플을 지웠어요 · 내 바이크를 등록하세요");};
+$("#clearSampleBtn").onclick=()=>{idbClear();photoCache.clear();state=emptyState();save();fillSettings();renderAll();switchTab("set");toast("샘플을 지웠어요 · 내 바이크를 등록하세요");};
 $("#shareBtn2").onclick=shareApp;
 $("#installBtn").onclick=installApp;
 $("#privacyBtn").onclick=openPrivacy;
 function openPrivacy(){
+  const contactEl=$("#scr-set .info-row a.link"),contact=contactEl?contactEl.textContent:""; // 문의처는 '앱 정보'에 적힌 값을 그대로 사용
   openSheet(`<h3>개인정보 처리방침</h3>
-    <div class="preview" style="max-height:60vh">라이더 개러지(이하 "앱")는 라이더의 바이크 정비·라이딩 기록을 돕는 무료 서비스입니다.
+    <div class="preview" style="max-height:60vh">라이더 개러지(이하 "앱")는 라이더의 바이크 정비·비용·라이딩 기록을 돕는 무료 서비스입니다.
 
 1. 내 기록의 저장 위치
-· 입력하신 바이크 정보, 소모품 교체 기록, 라이딩 일지, 사진은 모두 '사용자 기기(브라우저)'에만 저장됩니다.
+· 입력하신 바이크 정보, 소모품·정비 기록, 비용(보험 포함), 라이딩 일지, 사진은 모두 '사용자 기기(브라우저)'에만 저장됩니다.
 · 이 데이터는 외부 서버로 전송되지 않으며, 운영자도 열람할 수 없습니다.
-· 기기를 바꾸거나 브라우저 데이터를 삭제하면 기록도 함께 사라집니다. (설정 > 백업 내보내기 권장)
+· 기기나 브라우저를 바꾸거나 브라우저 데이터를 삭제하면 기록도 함께 사라집니다. (설정 > 백업 내보내기 권장)
 
 2. 방문 통계 수집
 · 서비스 개선과 이용 현황 파악을 위해 Google 애널리틱스를 사용합니다.
@@ -964,7 +1491,7 @@ function openPrivacy(){
 
 4. 문의
 · 운영: 제이진
-· 이메일: kjjr7329@gmail.com
+· 이메일: ${esc(contact)}
 
 본 방침은 서비스 변경에 따라 업데이트될 수 있습니다.</div>
     <button class="btn primary block" id="pvOk" style="margin-top:12px">확인</button>`);
@@ -982,9 +1509,10 @@ $("#wStart").onclick=()=>finishOnboarding("start");
 $("#wSample").onclick=()=>finishOnboarding("sample");
 
 /* ---------- boot ---------- */
-function renderAll(){renderDash();renderLogs();renderMaint();}
+function renderAll(){renderDash();renderLogs();renderMaint();renderGarage();}
 fillSettings();renderAll();switchTab("dash");
 if(firstRun)$("#welcome").hidden=false;
+idbOpen().then(ok=>{if(!ok)return;migratePhotos().then(()=>{renderDash();renderLogs();});});
 
 /* service worker (works on GitHub Pages / real hosting; ignored in preview frames) */
 if("serviceWorker" in navigator){
