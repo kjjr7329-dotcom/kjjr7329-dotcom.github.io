@@ -362,6 +362,9 @@
     #printArea h2{font-size:12pt;margin:5mm 0 1mm}
     #printArea .p-foot{color:#777;font-size:8.5pt;margin-top:6mm}
   }
+
+  .log-sum{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin:0 2px 12px}
+  .log-sum b{color:var(--text);font-weight:700}
 </style>
 </head>
 <body>
@@ -466,12 +469,12 @@
       <div class="card">
         <div class="info-row"><span class="k">운영</span><b>제이진</b></div>
         <div class="info-row"><span class="k">문의</span><a class="link" href="mailto:kjjr7329@gmail.com">kjjr7329@gmail.com</a></div>
-        <div class="info-row last"><span class="k">버전</span><b class="num">v2.2</b></div>
+        <div class="info-row last"><span class="k">버전</span><b class="num">v2.3</b></div>
         <button class="btn ghost block" id="privacyBtn" style="margin-top:12px">개인정보 처리방침</button>
       </div>
 
       <div style="text-align:center;color:var(--faint);font-size:11px;margin:22px 0 4px">
-        라이더 개러지 <span class="num">v2.2</span> · 운영 제이진 · 홈 화면에 추가하면 앱처럼 쓸 수 있어요
+        라이더 개러지 <span class="num">v2.3</span> · 운영 제이진 · 홈 화면에 추가하면 앱처럼 쓸 수 있어요
       </div>
     </section>
   </main>
@@ -523,7 +526,7 @@
 
 <script>
 "use strict";
-const APP_VER="2.2";
+const APP_VER="2.3";
 const KEY="rider_garage_v1";   // 저장 키는 그대로 유지 (기존 사용자 기록을 이어받기 위해)
 
 /* ============================================================
@@ -654,9 +657,9 @@ function sampleState(){
       {id:"c6",name:"에어필터",emoji:"💨",cycle:18000,months:0,last:2000,lastDate:""},
       {id:"c7",name:"브레이크 오일",emoji:"🧪",cycle:0,months:24,last:0,lastDate:dOff(-700)}],
     logs:[
-      {id:"l1",date:dOff(-3),title:"남한강 라이딩",place:"양평 두물머리",km:14200,
+      {id:"l1",date:dOff(-3),title:"남한강 라이딩",place:"양평 두물머리",dist:190,
         memo:"아침 안개 걷히고 강변 따라 달렸다. 두물머리에서 커피 한 잔.\n노면 좋고 차량 적어서 쾌적했음.",photos:[]},
-      {id:"l2",date:dOff(-10),title:"미시령 옛길",place:"인제 → 속초",km:13760,
+      {id:"l2",date:dOff(-10),title:"미시령 옛길",place:"인제 → 속초",dist:220,
         memo:"코너 연습하기 좋은 코스. 정상 휴게소에서 쉬고 속초에서 회 한 접시.",photos:[]}],
     history:[
       {id:"h1",date:dOff(-190),km:8800,item:"엔진오일",emoji:"🛢️",cost:65000,memo:"순정 + 오일필터 동시 교체"},
@@ -836,7 +839,7 @@ function renderDash(){
     html+=`<div class="row-head"><h2>최근 라이딩</h2><button class="btn ghost tiny" id="goLogs">일지 전체 ›</button></div>`;
     html+=last?`<div class="card recent" id="recentRide">
         <div class="r-thumb">${(last.photos&&last.photos.length)?imgTag(last.photos[0]):"🏞️"}</div>
-        <div style="min-width:0"><div class="r-date num">${esc(last.date)}</div>
+        <div style="min-width:0"><div class="r-date num">${esc(last.date)}${last.dist?" · "+fmt(last.dist)+"km 주행":""}</div>
           <div class="r-title">${esc(last.title||"제목 없음")}</div>
           ${last.place?`<div class="r-place">📍 ${esc(last.place)}</div>`:""}</div></div>`
       :`<div class="card empty" style="padding:22px"><p style="margin:0">아직 일지가 없어요 · [일지 쓰기]로 첫 기록을 남겨보세요</p></div>`;
@@ -945,7 +948,7 @@ function logHTML(l){
     ph=`<div class="l-photos n${show.length}">${show.map((r,i)=>`<div class="ph" data-i="${i}">${imgTag(r)}
       ${(i===2&&n>3)?`<div class="more">+${n-3}</div>`:""}${(i===0&&n>1)?`<span class="cnt">📷 ${n}</span>`:""}</div>`).join("")}</div>`;}
   return `<div class="card log" data-id="${l.id}">${ph}<div class="l-body">
-    <div class="l-date num">${esc(l.date)}${l.km?" · "+fmt(l.km)+"km":""}</div>
+    <div class="l-date num">${esc(l.date)}${l.dist?" · "+fmt(l.dist)+"km 주행":(l.km?" · 누적 "+fmt(l.km)+"km":"")}</div>
     <div class="l-title">${esc(l.title||"제목 없음")}</div>
     ${l.place?`<div class="l-place">📍 ${esc(l.place)}</div>`:""}
     ${l.memo?`<div class="l-memo">${esc(l.memo)}</div>`:""}
@@ -953,7 +956,10 @@ function logHTML(l){
 }
 function renderLogs(){
   const b=B(),list=[...b.logs].sort((x,y)=>(x.date<y.date?1:-1)),el=$("#logList");
-  el.innerHTML=list.length?list.map(logHTML).join(""):
+  const sumFor=pre=>{const x=list.filter(l=>(l.date||"").indexOf(pre)===0);return {n:x.length,d:x.reduce((s,l)=>s+(Number(l.dist)||0),0)};};
+  const mo=sumFor(today().slice(0,7)),yr=sumFor(today().slice(0,4));
+  const sumLine=`<div class="log-sum"><span>이번 달 <b class="num">${mo.n}</b>회${mo.d?` · <b class="num">${fmt(mo.d)}</b>km`:""}</span><span>올해 <b class="num">${yr.n}</b>회${yr.d?` · <b class="num">${fmt(yr.d)}</b>km`:""}</span></div>`;
+  el.innerHTML=list.length?sumLine+list.map(logHTML).join(""):
     `<div class="card empty"><div class="e-emoji">📸</div><p>＋ 버튼을 눌러<br>첫 라이딩 일지를 남겨보세요<br><span style="font-size:12px">사진은 여러 장 넣을 수 있어요</span></p></div>`;
   hydrate(el);
   el.querySelectorAll(".log").forEach(card=>{
@@ -966,7 +972,7 @@ function renderLogs(){
 function composeShare(l){ // 공유할 때 보내는 일지 글
   const b=B(),bike=[b.mfr,b.model].filter(Boolean).join(" ")||"내 바이크";
   let t=`[${l.title||"라이딩 일지"}]\n📅 ${l.date}`+(l.place?`   📍 ${l.place}`:"")+`\n`;
-  if(l.km)t+=`🏍️ ${bike} · 누적 ${fmt(l.km)}km\n`;
+  t+=`🏍️ ${bike}`+(l.dist?` · ${fmt(l.dist)}km 주행`:"")+`\n`;
   if(l.memo)t+=`\n`+l.memo+"\n";
   return t.trim();
 }
@@ -1186,7 +1192,7 @@ function openLogEdit(id){
       <input type="file" id="photoInput" accept="image/*" multiple hidden>
       <div class="note">＋를 눌러 갤러리에서 여러 장을 한 번에 고를 수 있어요. 첫 사진의 촬영 날짜가 자동 입력됩니다.</div></div>
     <div class="two"><div class="field"><label for="lDate">날짜</label><input id="lDate" type="date" value="${l?esc(l.date):today()}"></div>
-      <div class="field"><label for="lKm">누적 주행거리 km</label><input id="lKm" inputmode="numeric" value="${l?(l.km||""):(b.odo||"")}"></div></div>
+      <div class="field"><label for="lDist">그날 달린 거리 (km)</label><input id="lDist" inputmode="numeric" value="${l&&l.dist?l.dist:""}" placeholder="예: 180"></div></div>
     <div class="field"><label for="lTitle">제목</label><input id="lTitle" value="${l?esc(l.title):""}" placeholder="예: 남한강 라이딩"></div>
     <div class="field"><label for="lPlace">방문지 / 코스</label><input id="lPlace" value="${l?esc(l.place||""):""}" placeholder="예: 양평 두물머리"></div>
     <div class="field"><label for="lMemo">메모</label><textarea id="lMemo" placeholder="오늘의 라이딩은 어땠나요?">${l?esc(l.memo||""):""}</textarea></div>
@@ -1203,7 +1209,7 @@ function openLogEdit(id){
     const title=$("#lTitle").value.trim();
     if(!title&&draft.length===0){toast("제목이나 사진을 넣어주세요");return;}
     saving=true;
-    const form={date:$("#lDate").value||today(),km:num($("#lKm").value),title,place:$("#lPlace").value.trim(),memo:$("#lMemo").value.trim()};
+    const form={date:$("#lDate").value||today(),dist:num($("#lDist").value),title,place:$("#lPlace").value.trim(),memo:$("#lMemo").value.trim()};
     const refs=[];
     for(const d of draft){
       if(d.ref){refs.push(d.ref);continue;}
@@ -1214,9 +1220,8 @@ function openLogEdit(id){
     old.filter(r=>refs.indexOf(r)<0&&!isData(r)).forEach(r=>{idbDel(r);photoCache.delete(r);});
     form.photos=refs;
     if(isNew){form.id=uid();b.logs.unshift(form);}else Object.assign(l,form);
-    const bumped=isNew&&bumpOdo(b,form.km);
-    const ok=save();closeSheet();fillSettings();renderAll();
-    if(ok)toast(bumped?`일지 저장 · 계기판도 ${fmt(form.km)}km로 맞췄어요`:"일지가 저장되었습니다");track("log_save",{photos:refs.length});
+    const ok=save();closeSheet();renderAll();
+    if(ok)toast("일지가 저장되었습니다");track("log_save",{photos:refs.length});
   };
   if(!isNew)$("#lDelete").onclick=()=>{(l.photos||[]).forEach(r=>{if(!isData(r)){idbDel(r);photoCache.delete(r);}});
     b.logs=b.logs.filter(x=>x.id!==id);save();closeSheet();renderAll();toast("삭제되었습니다");};
