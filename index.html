@@ -404,7 +404,7 @@
 
     <!-- 4. 설정 -->
     <section class="screen" id="scr-set" hidden>
-      <div class="screen-title">설정 · 프로필</div>
+      <div class="screen-title">설정</div>
 
       <div class="set-group">내 차고</div>
       <div class="card" id="garageCard"></div>
@@ -431,31 +431,18 @@
             <option value="electric">전기 바이크</option>
             <option value="custom">직접 설정</option>
           </select></div>
-        <button class="btn ghost block" id="applyPresetBtn">이 차종 기본 교환주기 적용</button>
-        <div class="note">제조사·모델은 어떤 기종이든 직접 입력할 수 있어요. 타입을 고르면 그에 맞는 교환주기가 자동으로 세팅되고, 항목별로 수정도 됩니다.</div>
+        <div class="note">제조사·모델은 어떤 기종이든 직접 입력할 수 있어요.</div>
+        <button class="btn primary block" id="saveSetBtn" style="margin-top:12px;padding:13px">저장</button>
       </div>
 
-      <div class="set-group">소모품 초기 등록</div>
+      <div class="set-group">소모품 다시 설정</div>
       <div class="card">
-        <div class="note" style="margin-bottom:10px">신차·중고에 맞춰 소모품 '최근 교체 시점'을 한 번에 설정합니다.</div>
-        <button class="btn ghost block" id="setupWizardBtn">🏁 신차 / 중고 초기 등록 열기</button>
-      </div>
-
-      <div class="set-group">외부 연동</div>
-      <div class="card">
-        <div class="field"><label for="f-blog">네이버 블로그 주소</label><input id="f-blog" placeholder="https://blog.naver.com/아이디"></div>
-        <div class="field"><label for="f-cafe">네이버 카페 주소</label><input id="f-cafe" placeholder="https://cafe.naver.com/카페명"></div>
-        <div class="field"><label>외부 내비게이션</label>
-          <div class="seg" id="navSeg">
-            <button data-nav="kakao">카카오내비</button>
-            <button data-nav="tmap">티맵</button>
-            <button data-nav="naver">네이버지도</button>
-          </div>
+        <div class="two">
+          <button class="btn ghost" id="applyPresetBtn">차종 기본 주기로</button>
+          <button class="btn ghost" id="setupWizardBtn">신차·중고 초기 등록</button>
         </div>
-        <div class="note">자주 쓰는 내비 하나만 골라 저장해두세요. 일지에 '방문지/코스'를 적으면, 일지 카드의 <b>[길안내]</b> 버튼으로 그 장소를 선택한 내비(지도)에서 바로 열 수 있어요.</div>
+        <div class="note" style="margin-top:10px"><b>차종 기본 주기로</b>: 위 '차종 타입'에 맞는 소모품 목록·주기로 바꿔요. <b>신차·중고 초기 등록</b>: 소모품의 '최근 교체 시점'을 한 번에 맞춰요.</div>
       </div>
-
-      <button class="btn primary block" id="saveSetBtn" style="margin-top:16px;padding:13px">저장</button>
 
       <div class="set-group">앱</div>
       <div class="card">
@@ -479,12 +466,12 @@
       <div class="card">
         <div class="info-row"><span class="k">운영</span><b>제이진</b></div>
         <div class="info-row"><span class="k">문의</span><a class="link" href="mailto:kjjr7329@gmail.com">kjjr7329@gmail.com</a></div>
-        <div class="info-row last"><span class="k">버전</span><b class="num">v2.0</b></div>
+        <div class="info-row last"><span class="k">버전</span><b class="num">v2.2</b></div>
         <button class="btn ghost block" id="privacyBtn" style="margin-top:12px">개인정보 처리방침</button>
       </div>
 
       <div style="text-align:center;color:var(--faint);font-size:11px;margin:22px 0 4px">
-        라이더 개러지 <span class="num">v2.0</span> · 운영 제이진 · 홈 화면에 추가하면 앱처럼 쓸 수 있어요
+        라이더 개러지 <span class="num">v2.2</span> · 운영 제이진 · 홈 화면에 추가하면 앱처럼 쓸 수 있어요
       </div>
     </section>
   </main>
@@ -505,9 +492,9 @@
     <img class="w-logo" src="icons/icon-512.png" alt="라이더 개러지 로고">
     <h1>라이더 개러지</h1>
     <p class="tag">내 바이크 정비·비용·라이딩 일지를<br>한 앱에서, 가장 간단하게.</p>
-    <div class="feat"><span class="fi">⏱️</span><div><div class="ft">교체 시점 자동 알림</div><div class="fd">엔진오일·체인·타이어… 주행거리 기준 D-Day로 한눈에.</div></div></div>
-    <div class="feat"><span class="fi">💸</span><div><div class="ft">비용·보험 장부와 출발 전 점검</div><div class="fd">주유·정비·보험료 기록, 1분 안전 체크리스트까지.</div></div></div>
-    <div class="feat"><span class="fi">📸</span><div><div class="ft">사진으로 남기는 라이딩 일지</div><div class="fd">여러 장 첨부, 블로그·카페 글까지 자동 정리.</div></div></div>
+    <div class="feat"><span class="fi">⏱️</span><div><div class="ft">교체 시점 자동 알림</div><div class="fd">엔진오일·체인·타이어… 주행거리나 기간 기준으로 한눈에.</div></div></div>
+    <div class="feat"><span class="fi">💸</span><div><div class="ft">비용·보험 장부와 출발 전 점검</div><div class="fd">주유·연비·보험료 기록, 1분 안전 체크리스트까지.</div></div></div>
+    <div class="feat"><span class="fi">📸</span><div><div class="ft">사진으로 남기는 라이딩 일지</div><div class="fd">사진 여러 장과 메모로 그날의 코스를 기록.</div></div></div>
     <div class="feat"><span class="fi">🔒</span><div><div class="ft">무료 · 로그인 없음</div><div class="fd">모든 기록은 내 폰에만 저장됩니다.</div></div></div>
     <div class="w-actions">
       <button class="btn primary" id="wStart">내 바이크 등록하고 시작</button>
@@ -536,7 +523,7 @@
 
 <script>
 "use strict";
-const APP_VER="2.0";
+const APP_VER="2.2";
 const KEY="rider_garage_v1";   // 저장 키는 그대로 유지 (기존 사용자 기록을 이어받기 위해)
 
 /* ============================================================
@@ -623,17 +610,17 @@ async function migratePhotos(){ // 예전 방식(기록 안에 사진 포함) �
 
 /* ---------- 차종 타입별 소모품 교환주기 프리셋 (일반 가이드 · 각 차량 정비매뉴얼 기준으로 조정) ---------- */
 const CATEGORY_PRESETS={
-  scooter:{label:"스쿠터·언더본",items:[["엔진오일","🛢️",3000],["기어오일","⚙️",10000],["구동벨트·롤러","⛓️",10000],["앞·뒤 타이어","🛞",10000],["브레이크 패드","🛑",15000],["에어필터","💨",10000]]},
-  small:{label:"소형 매뉴얼 (~250cc)",items:[["엔진오일","🛢️",4000],["오일필터","⭕",8000],["체인·스프라켓","⛓️",12000],["앞·뒤 타이어","🛞",10000],["브레이크 패드","🛑",18000],["에어필터","💨",12000]]},
-  mid:{label:"미들급 (250~600cc)",items:[["엔진오일","🛢️",5000],["오일필터","⭕",10000],["체인·스프라켓","⛓️",15000],["앞·뒤 타이어","🛞",12000],["브레이크 패드","🛑",20000],["에어필터","💨",15000]]},
-  big:{label:"대배기량 (600cc~)",items:[["엔진오일","🛢️",6000],["오일필터","⭕",12000],["체인·스프라켓","⛓️",18000],["앞·뒤 타이어","🛞",10000],["브레이크 패드","🛑",22000],["에어필터","💨",18000]]},
-  offroad:{label:"오프로드·듀얼",items:[["엔진오일","🛢️",3000],["오일필터","⭕",6000],["체인·스프라켓","⛓️",8000],["앞·뒤 타이어","🛞",6000],["브레이크 패드","🛑",12000],["에어필터","💨",5000]]},
-  electric:{label:"전기 바이크",items:[["감속기 오일","⚙️",20000],["앞·뒤 타이어","🛞",15000],["브레이크 패드","🛑",20000],["브레이크 오일","🧪",20000],["타이어 공기압 점검","💨",3000]]}
+  scooter:{label:"스쿠터·언더본",items:[["엔진오일","🛢️",3000,12],["기어오일","⚙️",10000],["구동벨트·롤러","⛓️",10000],["앞·뒤 타이어","🛞",10000],["브레이크 패드","🛑",15000],["에어필터","💨",10000]]},
+  small:{label:"소형 매뉴얼 (~250cc)",items:[["엔진오일","🛢️",4000,12],["오일필터","⭕",8000],["체인·스프라켓","⛓️",12000],["앞·뒤 타이어","🛞",10000],["브레이크 패드","🛑",18000],["에어필터","💨",12000]]},
+  mid:{label:"미들급 (250~600cc)",items:[["엔진오일","🛢️",5000,12],["오일필터","⭕",10000],["체인·스프라켓","⛓️",15000],["앞·뒤 타이어","🛞",12000],["브레이크 패드","🛑",20000],["에어필터","💨",15000]]},
+  big:{label:"대배기량 (600cc~)",items:[["엔진오일","🛢️",6000,12],["오일필터","⭕",12000],["체인·스프라켓","⛓️",18000],["앞·뒤 타이어","🛞",10000],["브레이크 패드","🛑",22000],["에어필터","💨",18000]]},
+  offroad:{label:"오프로드·듀얼",items:[["엔진오일","🛢️",3000,12],["오일필터","⭕",6000],["체인·스프라켓","⛓️",8000],["앞·뒤 타이어","🛞",6000],["브레이크 패드","🛑",12000],["에어필터","💨",5000]]},
+  electric:{label:"전기 바이크",items:[["감속기 오일","⚙️",20000],["앞·뒤 타이어","🛞",15000],["브레이크 패드","🛑",20000],["브레이크 오일","🧪",20000,24],["타이어 공기압 점검","💨",3000]]}
 };
 const CAT_LABELS={scooter:"스쿠터·언더본",small:"소형 매뉴얼 (~250cc)",mid:"미들급 (250~600cc)",big:"대배기량 (600cc~)",offroad:"오프로드·듀얼",electric:"전기 바이크",custom:"직접 설정"};
 function consumablesFromCat(key){
   const p=CATEGORY_PRESETS[key]||CATEGORY_PRESETS.mid;
-  return p.items.map(([name,emoji,cycle])=>({id:uid(),name,emoji,cycle,last:0,buy:""}));
+  return p.items.map(([name,emoji,cycle,months])=>({id:uid(),name,emoji,cycle,months:months||0,last:0,lastDate:""}));
 }
 
 /* ---------- 비용 분류 ---------- */
@@ -659,25 +646,27 @@ function sampleState(){
   const b=newBike("mid");
   Object.assign(b,{nick:"주황이",mfr:"혼다",model:"CB650R",year:"2023",plate:"12가 3456",odo:14200,purchase:"used",lastCheck:dOff(-3),
     consumables:[
-      {id:"c1",name:"엔진오일",emoji:"🛢️",cycle:5000,last:8800,buy:""},
-      {id:"c2",name:"오일필터",emoji:"⭕",cycle:10000,last:9000,buy:""},
-      {id:"c3",name:"체인·스프라켓",emoji:"⛓️",cycle:15000,last:1200,buy:""},
-      {id:"c4",name:"앞·뒤 타이어",emoji:"🛞",cycle:12000,last:8500,buy:""},
-      {id:"c5",name:"브레이크 패드",emoji:"🛑",cycle:20000,last:6000,buy:""},
-      {id:"c6",name:"에어필터",emoji:"💨",cycle:18000,last:2000,buy:""}],
+      {id:"c1",name:"엔진오일",emoji:"🛢️",cycle:5000,months:12,last:8800,lastDate:dOff(-190)},
+      {id:"c2",name:"오일필터",emoji:"⭕",cycle:10000,months:0,last:9000,lastDate:dOff(-200)},
+      {id:"c3",name:"체인·스프라켓",emoji:"⛓️",cycle:15000,months:0,last:1200,lastDate:""},
+      {id:"c4",name:"앞·뒤 타이어",emoji:"🛞",cycle:12000,months:0,last:8500,lastDate:dOff(-250)},
+      {id:"c5",name:"브레이크 패드",emoji:"🛑",cycle:20000,months:0,last:6000,lastDate:""},
+      {id:"c6",name:"에어필터",emoji:"💨",cycle:18000,months:0,last:2000,lastDate:""},
+      {id:"c7",name:"브레이크 오일",emoji:"🧪",cycle:0,months:24,last:0,lastDate:dOff(-700)}],
     logs:[
       {id:"l1",date:dOff(-3),title:"남한강 라이딩",place:"양평 두물머리",km:14200,
-        memo:"아침 안개 걷히고 강변 따라 달렸다. 두물머리에서 커피 한 잔.\n노면 좋고 차량 적어서 쾌적했음.",tags:["#와인딩","#카페투어"],photos:[]},
+        memo:"아침 안개 걷히고 강변 따라 달렸다. 두물머리에서 커피 한 잔.\n노면 좋고 차량 적어서 쾌적했음.",photos:[]},
       {id:"l2",date:dOff(-10),title:"미시령 옛길",place:"인제 → 속초",km:13760,
-        memo:"코너 연습하기 좋은 코스. 정상 휴게소에서 쉬고 속초에서 회 한 접시.",tags:["#코너링","#바다"],photos:[]}],
+        memo:"코너 연습하기 좋은 코스. 정상 휴게소에서 쉬고 속초에서 회 한 접시.",photos:[]}],
     history:[
       {id:"h1",date:dOff(-190),km:8800,item:"엔진오일",emoji:"🛢️",cost:65000,memo:"순정 + 오일필터 동시 교체"},
       {id:"h2",date:dOff(-200),km:9000,item:"오일필터",emoji:"⭕",cost:12000,memo:""},
       {id:"h3",date:dOff(-250),km:8500,item:"앞·뒤 타이어",emoji:"🛞",cost:340000,memo:"로드5 장착"}],
     expenses:[
-      {id:"e1",date:dOff(-2),cat:"fuel",amount:18000,memo:"고급유 가득"},
+      {id:"e1",date:dOff(-2),cat:"fuel",amount:18000,memo:"고급유 가득",liters:10.2,odo:14200},
       {id:"e2",date:dOff(-5),cat:"park",amount:3000,memo:"두물머리 주차"},
-      {id:"e3",date:dOff(-9),cat:"fuel",amount:21000,memo:""},
+      {id:"e3",date:dOff(-9),cat:"fuel",amount:21000,memo:"",liters:11.9,odo:14010},
+      {id:"e6",date:dOff(-16),cat:"fuel",amount:19500,memo:"",liters:11.0,odo:13790},
       {id:"e4",date:dOff(-12),cat:"gear",amount:45000,memo:"헬멧 실드 교체"},
       {id:"e5",date:dOff(-344),cat:"ins",amount:420000,memo:"책임+종합",insurer:"다이렉트 보험",expiry:dOff(21)}]
   });
@@ -726,19 +715,32 @@ themeBtn.onclick=()=>{
 };
 
 /* ---------- 계산 ---------- */
-function status(c){
-  const used=Math.max(0,(B().odo||0)-(c.last||0));
-  const remain=(c.cycle||1)-used,pct=Math.min(100,Math.max(0,used/(c.cycle||1)*100));
+function addMonths(dstr,m){const d=new Date(dstr+"T00:00:00"),day=d.getDate();d.setMonth(d.getMonth()+m);if(d.getDate()<day)d.setDate(0);return iso(d);}
+function status(c){ // 주행거리 또는 기간 중 먼저 도래하는 쪽으로 판정
+  const b=B(),cycle=Number(c.cycle)||0;
+  let kmFrac=Infinity,remain=0;
+  if(cycle>0){const used=Math.max(0,(b.odo||0)-(c.last||0));remain=cycle-used;kmFrac=remain/cycle;}
+  let tFrac=Infinity,days=0;
+  if(c.months>0&&c.lastDate){const due=addMonths(c.lastDate,Number(c.months)),total=Math.max(1,dayDiff(due,c.lastDate));days=dayDiff(due,today());tFrac=days/total;}
+  const frac=Math.min(kmFrac,tFrac),none=(frac===Infinity);
   let cls="good",label="여유";
-  if(remain<=0){cls="crit";label="교체 필요";}
-  else if(remain<=(c.cycle*0.15)){cls="warn";label="교체 임박";}
-  return {remain,pct,cls,label};
+  if(none){label="주기 없음";}
+  else if(frac<=0){cls="crit";label="교체 필요";}
+  else if(frac<=0.15){cls="warn";label="교체 임박";}
+  let text;
+  if(none)text="주기를 설정해 주세요";
+  else if(tFrac<kmFrac)text=days>0?(days>60?`약 ${Math.round(days/30)}개월 남음`:`${days}일 남음`):(days===0?"오늘까지":`${-days}일 지남`);
+  else text=remain>0?`남은 ${fmt(remain)}km`:`${fmt(-remain)}km 초과`;
+  return {cls,label,text,frac:none?9:frac,pct:none?0:Math.min(100,Math.max(0,(1-frac)*100))};
 }
-function navUrl(place){
-  const q=encodeURIComponent(place||""),p=state.settings.nav||"kakao";
-  if(p==="tmap")return "https://tmap.life/route?goalname="+q;
-  if(p==="naver")return "https://map.naver.com/v5/search/"+q;
-  return "https://map.kakao.com/?q="+q;
+function cycleText(c){return [c.cycle>0?fmt(c.cycle)+"km":"",c.months>0?c.months+"개월":""].filter(Boolean).join(" 또는 ")||"미설정";}
+function bumpOdo(b,km){if(km>(b.odo||0)){b.odo=km;return true;}return false;} // 기록에 적은 주행거리가 더 크면 계기판도 맞춤
+function fuelStats(b){ // 주유량·주행거리가 있는 기록끼리 이어서 연비 계산 (가득 주유 기준 대략값)
+  const f=b.expenses.filter(e=>e.cat==="fuel"&&e.odo>0&&e.liters>0).sort((x,y)=>x.odo-y.odo);
+  const per={};let dist=0,lit=0;
+  for(let i=1;i<f.length;i++){const d=f[i].odo-f[i-1].odo;if(d<=0)continue;const eco=d/f[i].liters;
+    if(eco>=3&&eco<=80){per[f[i].id]=eco;dist+=d;lit+=f[i].liters;}}
+  return {per,avg:lit>0?dist/lit:0,count:Object.keys(per).length};
 }
 function allCosts(b){ // 비용 장부 + 정비 기록의 비용을 한데 모아 보기
   const a=b.expenses.map(e=>Object.assign({},e));
@@ -754,7 +756,7 @@ function insInfo(b){
 function todoItems(b){
   const out=[];
   b.consumables.forEach(c=>{const s=status(c);if(s.cls!=="good")out.push({cls:s.cls,emoji:c.emoji||"🔧",title:c.name,label:s.label,
-    sub:s.remain>0?`남은 ${fmt(s.remain)}km`:`${fmt(-s.remain)}km 초과`,sort:s.remain,go:"parts"});});
+    sub:s.text,sort:s.frac,go:"parts"});});
   const ins=insInfo(b);
   if(ins&&ins.days<=30)out.push({cls:ins.days<0?"crit":"warn",emoji:"🛡️",title:"보험 만기",
     label:ins.days<0?`${-ins.days}일 지남`:(ins.days===0?"오늘 만기":`D-${ins.days}`),
@@ -807,10 +809,10 @@ function renderDash(){
         <span class="pill ${t.cls}">${esc(t.label)}</span></div>`).join("");
       if(todos.length>3)html+=`<div class="todo-more">외 ${todos.length-3}건 더 있어요</div>`;
     }else{
-      const next=[...b.consumables].sort((x,y)=>status(x).remain-status(y).remain)[0];
+      const next=[...b.consumables].sort((x,y)=>status(x).frac-status(y).frac)[0];
       html+=`<div class="todo-row" data-go="parts"><span class="t-emoji">✅</span>
         <div class="t-main"><div class="t-title">모두 양호해요</div>
-          <div class="t-sub">${next?`다음 교체: ${esc(next.name)} · ${fmt(status(next).remain)}km 남음`:"소모품 항목을 추가해 보세요"}</div></div>
+          <div class="t-sub">${next?`다음 교체: ${esc(next.name)} · ${esc(status(next).text)}`:"소모품 항목을 추가해 보세요"}</div></div>
         <span class="pill good">양호</span></div>`;
     }
     html+=`</div>
@@ -862,9 +864,9 @@ function gaugeHTML(c){
   const s=status(c);
   return `<div class="card gauge" data-id="${c.id}">
     <div class="g-top"><span class="g-emoji">${c.emoji||"🔧"}</span>
-      <div><div class="g-name">${esc(c.name)}</div><div class="g-cycle">교체주기 ${fmt(c.cycle)}km · 최근 ${fmt(c.last)}km</div></div>
+      <div style="min-width:0"><div class="g-name">${esc(c.name)}</div><div class="g-cycle">주기 ${cycleText(c)}${c.cycle>0?" · 최근 "+fmt(c.last)+"km":(c.lastDate?" · 최근 "+esc(c.lastDate):"")}</div></div>
       <div class="g-status"><span class="pill ${s.cls}">${s.label}</span>
-        <div class="g-remain st-${s.cls}">${s.remain>0?"남은 "+fmt(s.remain)+"km":fmt(-s.remain)+"km 초과"}</div></div></div>
+        <div class="g-remain st-${s.cls}">${esc(s.text)}</div></div></div>
     <div class="bar"><span class="fill-${s.cls}" style="width:${s.pct}%"></span></div>
     <div class="g-actions"><button class="btn ghost tiny" data-act="done">교체 완료</button>
       <button class="btn ${s.cls==='good'?'ghost':'primary'} tiny" data-act="buy">부품 구매</button></div>
@@ -874,7 +876,7 @@ function renderMaint(){
   $$("#maintSeg button").forEach(x=>x.classList.toggle("on",x.dataset.m===maintTab));
   const b=B(),el=$("#maintBody");
   if(maintTab==="parts"){
-    const sorted=[...b.consumables].sort((x,y)=>status(x).remain-status(y).remain);
+    const sorted=[...b.consumables].sort((x,y)=>status(x).frac-status(y).frac);
     el.innerHTML=`<div class="card"><div class="odo" style="padding:2px">
         <div><div class="label">${esc(bikeName(b))} · 누적 주행거리</div><div class="val num">${fmt(b.odo)}<small>km</small></div></div>
         <button class="btn primary" id="maintOdoBtn">계기판 갱신</button></div></div>
@@ -891,7 +893,7 @@ function renderMaint(){
     const list=allCosts(b).filter(x=>(x.date||"").indexOf(pre)===0).sort((x,y)=>x.date<y.date?1:-1);
     const total=sumOf(list),byCat={};list.forEach(x=>{byCat[x.cat]=(byCat[x.cat]||0)+(Number(x.amount)||0);});
     const cats=Object.keys(byCat).sort((x,y)=>byCat[y]-byCat[x]),max=cats.length?byCat[cats[0]]:0;
-    const ins=insInfo(b),pl={month:"이번 달 지출",year:"올해 지출",all:"누적 지출"}[costPeriod];
+    const ins=insInfo(b),fs=fuelStats(b),pl={month:"이번 달 지출",year:"올해 지출",all:"누적 지출"}[costPeriod];
     el.innerHTML=`<div class="seg" id="periodSeg" style="margin-bottom:14px">
         <button data-p="month" class="${costPeriod==="month"?"on":""}">이번 달</button>
         <button data-p="year" class="${costPeriod==="year"?"on":""}">올해</button>
@@ -902,6 +904,8 @@ function renderMaint(){
           <span class="cb-name">${EXP_CATS[k][0]} ${EXP_CATS[k][1]}</span>
           <span class="cb-track"><span class="cb-fill" style="width:${Math.max(2,byCat[k]/max*100)}%;display:block"></span></span>
           <span class="cb-val num">${fmt(byCat[k])}원</span></div>`).join("")}</div>`:""}
+        ${fs.count?`<div class="ins-row"><span style="font-size:18px">⛽</span><div class="i-main"><b>평균 연비 <span class="num">${fs.avg.toFixed(1)}</span> km/L</b>
+          <div class="i-sub">주유 ${fs.count+1}회 기록 기준 · 가득 주유 기준 대략값</div></div></div>`:""}
         ${ins?`<div class="ins-row"><span style="font-size:18px">🛡️</span><div class="i-main"><b>보험 만기 ${esc(ins.expiry)}</b>
           <div class="i-sub">${ins.insurer?esc(ins.insurer):"보험사 미입력"}</div></div>
           <span class="pill ${ins.days<0?"crit":ins.days<=30?"warn":"good"}">${ins.days<0?`${-ins.days}일 지남`:ins.days===0?"오늘":`D-${ins.days}`}</span></div>`:""}
@@ -911,9 +915,9 @@ function renderMaint(){
       <div class="card" id="expCard">${list.length?list.map(x=>`<div class="hist-item" data-id="${esc(x.id)}">
           <span class="h-icon">${EXP_CATS[x.cat]?EXP_CATS[x.cat][0]:"💬"}</span>
           <div class="h-main"><div class="h-name">${EXP_CATS[x.cat]?EXP_CATS[x.cat][1]:"기타"}${x.insurer?" · "+esc(x.insurer):""}</div>
-            <div class="h-sub">${esc(x.date)}${x.memo?" · "+esc(x.memo):""}${x.expiry?" · 만기 "+esc(x.expiry):""}</div></div>
+            <div class="h-sub">${esc(x.date)}${x.liters?" · "+x.liters+"L":""}${fs.per[x.id]?" · "+fs.per[x.id].toFixed(1)+"km/L":""}${x.memo?" · "+esc(x.memo):""}${x.expiry?" · 만기 "+esc(x.expiry):""}</div></div>
           <div class="h-amt num">${fmt(x.amount)}원</div></div>`).join("")
-        :`<div class="empty" style="padding:24px"><div class="e-emoji">💸</div><p>이 기간에 기록된 비용이 없어요<br>주유·보험·용품 등을 남겨보세요</p></div>`}</div>`;
+        :`<div class="empty" style="padding:24px"><div class="e-emoji">💸</div><p>이 기간에 기록된 비용이 없어요<br>주유·보험·용품 등을 남겨보세요<br><span style="font-size:12px">주유량과 주행거리를 같이 적으면 연비가 계산돼요</span></p></div>`}</div>`;
     el.querySelectorAll("#periodSeg button").forEach(x=>x.onclick=()=>{costPeriod=x.dataset.p;renderMaint();});
     $("#addExpBtn").onclick=()=>openExpense(null);
     el.querySelectorAll("#expCard .hist-item").forEach(r=>r.onclick=()=>{const id=r.dataset.id;
@@ -945,10 +949,7 @@ function logHTML(l){
     <div class="l-title">${esc(l.title||"제목 없음")}</div>
     ${l.place?`<div class="l-place">📍 ${esc(l.place)}</div>`:""}
     ${l.memo?`<div class="l-memo">${esc(l.memo)}</div>`:""}
-    ${(l.tags&&l.tags.length)?`<div class="l-tags">${l.tags.map(t=>`<span class="l-tag">${esc(t)}</span>`).join("")}</div>`:""}
-    <div class="l-actions"><button class="btn ghost tiny" data-act="nav">길안내</button>
-      <button class="btn ghost tiny" data-act="blog">블로그 글</button>
-      <button class="btn primary tiny" data-act="share">공유</button></div></div></div>`;
+    <div class="l-actions" style="justify-content:flex-end"><button class="btn ghost tiny" data-act="share" style="flex:none">📤 공유</button></div></div></div>`;
 }
 function renderLogs(){
   const b=B(),list=[...b.logs].sort((x,y)=>(x.date<y.date?1:-1)),el=$("#logList");
@@ -958,21 +959,15 @@ function renderLogs(){
   el.querySelectorAll(".log").forEach(card=>{
     const id=card.dataset.id,l=b.logs.find(x=>x.id===id);
     card.querySelectorAll(".ph").forEach(p=>p.onclick=e=>{e.stopPropagation();openViewer(l.photos||[],+p.dataset.i);});
-    card.querySelectorAll("[data-act]").forEach(btn=>btn.onclick=e=>{e.stopPropagation();
-      const a=btn.dataset.act;
-      if(a==="nav"){if(l.place)openExt(navUrl(l.place));else toast("일지에 방문지를 적으면 길안내가 돼요");}
-      else if(a==="blog")openBlogText(l);else shareLog(l);});
+    card.querySelectorAll("[data-act]").forEach(btn=>btn.onclick=e=>{e.stopPropagation();shareLog(l);});
     card.onclick=()=>openLogEdit(id);
   });
 }
-function composeBlog(l){
-  const b=B(),s=state.settings,bike=[b.mfr,b.model].filter(Boolean).join(" ")||"내 바이크";
+function composeShare(l){ // 공유할 때 보내는 일지 글
+  const b=B(),bike=[b.mfr,b.model].filter(Boolean).join(" ")||"내 바이크";
   let t=`[${l.title||"라이딩 일지"}]\n📅 ${l.date}`+(l.place?`   📍 ${l.place}`:"")+`\n`;
   if(l.km)t+=`🏍️ ${bike} · 누적 ${fmt(l.km)}km\n`;
-  t+=`\n`;if(l.memo)t+=l.memo+"\n\n";
-  if(l.tags&&l.tags.length)t+=l.tags.join(" ")+"\n";
-  t+=`\n———\n🏍️ ${bike} 라이딩 기록\n`;
-  if(s.blog)t+=`블로그 › ${s.blog}\n`;if(s.cafe)t+=`카페 › ${s.cafe}\n`;
+  if(l.memo)t+=`\n`+l.memo+"\n";
   return t.trim();
 }
 
@@ -1012,15 +1007,20 @@ function openConsumable(id){
   openSheet(`<h3>${isNew?"소모품 추가":"소모품 편집"}</h3>
     <div class="two"><div class="field" style="flex:0 0 74px"><label for="cEmoji">아이콘</label><input id="cEmoji" value="${c?c.emoji:"🔧"}" maxlength="2"></div>
       <div class="field"><label for="cName">이름</label><input id="cName" value="${c?esc(c.name):""}" placeholder="예: 엔진오일"></div></div>
-    <div class="two"><div class="field"><label for="cCycle">교체주기 (km)</label><input id="cCycle" inputmode="numeric" value="${c?c.cycle:5000}"></div>
-      <div class="field"><label for="cLast">최근 교체 시점 (km)</label><input id="cLast" inputmode="numeric" value="${c?c.last:(b.odo||0)}"></div></div>
-    <div class="field"><label for="cBuy">부품 구매 링크 (선택)</label><input id="cBuy" value="${c?esc(c.buy||""):""}" placeholder="https://..."></div>
+    <div class="two"><div class="field"><label for="cCycle">교체주기 (km)</label><input id="cCycle" inputmode="numeric" value="${c?(c.cycle||""):5000}" placeholder="거리 기준 없으면 비움"></div>
+      <div class="field"><label for="cMonths">또는 (개월, 선택)</label><input id="cMonths" inputmode="numeric" value="${c&&c.months?c.months:""}" placeholder="예: 12"></div></div>
+    <div class="two"><div class="field"><label for="cLast">최근 교체 시점 (km)</label><input id="cLast" inputmode="numeric" value="${c?c.last:(b.odo||0)}"></div>
+      <div class="field"><label for="cLastDate">최근 교체일</label><input id="cLastDate" type="date" value="${c?esc(c.lastDate||""):today()}"></div></div>
+    <div class="note" style="margin:-4px 0 12px">거리와 개월을 둘 다 넣으면 <b>먼저 도래하는 쪽</b>으로 알려드려요. 적게 타는 분은 개월도 넣어두세요.</div>
     <div class="sheet-actions">${!isNew?`<button class="btn ghost" id="cDelete" style="flex:0 0 44px;color:var(--crit)">🗑</button>`:""}
       <button class="btn ghost" id="cCancel">취소</button><button class="btn primary" id="cSave">저장</button></div>`);
   $("#cCancel").onclick=closeSheet;
   $("#cSave").onclick=()=>{
     const name=$("#cName").value.trim();if(!name){toast("이름을 입력하세요");return;}
-    const obj={emoji:$("#cEmoji").value.trim()||"🔧",name,cycle:num($("#cCycle").value)||1000,last:num($("#cLast").value),buy:$("#cBuy").value.trim()};
+    const cycle=num($("#cCycle").value),months=num($("#cMonths").value),lastDate=$("#cLastDate").value||"";
+    if(!cycle&&!months){toast("교체주기를 km나 개월 중 하나는 넣어주세요");return;}
+    if(months&&!lastDate){toast("개월 기준을 쓰려면 최근 교체일을 넣어주세요");return;}
+    const obj={emoji:$("#cEmoji").value.trim()||"🔧",name,cycle,months,last:num($("#cLast").value),lastDate};
     if(isNew){obj.id=uid();b.consumables.push(obj);}else Object.assign(c,obj);
     save();closeSheet();renderAll();toast("저장되었습니다");
   };
@@ -1028,8 +1028,8 @@ function openConsumable(id){
 }
 function buyPart(id){
   const b=B(),c=b.consumables.find(x=>x.id===id);if(!c)return;
-  const url=c.buy&&/^https?:/.test(c.buy)?c.buy:"https://search.shopping.naver.com/search/all?query="+encodeURIComponent((b.model||"")+" "+c.name);
-  openExt(url);
+  track("buy_click",{item:c.name});
+  openExt("https://search.shopping.naver.com/search/all?query="+encodeURIComponent(((b.model||"")+" "+c.name).trim()));
 }
 
 /* 정비 기록 추가·수정 */
@@ -1043,7 +1043,7 @@ function openHist(id,presetItem){
       <datalist id="hItems">${b.consumables.map(c=>`<option value="${esc(c.name)}">`).join("")}</datalist></div>
     <div class="field"><label for="hCost">비용 (원, 선택)</label><input id="hCost" inputmode="numeric" value="${h&&h.cost?h.cost:""}" placeholder="0"></div>
     <div class="field"><label for="hMemo">메모 (선택)</label><input id="hMemo" value="${h?esc(h.memo||""):""}" placeholder="예: 순정 부품, 단골 정비소"></div>
-    <div class="note">항목이 소모품 이름과 같으면 그 소모품의 '최근 교체 시점'도 자동으로 갱신돼요. 비용은 [비용] 탭에 함께 집계됩니다.</div>
+    <div class="note">항목이 소모품 이름과 같으면 그 소모품의 '최근 교체 시점·교체일'도 자동으로 갱신돼요. 비용은 [비용] 탭에 함께 집계됩니다.</div>
     <div class="sheet-actions">${!isNew?`<button class="btn ghost" id="hDelete" style="flex:0 0 44px;color:var(--crit)">🗑</button>`:""}
       <button class="btn ghost" id="hCancel">취소</button><button class="btn primary" id="hSave">저장</button></div>`);
   $("#hCancel").onclick=closeSheet;
@@ -1051,9 +1051,13 @@ function openHist(id,presetItem){
     const item=$("#hItem").value.trim();if(!item){toast("항목을 입력하세요");return;}
     const km=num($("#hKm").value),match=b.consumables.find(c=>c.name===item);
     const obj={date:$("#hDate").value||today(),km,item,emoji:match?match.emoji:(h?h.emoji:"🔧"),cost:num($("#hCost").value),memo:$("#hMemo").value.trim()};
-    if(isNew){obj.id=uid();b.history.unshift(obj);if(match&&km>=(match.last||0))match.last=km;track("part_replaced",{item});}
+    let bumped=false;
+    if(isNew){obj.id=uid();b.history.unshift(obj);
+      if(match&&km>=(match.last||0)){match.last=km;match.lastDate=obj.date;}
+      bumped=bumpOdo(b,km);track("part_replaced",{item});}
     else Object.assign(h,obj);
-    save();closeSheet();renderAll();toast(isNew?"정비 기록이 추가됐어요":"수정되었습니다");
+    save();closeSheet();fillSettings();renderAll();
+    toast(isNew?(bumped?`기록 완료 · 계기판도 ${fmt(km)}km로 맞췄어요`:"정비 기록이 추가됐어요"):"수정되었습니다");
   };
   if(!isNew)$("#hDelete").onclick=()=>{b.history=b.history.filter(x=>x.id!==id);save();closeSheet();renderAll();toast("삭제되었습니다");};
 }
@@ -1068,6 +1072,11 @@ function openExpense(id){
       `<button type="button" data-c="${k}" class="${k===cat?"on":""}">${EXP_CATS[k][0]} ${EXP_CATS[k][1]}</button>`).join("")}</div></div>
     <div class="two"><div class="field"><label for="xAmt">금액 (원)</label><input id="xAmt" inputmode="numeric" value="${x?x.amount:""}" placeholder="0"></div>
       <div class="field"><label for="xDate">날짜</label><input id="xDate" type="date" value="${x?esc(x.date):today()}"></div></div>
+    <div id="xFuel" ${cat==="fuel"?"":"hidden"}>
+      <div class="two"><div class="field"><label for="xLiters">주유량 (L, 선택)</label><input id="xLiters" inputmode="decimal" value="${x&&x.liters?x.liters:""}" placeholder="예: 10.5"></div>
+        <div class="field"><label for="xOdo">주유 시 주행거리 (km, 선택)</label><input id="xOdo" inputmode="numeric" value="${x&&x.odo?x.odo:""}" placeholder="현재 ${fmt(b.odo)}"></div></div>
+      <div class="note" style="margin:-6px 0 12px">둘 다 적으면 <b>연비가 자동 계산</b>되고, 계기판 주행거리도 이 숫자로 맞춰져요. (가득 넣을 때 적으면 정확해요)</div>
+    </div>
     <div id="xIns" ${cat==="ins"?"":"hidden"}>
       <div class="two"><div class="field"><label for="xInsurer">보험사 (선택)</label><input id="xInsurer" value="${x?esc(x.insurer||""):""}" placeholder="가입한 보험사"></div>
         <div class="field"><label for="xExpiry">만기일 (선택)</label><input id="xExpiry" type="date" value="${x&&x.expiry?esc(x.expiry):""}"></div></div>
@@ -1076,15 +1085,19 @@ function openExpense(id){
     <div class="field"><label for="xMemo">메모 (선택)</label><input id="xMemo" value="${x?esc(x.memo||""):""}" placeholder="예: 고급유 가득 / 책임+종합"></div>
     <div class="sheet-actions">${!isNew?`<button class="btn ghost" id="xDelete" style="flex:0 0 44px;color:var(--crit)">🗑</button>`:""}
       <button class="btn ghost" id="xCancel">취소</button><button class="btn primary" id="xSave">저장</button></div>`);
-  $$("#xCats button").forEach(c=>c.onclick=()=>{cat=c.dataset.c;$$("#xCats button").forEach(y=>y.classList.toggle("on",y===c));$("#xIns").hidden=(cat!=="ins");});
+  $$("#xCats button").forEach(c=>c.onclick=()=>{cat=c.dataset.c;$$("#xCats button").forEach(y=>y.classList.toggle("on",y===c));$("#xIns").hidden=(cat!=="ins");$("#xFuel").hidden=(cat!=="fuel");});
   $("#xCancel").onclick=closeSheet;
   $("#xSave").onclick=()=>{
     const amount=num($("#xAmt").value);if(!amount){toast("금액을 입력하세요");return;}
     const obj={date:$("#xDate").value||today(),cat,amount,memo:$("#xMemo").value.trim()};
     if(cat==="ins"){obj.insurer=$("#xInsurer").value.trim();obj.expiry=$("#xExpiry").value||"";}
+    let bumped=false;
+    if(cat==="fuel"){const L=parseFloat(String($("#xLiters").value).replace(/[^0-9.]/g,""))||0,od=num($("#xOdo").value);
+      if(L>0)obj.liters=Math.round(L*100)/100;if(od>0){obj.odo=od;bumped=bumpOdo(b,od);}}
     if(isNew){obj.id=uid();b.expenses.unshift(obj);track("expense_add",{cat});}
-    else{delete x.insurer;delete x.expiry;Object.assign(x,obj);}
-    save();closeSheet();renderAll();toast(isNew?"비용이 기록됐어요":"수정되었습니다");
+    else{delete x.insurer;delete x.expiry;delete x.liters;delete x.odo;Object.assign(x,obj);}
+    save();closeSheet();fillSettings();renderAll();
+    toast(bumped?`기록 완료 · 계기판도 ${fmt(obj.odo)}km로 맞췄어요`:(isNew?"비용이 기록됐어요":"수정되었습니다"));
   };
   if(!isNew)$("#xDelete").onclick=()=>{b.expenses=b.expenses.filter(e=>e.id!==id);save();closeSheet();renderAll();toast("삭제되었습니다");};
 }
@@ -1098,7 +1111,7 @@ function buildReport(b){
   let text=`[정비 이력서] ${name}\n${info}\n작성일 ${today()}\n\n■ 정비 기록 (${hist.length}건 · 합계 ${fmt(total)}원)\n`;
   text+=hist.length?hist.map(h=>`· ${h.date} | ${fmt(h.km)}km | ${h.item}${h.cost?" | "+fmt(h.cost)+"원":""}${h.memo?" | "+h.memo:""}`).join("\n"):"· 기록 없음";
   text+=`\n\n■ 소모품 현재 상태\n`+b.consumables.map(c=>{const s=status(c);
-    return `· ${c.name}: ${s.label} (${s.remain>0?"남은 "+fmt(s.remain)+"km":fmt(-s.remain)+"km 초과"} / 주기 ${fmt(c.cycle)}km)`;}).join("\n");
+    return `· ${c.name}: ${s.label} (${s.text} / 주기 ${cycleText(c)})`;}).join("\n");
   text+=`\n\n— 라이더 개러지로 기록`;
   const html=`<h1>정비 이력서</h1><div class="p-sub">${esc(name)} · ${esc(info)} · 작성일 ${today()}</div>
     <h2>정비 기록 (${hist.length}건 · 합계 ${fmt(total)}원)</h2>
@@ -1107,7 +1120,7 @@ function buildReport(b){
       :`<tr><td colspan="5">기록 없음</td></tr>`}</tbody></table>
     <h2>소모품 현재 상태</h2>
     <table><thead><tr><th>항목</th><th class="r">교체주기</th><th class="r">최근 교체</th><th>상태</th></tr></thead><tbody>
-    ${b.consumables.map(c=>{const s=status(c);return `<tr><td>${esc(c.name)}</td><td class="r">${fmt(c.cycle)}km</td><td class="r">${fmt(c.last)}km</td><td>${s.label} (${s.remain>0?"남은 "+fmt(s.remain)+"km":fmt(-s.remain)+"km 초과"})</td></tr>`;}).join("")}
+    ${b.consumables.map(c=>{const s=status(c);return `<tr><td>${esc(c.name)}</td><td class="r">${cycleText(c)}</td><td class="r">${c.cycle>0?fmt(c.last)+"km":esc(c.lastDate||"-")}</td><td>${s.label} (${esc(s.text)})</td></tr>`;}).join("")}
     </tbody></table><div class="p-foot">본 이력서는 소유자가 '라이더 개러지' 앱에 직접 기록한 내용입니다.</div>`;
   return {text,html,count:hist.length};
 }
@@ -1173,11 +1186,10 @@ function openLogEdit(id){
       <input type="file" id="photoInput" accept="image/*" multiple hidden>
       <div class="note">＋를 눌러 갤러리에서 여러 장을 한 번에 고를 수 있어요. 첫 사진의 촬영 날짜가 자동 입력됩니다.</div></div>
     <div class="two"><div class="field"><label for="lDate">날짜</label><input id="lDate" type="date" value="${l?esc(l.date):today()}"></div>
-      <div class="field"><label for="lKm">주행거리 km</label><input id="lKm" inputmode="numeric" value="${l?(l.km||""):(b.odo||"")}"></div></div>
+      <div class="field"><label for="lKm">누적 주행거리 km</label><input id="lKm" inputmode="numeric" value="${l?(l.km||""):(b.odo||"")}"></div></div>
     <div class="field"><label for="lTitle">제목</label><input id="lTitle" value="${l?esc(l.title):""}" placeholder="예: 남한강 라이딩"></div>
     <div class="field"><label for="lPlace">방문지 / 코스</label><input id="lPlace" value="${l?esc(l.place||""):""}" placeholder="예: 양평 두물머리"></div>
     <div class="field"><label for="lMemo">메모</label><textarea id="lMemo" placeholder="오늘의 라이딩은 어땠나요?">${l?esc(l.memo||""):""}</textarea></div>
-    <div class="field"><label for="lTags">태그 (띄어쓰기로 구분)</label><input id="lTags" value="${l&&l.tags?esc(l.tags.join(" ")):""}" placeholder="#와인딩 #카페투어"></div>
     <div class="sheet-actions">${!isNew?`<button class="btn ghost" id="lDelete" style="flex:0 0 44px;color:var(--crit)">🗑</button>`:""}
       <button class="btn ghost" id="lCancel">취소</button><button class="btn primary" id="lSave">저장</button></div>`);
   renderThumbs();
@@ -1191,8 +1203,7 @@ function openLogEdit(id){
     const title=$("#lTitle").value.trim();
     if(!title&&draft.length===0){toast("제목이나 사진을 넣어주세요");return;}
     saving=true;
-    const tags=$("#lTags").value.split(/\s+/).map(s=>s.trim()).filter(Boolean).map(s=>s.charAt(0)==="#"?s:"#"+s);
-    const form={date:$("#lDate").value||today(),km:num($("#lKm").value),title,place:$("#lPlace").value.trim(),memo:$("#lMemo").value.trim(),tags};
+    const form={date:$("#lDate").value||today(),km:num($("#lKm").value),title,place:$("#lPlace").value.trim(),memo:$("#lMemo").value.trim()};
     const refs=[];
     for(const d of draft){
       if(d.ref){refs.push(d.ref);continue;}
@@ -1203,8 +1214,9 @@ function openLogEdit(id){
     old.filter(r=>refs.indexOf(r)<0&&!isData(r)).forEach(r=>{idbDel(r);photoCache.delete(r);});
     form.photos=refs;
     if(isNew){form.id=uid();b.logs.unshift(form);}else Object.assign(l,form);
-    const ok=save();closeSheet();renderAll();
-    if(ok)toast("일지가 저장되었습니다");track("log_save",{photos:refs.length});
+    const bumped=isNew&&bumpOdo(b,form.km);
+    const ok=save();closeSheet();fillSettings();renderAll();
+    if(ok)toast(bumped?`일지 저장 · 계기판도 ${fmt(form.km)}km로 맞췄어요`:"일지가 저장되었습니다");track("log_save",{photos:refs.length});
   };
   if(!isNew)$("#lDelete").onclick=()=>{(l.photos||[]).forEach(r=>{if(!isData(r)){idbDel(r);photoCache.delete(r);}});
     b.logs=b.logs.filter(x=>x.id!==id);save();closeSheet();renderAll();toast("삭제되었습니다");};
@@ -1233,20 +1245,8 @@ function shrinkImage(src,cb){
     try{cb(cv.toDataURL("image/jpeg",0.78));}catch(e){cb(src);}};
   img.onerror=()=>cb(src);img.src=src;
 }
-function openBlogText(l){
-  const text=composeBlog(l),s=state.settings,n=(l.photos||[]).length;
-  openSheet(`<h3>블로그 글 자동완성</h3>
-    <div class="note" style="margin-bottom:8px">아래 글이 자동으로 정리됐어요. 복사해서 네이버 블로그에 붙여넣기 하세요.${n?` 사진 ${n}장은 블로그에서 직접 올려주세요.`:""}</div>
-    <div class="preview" id="blogPreview">${esc(text)}</div>
-    <div class="sheet-actions" style="margin-top:12px"><button class="btn primary" id="copyBlog">📋 글 복사</button>
-      <button class="btn ghost" id="openBlog">네이버 블로그 열기</button></div>
-    <button class="btn ghost block" id="openCafe" style="margin-top:10px">카페에 공유하기</button>`);
-  $("#copyBlog").onclick=()=>{copyText(text);track("blog_copy");};
-  $("#openBlog").onclick=()=>{copyText(text,true);track("blog_open");openExt(s.blog||"https://blog.naver.com/");};
-  $("#openCafe").onclick=()=>{copyText(text,true);track("cafe_open");openExt(s.cafe||"https://cafe.naver.com/");};
-}
 function copyText(text,msg){
-  const m=typeof msg==="string"?msg:(msg?"글이 복사됐어요 · 붙여넣기 하세요":"복사됐어요! 블로그에 붙여넣기 하세요");
+  const m=typeof msg==="string"?msg:"복사됐어요 · 붙여넣기 하세요";
   const done=()=>toast(m);
   if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(done).catch(()=>fallbackCopy(text,done));
   else fallbackCopy(text,done);
@@ -1258,9 +1258,9 @@ function fallbackCopy(text,done){
   document.body.removeChild(ta);
 }
 function shareLog(l){
-  const text=composeBlog(l);
+  const text=composeShare(l);track("log_share");
   if(navigator.share)navigator.share({title:l.title||"라이딩 일지",text}).catch(()=>{});
-  else copyText(text);
+  else copyText(text,"일지 내용이 복사됐어요 · 붙여넣기 하세요");
 }
 
 /* ---------- 내 차고 (바이크 여러 대) ---------- */
@@ -1309,21 +1309,16 @@ function confirmDeleteBike(id){
 
 /* ---------- 설정 ---------- */
 function fillSettings(){
-  const b=B(),s=state.settings;
+  const b=B();
   $("#f-nick").value=b.nick||"";$("#f-mfr").value=b.mfr||"";$("#f-year").value=b.year||"";
   $("#f-model").value=b.model||"";$("#f-plate").value=b.plate||"";$("#f-odo").value=b.odo||"";
   $("#f-cat").value=b.category||"mid";
-  $("#f-blog").value=s.blog||"";$("#f-cafe").value=s.cafe||"";
-  $$("#navSeg button").forEach(x=>x.classList.toggle("on",x.dataset.nav===(s.nav||"kakao")));
 }
-$$("#navSeg button").forEach(x=>x.onclick=()=>{$$("#navSeg button").forEach(y=>y.classList.remove("on"));x.classList.add("on");});
 $("#saveSetBtn").onclick=()=>{
-  const b=B(),s=state.settings,wasNewBike=!(b.model||b.mfr);
+  const b=B(),wasNewBike=!(b.model||b.mfr);
   b.nick=$("#f-nick").value.trim();b.mfr=$("#f-mfr").value.trim();b.year=$("#f-year").value.trim();
   b.model=$("#f-model").value.trim();b.plate=$("#f-plate").value.trim();b.odo=num($("#f-odo").value);
   b.category=$("#f-cat").value;
-  s.blog=$("#f-blog").value.trim();s.cafe=$("#f-cafe").value.trim();
-  const on=$("#navSeg button.on");s.nav=on?on.dataset.nav:"kakao";
   state.isExample=false;save();renderAll();toast("저장되었습니다");
   if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{}); // 브라우저가 기록을 함부로 지우지 않도록 요청
   if(wasNewBike&&(b.model||b.mfr)){track("bike_register",{category:b.category});openSetupWizard(true);}else switchTab("dash");
@@ -1333,13 +1328,13 @@ $("#applyPresetBtn").onclick=()=>{
   const key=$("#f-cat").value,b=B();
   if(key==="custom"){toast("'직접 설정'은 항목을 직접 편집하세요");return;}
   openSheet(`<h3>${CAT_LABELS[key]} 기본 주기 적용</h3>
-    <div class="note" style="margin-bottom:14px">이 차종에 맞는 소모품 목록과 교환주기로 바꿉니다. 같은 이름 항목의 '최근 교체 시점'은 유지돼요. (일반 가이드 값이라 정비매뉴얼에 맞춰 조정하세요.)</div>
+    <div class="note" style="margin-bottom:14px">위에서 고른 차종 타입에 맞는 소모품 목록과 교환주기로 바꿉니다. 같은 이름 항목의 '최근 교체 시점'은 유지돼요. (일반 가이드 값이라 정비매뉴얼에 맞춰 조정하세요.)</div>
     <div class="sheet-actions"><button class="btn ghost" id="apCancel">취소</button><button class="btn primary" id="apOk">적용</button></div>`);
   $("#apCancel").onclick=closeSheet;
   $("#apOk").onclick=()=>{
     const byName={};b.consumables.forEach(c=>byName[c.name]=c);
-    b.consumables=CATEGORY_PRESETS[key].items.map(([name,emoji,cycle])=>{
-      const ex=byName[name];return {id:ex?ex.id:uid(),name,emoji,cycle,last:ex?ex.last:0,buy:ex?ex.buy:""};});
+    b.consumables=CATEGORY_PRESETS[key].items.map(([name,emoji,cycle,months])=>{
+      const ex=byName[name];return {id:ex?ex.id:uid(),name,emoji,cycle,months:months||0,last:ex?ex.last:0,lastDate:ex?(ex.lastDate||""):""};});
     b.category=key;save();closeSheet();renderAll();toast("기본 교환주기를 적용했어요");
   };
 };
@@ -1353,7 +1348,7 @@ function openSetupWizard(afterRegister){
       <div style="display:flex;gap:9px;align-items:center;margin-bottom:9px">
         <span style="width:30px;height:30px;border-radius:8px;background:var(--surface-2);display:grid;place-items:center;font-size:15px;flex:none">${c.emoji||"🔧"}</span>
         <div style="flex:1;min-width:0"><div style="font-weight:600;font-size:13px">${esc(c.name)}</div>
-          <div style="font-size:11px;color:var(--muted)">교체주기 ${fmt(c.cycle)}km</div></div>
+          <div style="font-size:11px;color:var(--muted)">주기 ${cycleText(c)}</div></div>
         <input data-i="${i}" class="wz-last" inputmode="numeric" aria-label="${esc(c.name)} 최근 교체 주행거리" style="width:104px;padding:9px 10px;border-radius:9px;border:1px solid var(--border-2);background:var(--surface-3);color:var(--text);font-size:13px"
           placeholder="${mode==='new'?fmt(odo)+' km':'모르면 비움'}" value="">
       </div>`).join("");
@@ -1372,7 +1367,7 @@ function openSetupWizard(afterRegister){
     $("#wzSave").onclick=()=>{
       $$(".wz-last").forEach(inp=>{
         const i=+inp.dataset.i,raw=inp.value.trim(),c=b.consumables[i];
-        if(raw==="")c.last=(mode==="new")?odo:Math.max(0,odo-(c.cycle||0));
+        if(raw===""){c.last=(mode==="new")?odo:Math.max(0,odo-(c.cycle||0));c.lastDate=(mode==="new")?today():(c.lastDate||"");}
         else c.last=num(raw);
       });
       b.purchase=mode;save();closeSheet();renderAll();switchTab("dash");toast("소모품 초기 설정 완료");track("setup_done",{mode});
@@ -1454,9 +1449,9 @@ function installApp(){
 
 /* ---------- tabs & fab ---------- */
 const tabMap={dash:{title:"라이더 개러지",sub:"오늘 챙길 것 한눈에"},
-  log:{title:"라이딩 일지",sub:"사진 여러 장 · 블로그 글 자동완성"},
+  log:{title:"라이딩 일지",sub:"사진으로 남기는 라이딩 기록"},
   maint:{title:"차계부",sub:"소모품 · 비용 · 정비 기록"},
-  set:{title:"설정 · 프로필",sub:"내 차고 · 외부 연동 · 백업"}};
+  set:{title:"설정",sub:"내 차고 · 백업"}};
 let curTab="dash";
 function switchTab(t){
   curTab=t;["dash","log","maint","set"].forEach(k=>$("#scr-"+k).hidden=(k!==t));
